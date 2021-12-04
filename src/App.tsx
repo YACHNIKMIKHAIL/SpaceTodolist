@@ -6,19 +6,24 @@ import {v1} from "uuid";
 function App() {
     const todolist1 = v1()
     const todolist2 = v1()
+    const todolist3 = v1()
 
     const [tasks, setTasks] = useState<TaskStateType>({
             [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: true},
                 {id: v1(), title: "JS", isDone: true},
                 {id: v1(), title: "ReactJS", isDone: false}],
-            [todolist2]: [{id: v1(), title: "Hello world", isDone: true},
+            [todolist2]: [{id: v1(), title: "Hello world", isDone: false},
                 {id: v1(), title: "I am Happy", isDone: false},
-                {id: v1(), title: "Yo", isDone: false}]
+                {id: v1(), title: "Yo", isDone: false}],
+            [todolist3]: [{id: v1(), title: "Helmet", isDone: true},
+                {id: v1(), title: "Wheels", isDone: false},
+                {id: v1(), title: "Crank", isDone: false}]
         }
     )
     const [todolists, setTodolists] = useState<Array<TodolitsType>>([
         {id: todolist1, title: 'What to learn?', filter: 'all'},
-        {id: todolist2, title: 'What to buy?', filter: 'all'}
+        {id: todolist2, title: 'What to buy?', filter: 'all'},
+        {id: todolist3, title: 'What to fixie?', filter: 'all'}
     ])
 
     const removeTask = (id: string, todolistID: string) => {
@@ -68,7 +73,7 @@ function App() {
                 }
                 return <Todolist key={todo.id}
                                  todolistID={todo.id}
-                                 title="What to learn"
+                                 title={todo.title}
                                  tasks={tasksForRender}
                                  removeTask={removeTask}
                                  changeFilter={changeFilter}

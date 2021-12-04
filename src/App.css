@@ -1,31 +1,35 @@
 .App {
-  padding: 30px;
-  display: flex;
-  height: 100vh;
-  background: url("./Components/Images/wallpaperflare.com_wallpaper.jpg") no-repeat center/cover;
+    padding: 30px;
+    display: flex;
+    height: 100vh;
+    background: url("./Components/Images/wallpaperflare.com_wallpaper.jpg") no-repeat center/cover;
 }
 
 .App > div {
-  margin-right: 50px;
-  height: fit-content;
-  padding: 20px;
-  color: white;
-  border-radius: 20px;
-  background-color: rgba(97,133,165,0.5);
+    margin-right: 50px;
+    height: fit-content;
+    padding: 20px;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(97, 133, 165, 0.5);
 }
 
 .error {
-  border: red 3px solid;
+    border: red 3px solid;
 }
 
 .error-message {
-  color: red;
+    color: red;
 }
 
 .active-filter {
-  background-color: rgba(133,167,187,1);
+    background-color: rgba(133, 167, 187, 1);
 }
 
 .is-done {
-  opacity: 0.4;
+    opacity: 0.4;
+}
+
+input {
+    opacity: 0.8;
 }
