@@ -1,14 +1,21 @@
 .App {
   padding: 30px;
   display: flex;
+  height: 100vh;
+  background: url("./Components/Images/wallpaperflare.com_wallpaper.jpg") no-repeat center/cover;
 }
 
 .App > div {
   margin-right: 50px;
+  height: fit-content;
+  padding: 20px;
+  color: white;
+  border-radius: 20px;
+  background-color: rgba(97,133,165,0.5);
 }
 
 .error {
-  border: red 1px solid;
+  border: red 3px solid;
 }
 
 .error-message {
@@ -16,7 +23,7 @@
 }
 
 .active-filter {
-  background-color: aquamarine;
+  background-color: rgba(133,167,187,1);
 }
 
 .is-done {

@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import './App.css';
-import {FilterValueType, TaskType, Todolist, TodolitsType} from './Components/Todolist/Todolist';
+import {FilterValueType, TaskStateType, Todolist, TodolitsType} from './Components/Todolist/Todolist';
 import {v1} from "uuid";
 
 function App() {
     const todolist1 = v1()
     const todolist2 = v1()
 
-    const [tasks, setTasks] = useState({
+    const [tasks, setTasks] = useState<TaskStateType>({
             [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: true},
                 {id: v1(), title: "JS", isDone: true},
                 {id: v1(), title: "ReactJS", isDone: false}],
@@ -43,15 +43,14 @@ function App() {
 
     }
     const changeTaskStatus = (id: string, isDone: boolean, todolistID: string) => {
-        let todolistTasks = tasks[todolistID]
-        let task = todolistTasks.find(f => f.id === id)
+        let task = tasks[todolistID].find(f => f.id === id)
         if (task) {
             task.isDone = isDone
             setTasks({...tasks})
         }
     }
-    const removeTodolist =(todolistID:string)=>{
-        setTodolists(todolists.filter(f=>f.id!==todolistID))
+    const removeTodolist = (todolistID: string) => {
+        setTodolists(todolists.filter(f => f.id !== todolistID))
         delete tasks[todolistID]
         setTasks({...tasks})
     }
@@ -60,13 +59,12 @@ function App() {
     return (
         <div className="App">
             {todolists.map(todo => {
-                let allTodolistsTasks = tasks[todo.id]
-                let tasksForRender = allTodolistsTasks
+                let tasksForRender = tasks[todo.id]
                 if (todo.filter === 'active') {
-                    tasksForRender = allTodolistsTasks.filter(f => !f.isDone)
+                    tasksForRender = tasks[todo.id].filter(f => !f.isDone)
                 }
                 if (todo.filter === 'complited') {
-                    tasksForRender = allTodolistsTasks.filter(f => f.isDone)
+                    tasksForRender = tasks[todo.id].filter(f => f.isDone)
                 }
                 return <Todolist key={todo.id}
                                  todolistID={todo.id}

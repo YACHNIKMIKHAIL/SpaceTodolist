@@ -11,6 +11,9 @@ export type TodolitsType = {
     title: string
     filter: FilterValueType
 }
+export type TaskStateType = {
+    [key: string]: Array<TaskType>
+}
 type PropsType = {
     title: string
     tasks: Array<TaskType>
@@ -23,7 +26,15 @@ type PropsType = {
     removeTodolist: (todolistID: string) => void
 }
 
-export function Todolist(props: PropsType) {
+export function Todolist({
+                             removeTask,
+                             changeFilter,
+                             addTask,
+                             changeTaskStatus,
+                             removeTodolist,
+                             todolistID,
+                             ...props
+                         }: PropsType) {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string>('')
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,27 +43,17 @@ export function Todolist(props: PropsType) {
     }
     const addTaskButton = () => {
         if (title.trim() !== '') {
-            props.addTask(title.trim(), props.todolistID)
+            addTask(title.trim(), todolistID)
             setTitle('')
         } else {
             setError('Title is undefined !')
         }
     }
-    const changeTasksFiler = (value: FilterValueType, todolistID: string) => props.changeFilter(value, todolistID)
-    const removeTaskX = (id: string) => {
-        props.removeTask(id, props.todolistID)
-    }
-    const onKeyPressAdd = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            addTaskButton()
-        }
-    }
-    const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>) => {
-        props.changeTaskStatus(id, e.currentTarget.checked, props.todolistID)
-    }
-    const removeTodolistX = () => {
-        props.removeTodolist(props.todolistID)
-    }
+    const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
+    const removeTaskX = (id: string) => removeTask(id, todolistID)
+    const onKeyPressAdd = (e: React.KeyboardEvent<HTMLInputElement>) => (e.key === 'Enter') ? addTaskButton() : ''
+    const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
+    const removeTodolistX = () => removeTodolist(todolistID)
 
     return <div>
         <h3>{props.title}
@@ -76,13 +77,13 @@ export function Todolist(props: PropsType) {
         </ul>
         <div>
             <button className={props.filter === 'all' ? 'active-filter' : ''}
-                    onClick={() => changeTasksFiler('all', props.todolistID)}>All
+                    onClick={() => changeTasksFiler('all', todolistID)}>All
             </button>
             <button className={props.filter === 'active' ? 'active-filter' : ''}
-                    onClick={() => changeTasksFiler('active', props.todolistID)}>Active
+                    onClick={() => changeTasksFiler('active', todolistID)}>Active
             </button>
             <button className={props.filter === 'complited' ? 'active-filter' : ''}
-                    onClick={() => changeTasksFiler('complited', props.todolistID)}>Completed
+                    onClick={() => changeTasksFiler('complited', todolistID)}>Completed
             </button>
         </div>
     </div>
