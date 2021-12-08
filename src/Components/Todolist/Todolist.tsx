@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import {TasksMap} from "../Map/TasksMap";
 
 export type TaskType = {
     id: string
@@ -67,14 +68,7 @@ export function Todolist({
             <button onClick={addTaskButton}>+</button>
         </div>
         {error ? <div className={'error-message'}>{error}</div> : ''}
-        <ul>
-            {props.tasks.map(m => <li key={m.id} className={m.isDone ? 'is-done' : ''}>
-                <input type="checkbox" checked={m.isDone}
-                       onChange={(e) => changeCheckbox(m.id, e)}/>
-                <span>{m.title}</span>
-                <button onClick={(e) => removeTaskX(m.id)}>x</button>
-            </li>)}
-        </ul>
+        <TasksMap tasks={props.tasks} changeCheckbox={changeCheckbox} removeTaskX={removeTaskX} id={todolistID}/>
         <div>
             <button className={props.filter === 'all' ? 'active-filter' : ''}
                     onClick={() => changeTasksFiler('all', todolistID)}>All
