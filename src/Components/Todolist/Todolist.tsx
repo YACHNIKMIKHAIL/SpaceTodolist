@@ -34,10 +34,12 @@ export function Todolist({
                              changeTaskStatus,
                              removeTodolist,
                              todolistID,
+                             filter,
                              ...props
                          }: PropsType) {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string>('')
+
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setError('')
         setTitle(e.currentTarget.value)
@@ -68,15 +70,22 @@ export function Todolist({
             <button onClick={addTaskButton}>+</button>
         </div>
         {error ? <div className={'error-message'}>{error}</div> : ''}
-        <TasksMap tasks={props.tasks} changeCheckbox={changeCheckbox} removeTaskX={removeTaskX} id={todolistID}/>
+
+
+        <TasksMap tasks={props.tasks}
+                  changeCheckbox={changeCheckbox}
+                  removeTaskX={removeTaskX}
+                  id={todolistID}/>
+
+
         <div>
-            <button className={props.filter === 'all' ? 'active-filter' : ''}
+            <button className={filter === 'all' ? 'active-filter' : ''}
                     onClick={() => changeTasksFiler('all', todolistID)}>All
             </button>
-            <button className={props.filter === 'active' ? 'active-filter' : ''}
+            <button className={filter === 'active' ? 'active-filter' : ''}
                     onClick={() => changeTasksFiler('active', todolistID)}>Active
             </button>
-            <button className={props.filter === 'complited' ? 'active-filter' : ''}
+            <button className={filter === 'complited' ? 'active-filter' : ''}
                     onClick={() => changeTasksFiler('complited', todolistID)}>Completed
             </button>
         </div>

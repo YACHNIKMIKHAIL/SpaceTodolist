@@ -7,15 +7,15 @@ type TasksMapType = {
     removeTaskX: (id: string) => void
     id: string
 }
-export const TasksMap = (props: TasksMapType) => {
+export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMapType) => {
     return (
         <ul>{
-            props.tasks.map(m => {
+            tasks.map(m => {
                     return <li key={m.id} className={m.isDone ? 'is-done' : ''}>
                         <input type="checkbox" checked={m.isDone}
-                               onChange={(e) => props.changeCheckbox(m.id, e)}/>
+                               onChange={(e) => changeCheckbox(m.id, e)}/>
                         <span>{m.title}</span>
-                        <button onClick={(e) => props.removeTaskX(m.id)}>x</button>
+                        <button onClick={(e) => removeTaskX(m.id)}>x</button>
                     </li>
                 }
             )
