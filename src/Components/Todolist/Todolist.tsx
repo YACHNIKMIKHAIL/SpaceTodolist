@@ -60,7 +60,7 @@ export function Todolist({
     const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
     const removeTodolistX = () => removeTodolist(todolistID)
 
-    return <div>
+    return <div className={'todolist'}>
         <h3>{props.title}
             <Button name={'x'} callback={removeTodolistX}/>
         </h3>

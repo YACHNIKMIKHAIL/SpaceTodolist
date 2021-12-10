@@ -1,17 +1,30 @@
+.main {
+    background: url("./Components/Images/wallpaperflare.com_wallpaper.jpg") no-repeat center/cover;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
 .App {
     padding: 30px;
     display: flex;
+    flex-wrap: wrap;
+
     height: 100vh;
-    background: url("./Components/Images/wallpaperflare.com_wallpaper.jpg") no-repeat center/cover;
 }
 
 .App > div {
-    margin-right: 50px;
+    margin: 10px auto;
     height: fit-content;
     padding: 20px;
     color: white;
     border-radius: 20px;
     background-color: rgba(97, 133, 165, 0.5);
+
+    border: rgba(97, 133, 165, 0.7) 2px solid;
+    width: 240px;
 }
 
 .error {
@@ -38,4 +51,13 @@ button {
     border-radius: 5px;
     border: none;
     margin: 0 4px;
+}
+
+.head {
+    height: 10vh;
+    margin: 20px 60px 0 60px;
+    padding: 20px;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(97, 133, 165, 0.5);
 }
