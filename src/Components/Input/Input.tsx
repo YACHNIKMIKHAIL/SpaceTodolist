@@ -7,12 +7,12 @@ type InputPropsType = {
     onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export const Input = (props: InputPropsType) => {
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => props.onChange(e)
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => props.onKeyPress(e)
+export const Input = ({className, value, onChange, onKeyPress}: InputPropsType) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => onChange(e)
+    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => onKeyPress(e)
 
-    return <input className={props.className}
-                  value={props.value}
+    return <input className={className}
+                  value={value}
                   onChange={(e) => onChangeHandler(e)}
                   onKeyPress={(e) => onKeyPressHandler(e)}/>
 }

@@ -62,19 +62,13 @@ export function Todolist({
 
     return <div>
         <h3>{props.title}
-            {/*<button onClick={removeTodolistX}>x</button>*/}
             <Button name={'x'} callback={removeTodolistX}/>
         </h3>
         <div>
-            {/*<input className={error ? 'error' : ''}*/}
-            {/*       value={title}*/}
-            {/*       onChange={onChangeInput}*/}
-            {/*       onKeyPress={onKeyPressAdd}/>*/}
             <Input value={title}
                    onChange={onChangeInput}
                    onKeyPress={onKeyPressAdd}
                    className={error ? 'error' : ''}/>
-            {/*<button onClick={addTaskButton}>+</button>*/}
             <Button name={'+'} callback={addTaskButton}/>
         </div>
         {error ? <div className={'error-message'}>{error}</div> : ''}
@@ -87,15 +81,6 @@ export function Todolist({
 
 
         <div>
-            {/*<button className={filter === 'all' ? 'active-filter' : ''}*/}
-            {/*        onClick={() => changeTasksFiler('all', todolistID)}>All*/}
-            {/*</button>*/}
-            {/*<button className={filter === 'active' ? 'active-filter' : ''}*/}
-            {/*        onClick={() => changeTasksFiler('active', todolistID)}>Active*/}
-            {/*</button>*/}
-            {/*<button className={filter === 'complited' ? 'active-filter' : ''}*/}
-            {/*        onClick={() => changeTasksFiler('complited', todolistID)}>Completed*/}
-            {/*</button>*/}
             <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
                     className={filter === 'all' ? 'active-filter' : ''}/>
             <Button name={'Active'} callback={() => changeTasksFiler('active', todolistID)}
