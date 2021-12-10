@@ -59,6 +59,7 @@ export function Todolist({
     const onKeyPressAdd = (e: React.KeyboardEvent<HTMLInputElement>) => (e.key === 'Enter') ? addTaskButton() : ''
     const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
     const removeTodolistX = () => removeTodolist(todolistID)
+    const makeActive = (value:string) => filter === value ? 'active-filter' : ''
 
     return <div className={'todolist'}>
         <h3>{props.title}
@@ -82,11 +83,11 @@ export function Todolist({
 
         <div>
             <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
-                    className={filter === 'all' ? 'active-filter' : ''}/>
+                    className={makeActive('all')}/>
             <Button name={'Active'} callback={() => changeTasksFiler('active', todolistID)}
-                    className={filter === 'active' ? 'active-filter' : ''}/>
+                    className={makeActive('active')}/>
             <Button name={'Complited'} callback={() => changeTasksFiler('complited', todolistID)}
-                    className={filter === 'complited' ? 'active-filter' : ''}/>
+                    className={makeActive('complited')}/>
         </div>
     </div>
 }
