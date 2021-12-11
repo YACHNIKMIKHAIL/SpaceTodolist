@@ -4,6 +4,7 @@ import {FilterValueType, TaskStateType, TodolitsType} from './Components/Todolis
 import {v1} from "uuid";
 import {TodolistsMap} from "./Components/Map/TodolistsMap";
 import {Input} from "./Components/Input/Input";
+import {AddForm} from "./Components/AddForm/AddForm";
 
 function App() {
     const todolist1 = v1()
@@ -83,10 +84,16 @@ function App() {
         delete tasks[todolistID]
         setTasks({...tasks})
     }
+    const addTodolist = (title: string) => {
+        let newID = v1()
+        let newTodolist: TodolitsType = {id: newID, title: title, filter: 'all'}
+        setTodolists([newTodolist, ...todolists])
+        setTasks({...tasks,[newTodolist.id]:[]})
+    }
 
     return <div className={'main'}>
         <div className={'head'}>
-
+            <AddForm addItem={addTodolist}/>
         </div>
         <TodolistsMap todolists={todolists}
                       tasks={tasks}
