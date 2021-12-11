@@ -60,4 +60,12 @@ button {
     color: white;
     border-radius: 20px;
     background-color: rgba(97, 133, 165, 0.5);
+
+font-size: 40px;
+    display: flex;
+}
+
+.headText{
+    margin: auto 40px auto 20px;
+    color: sandybrown;
 }

@@ -3,7 +3,6 @@ import './App.css';
 import {FilterValueType, TaskStateType, TodolitsType} from './Components/Todolist/Todolist';
 import {v1} from "uuid";
 import {TodolistsMap} from "./Components/Map/TodolistsMap";
-import {Input} from "./Components/Input/Input";
 import {AddForm} from "./Components/AddForm/AddForm";
 
 function App() {
@@ -88,14 +87,15 @@ function App() {
         let newID = v1()
         let newTodolist: TodolitsType = {id: newID, title: title, filter: 'all'}
         setTodolists([newTodolist, ...todolists])
-        setTasks({...tasks,[newTodolist.id]:[]})
+        setTasks({...tasks, [newTodolist.id]: []})
     }
-    const changeTaskTitle = (id:string, title:string,todolistId:string) => {
-      setTasks({...tasks,[todolistId]:tasks[todolistId].map(m=>m.id===id?{...m,title:title}:m)})
+    const changeTaskTitle = (id: string, title: string, todolistId: string) => {
+        setTasks({...tasks, [todolistId]: tasks[todolistId].map(m => m.id === id ? {...m, title: title} : m)})
     }
 
     return <div className={'main'}>
         <div className={'head'}>
+           <span className={'headText'}> What do you want to do/ change/ fix:</span>
             <AddForm addItem={addTodolist}/>
         </div>
         <TodolistsMap todolists={todolists}
