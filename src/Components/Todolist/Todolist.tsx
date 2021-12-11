@@ -27,6 +27,7 @@ type PropsType = {
     filter: FilterValueType
     todolistID: string
     removeTodolist: (todolistID: string) => void
+    changeTaskTitle:(id:string, title:string,todolistId:string)=>void
 }
 
 export function Todolist({
@@ -81,7 +82,8 @@ export function Todolist({
         <TasksMap tasks={props.tasks}
                   changeCheckbox={changeCheckbox}
                   removeTaskX={removeTaskX}
-                  id={todolistID}/>
+                  id={todolistID}
+                  changeTaskTitle={props.changeTaskTitle}/>
 
 
         <div>

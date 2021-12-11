@@ -10,6 +10,7 @@ type TodolistsMapType = {
     addTask: (title: string, todolistID: string) => void
     changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
     removeTodolist: (todolistID: string) => void
+    changeTaskTitle:(id:string, title:string,todolistId:string)=>void
 }
 export const TodolistsMap = ({
                                  todolists,
@@ -40,7 +41,8 @@ export const TodolistsMap = ({
                                  addTask={addTask}
                                  changeTaskStatus={changeTaskStatus}
                                  filter={todo.filter}
-                                 removeTodolist={removeTodolist}/>
+                                 removeTodolist={removeTodolist}
+                                 changeTaskTitle={props.changeTaskTitle}/>
             })}
         </div>
     );
