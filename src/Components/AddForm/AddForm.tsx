@@ -2,13 +2,13 @@ import {Input} from "../Input/Input";
 import {Button} from "../Button/Button";
 import React, {ChangeEvent, useState} from "react";
 
-type AddFormPropsType={
-    addItem:(title:string)=>void
+type AddFormPropsType = {
+    addItem: (title: string) => void
 }
 
-export const AddForm = (props:AddFormPropsType) => {
-    const [title,setTitle]=useState<string>('')
-    const[error,setError]=useState<string>('')
+export const AddForm = (props: AddFormPropsType) => {
+    const [title, setTitle] = useState<string>('')
+    const [error, setError] = useState<string>('')
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setError('')
@@ -23,7 +23,7 @@ export const AddForm = (props:AddFormPropsType) => {
         }
     }
     const onKeyPressAdd = (e: React.KeyboardEvent<HTMLInputElement>) => (e.key === 'Enter') ? addTaskButton() : ''
-   return <div>
+    return <div>
         <Input value={title}
                onChange={onChangeInput}
                onKeyPress={onKeyPressAdd}

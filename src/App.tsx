@@ -92,10 +92,13 @@ function App() {
     const changeTaskTitle = (id: string, title: string, todolistId: string) => {
         setTasks({...tasks, [todolistId]: tasks[todolistId].map(m => m.id === id ? {...m, title: title} : m)})
     }
+    const onChangeTodolistTitle = (title: string, todolistID: string) => {
+        setTodolists(todolists.map(m => m.id === todolistID ? {...m, title} : m))
+    }
 
     return <div className={'main'}>
         <div className={'head'}>
-           <span className={'headText'}> What do you want to do/ change/ fix:</span>
+            <span className={'headText'}> What do you want to do/ change/ fix:</span>
             <AddForm addItem={addTodolist}/>
         </div>
         <TodolistsMap todolists={todolists}
@@ -105,7 +108,8 @@ function App() {
                       addTask={addTask}
                       changeTaskStatus={changeTaskStatus}
                       removeTodolist={removeTodolist}
-                      changeTaskTitle={changeTaskTitle}/>
+                      changeTaskTitle={changeTaskTitle}
+                      onChangeTodolistTitle={onChangeTodolistTitle}/>
     </div>
 }
 
