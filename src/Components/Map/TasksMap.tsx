@@ -6,23 +6,24 @@ import {Checkbox} from "../Checkbox/Checkbox";
 
 type TasksMapType = {
     tasks: Array<TaskType>
-    changeCheckbox: (id: string, e: ChangeEvent<HTMLInputElement>) => void
+    changeCheckbox: (id: string, e: ChangeEvent<HTMLInputElement>,todolistID: string) => void
     removeTaskX: (id: string) => void
     id: string
     changeTaskTitle: (id: string, title: string, todolistId: string) => void
+    todolistID: string
 }
 export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMapType) => {
+    const changeTaskTitle = (title: string) => {
+        props.changeTaskTitle(props.id, title, props.todolistID)
+    }
+    const changeCheckboxX = (id:string,e: ChangeEvent<HTMLInputElement>) => {
+        changeCheckbox(id, e, props.todolistID)
+    }
     return (
         <ul>{
             tasks.map(m => {
-                    const changeTaskTitle = (title: string) => {
-                        props.changeTaskTitle(m.id, title, props.id)
-                    }
-                const changeCheckboxX=(e: ChangeEvent<HTMLInputElement>)=>{
-                    changeCheckbox(m.id,e)
-                }
                     return <li key={m.id} className={m.isDone ? 'is-done' : ''}>
-                        <Checkbox isDone={m.isDone} callback={changeCheckboxX}/>
+                        <Checkbox isDone={m.isDone} callback={(e: React.ChangeEvent<HTMLInputElement>)=>changeCheckboxX(m.id,e)} />
                         <EditableSpan title={m.title} onChange={changeTaskTitle}/>
                         <Button name={'x'} callback={() => removeTaskX(m.id)}/>
                     </li>

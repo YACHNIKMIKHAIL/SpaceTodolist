@@ -45,7 +45,7 @@ export function Todolist({
 
     const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
     const removeTaskX = (id: string) => removeTask(id, todolistID)
-    const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
+    const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>,todolistID: string) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
     const removeTodolistX = () => removeTodolist(todolistID)
     const makeActive = (value: string) => filter === value ? 'active-filter' : ''
     const addTaskX = (title: string) => addTask(title, todolistID)
@@ -62,7 +62,8 @@ export function Todolist({
                   changeCheckbox={changeCheckbox}
                   removeTaskX={removeTaskX}
                   id={todolistID}
-                  changeTaskTitle={props.changeTaskTitle}/>
+                  changeTaskTitle={props.changeTaskTitle}
+                  todolistID={todolistID}/>
 
         <div>
             <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
