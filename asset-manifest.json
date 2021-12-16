@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/SpaceTodolist/static/css/main.f9362604.chunk.css",
-    "main.js": "/SpaceTodolist/static/js/main.7a5feefb.chunk.js",
-    "main.js.map": "/SpaceTodolist/static/js/main.7a5feefb.chunk.js.map",
+    "main.js": "/SpaceTodolist/static/js/main.f89acedc.chunk.js",
+    "main.js.map": "/SpaceTodolist/static/js/main.f89acedc.chunk.js.map",
     "runtime-main.js": "/SpaceTodolist/static/js/runtime-main.55b9e915.js",
     "runtime-main.js.map": "/SpaceTodolist/static/js/runtime-main.55b9e915.js.map",
     "static/js/2.ccc2b71b.chunk.js": "/SpaceTodolist/static/js/2.ccc2b71b.chunk.js",
     "static/js/2.ccc2b71b.chunk.js.map": "/SpaceTodolist/static/js/2.ccc2b71b.chunk.js.map",
     "index.html": "/SpaceTodolist/index.html",
-    "precache-manifest.192da1746d011f188b850aa417262c83.js": "/SpaceTodolist/precache-manifest.192da1746d011f188b850aa417262c83.js",
+    "precache-manifest.d9b404d8061e0af4977771bf11a1f366.js": "/SpaceTodolist/precache-manifest.d9b404d8061e0af4977771bf11a1f366.js",
     "service-worker.js": "/SpaceTodolist/service-worker.js",
     "static/css/main.f9362604.chunk.css.map": "/SpaceTodolist/static/css/main.f9362604.chunk.css.map",
     "static/js/2.ccc2b71b.chunk.js.LICENSE.txt": "/SpaceTodolist/static/js/2.ccc2b71b.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.55b9e915.js",
     "static/js/2.ccc2b71b.chunk.js",
     "static/css/main.f9362604.chunk.css",
-    "static/js/main.7a5feefb.chunk.js"
+    "static/js/main.f89acedc.chunk.js"
   ]
 }
