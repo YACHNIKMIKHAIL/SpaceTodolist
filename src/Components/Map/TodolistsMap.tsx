@@ -23,9 +23,7 @@ export const TodolistsMap = ({
                                  removeTodolist,
                                  ...props
                              }: TodolistsMapType) => {
-    return (
-        <div className="App">
-            {todolists.map(todo => {
+    return <> {todolists.map(todo => {
                 let tasksForRender = tasks[todo.id]
                 if (todo.filter === 'active') {
                     tasksForRender = tasks[todo.id].filter(f => !f.isDone)
@@ -46,6 +44,5 @@ export const TodolistsMap = ({
                                  changeTaskTitle={props.changeTaskTitle}
                                  onChangeTodolistTitle={props.onChangeTodolistTitle}/>
             })}
-        </div>
-    );
+        </>
 }

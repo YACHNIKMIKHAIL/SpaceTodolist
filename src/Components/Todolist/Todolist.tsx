@@ -3,6 +3,8 @@ import {TasksMap} from "../Map/TasksMap";
 import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
+import {Grid, Paper} from "@mui/material";
+
 
 export type TaskType = {
     id: string
@@ -45,13 +47,14 @@ export function Todolist({
 
     const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
     const removeTaskX = (id: string) => removeTask(id, todolistID)
-    const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>,todolistID: string) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
+    const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
     const removeTodolistX = () => removeTodolist(todolistID)
     const makeActive = (value: string) => filter === value ? 'active-filter' : ''
     const addTaskX = (title: string) => addTask(title, todolistID)
     const onChangeTodolistTitle = (title: string) => props.onChangeTodolistTitle(todolistID, title)
 
-    return <div className={'todolist'}>
+    return <Grid item>
+        <Paper elevation={3} style={{padding:'10px'}}>
         <h3>
             <EditableSpan title={props.title} onChange={onChangeTodolistTitle}/>
             <Button name={'x'} callback={removeTodolistX}/>
@@ -73,5 +76,6 @@ export function Todolist({
             <Button name={'Complited'} callback={() => changeTasksFiler('complited', todolistID)}
                     className={makeActive('complited')}/>
         </div>
-    </div>
+            </Paper>
+    </Grid>
 }

@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import {TaskType} from "../Todolist/Todolist";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Button} from "../Button/Button";
-import {Checkbox} from "../Checkbox/Checkbox";
+import {CheckboxX} from "../Checkbox/Checkbox";
 
 type TasksMapType = {
     tasks: Array<TaskType>
@@ -20,8 +20,8 @@ export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMa
         <ul>{
             tasks.map(m => {
                     return <li key={m.id} className={m.isDone ? 'is-done' : ''}>
-                        <Checkbox isDone={m.isDone}
-                                  callback={(e: React.ChangeEvent<HTMLInputElement>) => changeCheckboxX(m.id, e)}/>
+                        <CheckboxX isDone={m.isDone}
+                                   callback={(e) => changeCheckboxX(m.id, e)}/>
                         <EditableSpan title={m.title} onChange={changeTaskTitle}/>
                         <Button name={'x'} callback={() => removeTaskX(m.id)}/>
                     </li>

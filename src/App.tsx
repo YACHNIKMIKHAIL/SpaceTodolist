@@ -4,8 +4,8 @@ import {FilterValueType, TaskStateType, TodolitsType} from './Components/Todolis
 import {v1} from "uuid";
 import {TodolistsMap} from "./Components/Map/TodolistsMap";
 import {AddForm} from "./Components/AddForm/AddForm";
-import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
-import { Home } from '@mui/icons-material';
+import {AppBar, Button, Container, Grid, IconButton, Toolbar, Typography} from "@mui/material";
+import {Home} from '@mui/icons-material';
 
 
 function App() {
@@ -108,30 +108,32 @@ function App() {
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{ mr: 2 }}
+                    sx={{mr: 2}}
                 >
-                    <Home fontSize="large" />
+                    <Home fontSize="large"/>
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                     Space Todolist
                 </Typography>
                 <Button color="inherit">Login</Button>
             </Toolbar>
         </AppBar>
-
-        <div className={'head'}>
-            <span className={'headText'}> What do you want to do/ change/ fix:</span>
-            <AddForm addItem={addTodolist}/>
-        </div>
-        <TodolistsMap todolists={todolists}
-                      tasks={tasks}
-                      removeTask={removeTask}
-                      changeFilter={changeFilter}
-                      addTask={addTask}
-                      changeTaskStatus={changeTaskStatus}
-                      removeTodolist={removeTodolist}
-                      changeTaskTitle={changeTaskTitle}
-                      onChangeTodolistTitle={onChangeTodolistTitle}/>
+        <Container fixed>
+            <Grid container>
+                <AddForm addItem={addTodolist}/>
+            </Grid>
+            <Grid container>
+                <TodolistsMap todolists={todolists}
+                              tasks={tasks}
+                              removeTask={removeTask}
+                              changeFilter={changeFilter}
+                              addTask={addTask}
+                              changeTaskStatus={changeTaskStatus}
+                              removeTodolist={removeTodolist}
+                              changeTaskTitle={changeTaskTitle}
+                              onChangeTodolistTitle={onChangeTodolistTitle}/>
+            </Grid>
+        </Container>
     </div>
 }
 

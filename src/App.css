@@ -1,71 +1,71 @@
-.main {
-    background: url("./Components/Images/wallpaperflare.com_wallpaper.jpg") no-repeat center/cover;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    flex-wrap: wrap;
-}
+/*.main {*/
+/*    background: url("./Components/Images/wallpaperflare.com_wallpaper.jpg") no-repeat center/cover;*/
+/*    overflow: auto;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: stretch;*/
+/*    flex-wrap: wrap;*/
+/*}*/
 
-.App {
-    padding: 30px;
-    display: flex;
-    flex-wrap: wrap;
+/*.App {*/
+/*    padding: 30px;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
 
-    height: 100vh;
-}
+/*    height: 100vh;*/
+/*}*/
 
-.App > div {
-    margin: 10px auto;
-    height: fit-content;
-    padding: 20px;
-    color: white;
-    border-radius: 20px;
-    background-color: rgba(97, 133, 165, 0.5);
+/*.App > div {*/
+/*    margin: 10px auto;*/
+/*    height: fit-content;*/
+/*    padding: 20px;*/
+/*    color: white;*/
+/*    border-radius: 20px;*/
+/*    background-color: rgba(97, 133, 165, 0.5);*/
 
-    border: rgba(97, 133, 165, 0.7) 2px solid;
-    width: 240px;
-}
+/*    border: rgba(97, 133, 165, 0.7) 2px solid;*/
+/*    width: 240px;*/
+/*}*/
 
-.error {
-    border: red 3px solid;
-}
+/*.error {*/
+/*    border: red 3px solid;*/
+/*}*/
 
-.error-message {
-    color: red;
-}
+/*.error-message {*/
+/*    color: red;*/
+/*}*/
 
-.active-filter {
-    background-color: rgba(133, 167, 187, 1);
-}
+/*.active-filter {*/
+/*    background-color: rgba(133, 167, 187, 1);*/
+/*}*/
 
-.is-done {
-    opacity: 0.4;
-}
+/*.is-done {*/
+/*    opacity: 0.4;*/
+/*}*/
 
-input {
-    opacity: 0.8;
-}
+/*input {*/
+/*    opacity: 0.8;*/
+/*}*/
 
-button {
-    border-radius: 5px;
-    border: none;
-    margin: 0 4px;
-}
+/*button {*/
+/*    border-radius: 5px;*/
+/*    border: none;*/
+/*    margin: 0 4px;*/
+/*}*/
 
-.head {
-    height: 10vh;
-    margin: 20px 60px 0 60px;
-    padding: 20px;
-    color: white;
-    border-radius: 20px;
-    background-color: rgba(97, 133, 165, 0.5);
+/*.head {*/
+/*    height: 10vh;*/
+/*    margin: 20px 60px 0 60px;*/
+/*    padding: 20px;*/
+/*    color: white;*/
+/*    border-radius: 20px;*/
+/*    background-color: rgba(97, 133, 165, 0.5);*/
 
-font-size: 40px;
-    display: flex;
-}
+/*font-size: 40px;*/
+/*    display: flex;*/
+/*}*/
 
-.headText{
-    margin: auto 40px auto 20px;
-    color: sandybrown;
-}
+/*.headText{*/
+/*    margin: auto 40px auto 20px;*/
+/*    color: sandybrown;*/
+/*}*/
