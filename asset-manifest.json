@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/SpaceTodolist/static/css/main.f9362604.chunk.css",
-    "main.js": "/SpaceTodolist/static/js/main.f89acedc.chunk.js",
-    "main.js.map": "/SpaceTodolist/static/js/main.f89acedc.chunk.js.map",
+    "main.css": "/SpaceTodolist/static/css/main.0a778c95.chunk.css",
+    "main.js": "/SpaceTodolist/static/js/main.948199bc.chunk.js",
+    "main.js.map": "/SpaceTodolist/static/js/main.948199bc.chunk.js.map",
     "runtime-main.js": "/SpaceTodolist/static/js/runtime-main.55b9e915.js",
     "runtime-main.js.map": "/SpaceTodolist/static/js/runtime-main.55b9e915.js.map",
-    "static/js/2.ccc2b71b.chunk.js": "/SpaceTodolist/static/js/2.ccc2b71b.chunk.js",
-    "static/js/2.ccc2b71b.chunk.js.map": "/SpaceTodolist/static/js/2.ccc2b71b.chunk.js.map",
+    "static/js/2.8868cdd8.chunk.js": "/SpaceTodolist/static/js/2.8868cdd8.chunk.js",
+    "static/js/2.8868cdd8.chunk.js.map": "/SpaceTodolist/static/js/2.8868cdd8.chunk.js.map",
     "index.html": "/SpaceTodolist/index.html",
-    "precache-manifest.d9b404d8061e0af4977771bf11a1f366.js": "/SpaceTodolist/precache-manifest.d9b404d8061e0af4977771bf11a1f366.js",
+    "precache-manifest.e49a35124b2aebc7a43992f31a197ecb.js": "/SpaceTodolist/precache-manifest.e49a35124b2aebc7a43992f31a197ecb.js",
     "service-worker.js": "/SpaceTodolist/service-worker.js",
-    "static/css/main.f9362604.chunk.css.map": "/SpaceTodolist/static/css/main.f9362604.chunk.css.map",
-    "static/js/2.ccc2b71b.chunk.js.LICENSE.txt": "/SpaceTodolist/static/js/2.ccc2b71b.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/SpaceTodolist/static/media/wallpaperflare.com_wallpaper.5940d32b.jpg"
+    "static/css/main.0a778c95.chunk.css.map": "/SpaceTodolist/static/css/main.0a778c95.chunk.css.map",
+    "static/js/2.8868cdd8.chunk.js.LICENSE.txt": "/SpaceTodolist/static/js/2.8868cdd8.chunk.js.LICENSE.txt",
+    "static/media/wallpaperflare.com_wallpaper.jpg": "/SpaceTodolist/static/media/wallpaperflare.com_wallpaper.5940d32b.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.55b9e915.js",
-    "static/js/2.ccc2b71b.chunk.js",
-    "static/css/main.f9362604.chunk.css",
-    "static/js/main.f89acedc.chunk.js"
+    "static/js/2.8868cdd8.chunk.js",
+    "static/css/main.0a778c95.chunk.css",
+    "static/js/main.948199bc.chunk.js"
   ]
 }
