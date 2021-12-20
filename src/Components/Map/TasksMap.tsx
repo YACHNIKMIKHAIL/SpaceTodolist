@@ -3,6 +3,7 @@ import {TaskType} from "../Todolist/Todolist";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Button} from "../Button/Button";
 import {CheckboxX} from "../Checkbox/Checkbox";
+import styled from "styled-components";
 
 type TasksMapType = {
     tasks: Array<TaskType>
@@ -19,7 +20,9 @@ export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMa
     return (
         <div>{
             tasks.map(m => {
-                    return <div key={m.id} style={{
+                    return <TaskCase opacity={m.isDone ? '0.4' : '1'}
+                                     color={m.isDone ? 'black' : 'white'}
+                                     key={m.id} style={{
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: "space-between",
@@ -29,10 +32,15 @@ export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMa
                                    callback={(e) => changeCheckboxX(m.id, e)}/>
                         <EditableSpan title={m.title} onChange={changeTaskTitle}/>
                         <Button name={'x'} callback={() => removeTaskX(m.id)}/>
-                    </div>
+                    </TaskCase>
                 }
             )
         }
         </div>
     )
 }
+
+const TaskCase = styled.div<{ opacity: string, color: string }>`
+  opacity: ${props => props.opacity};
+  color: ${props => props.color};
+`

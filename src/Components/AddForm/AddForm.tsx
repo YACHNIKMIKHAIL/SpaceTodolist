@@ -10,7 +10,7 @@ export const AddForm = (props: AddFormPropsType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string>('')
 
-    const onChangeInput = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const onChangeInput = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setError('')
         setTitle(e.currentTarget.value)
     }
@@ -23,7 +23,7 @@ export const AddForm = (props: AddFormPropsType) => {
         }
     }
     const onKeyPressAdd = (e: React.KeyboardEvent<HTMLDivElement>) => (e.key === 'Enter') ? addTaskButton() : ''
-    return <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+    return <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <Input value={title}
                onChange={onChangeInput}
                onKeyPress={onKeyPressAdd}

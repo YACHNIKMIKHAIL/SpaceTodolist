@@ -19,7 +19,7 @@ export const Input = ({error, value, onChange, onKeyPress}: InputPropsType) => {
                       onChange={(e) => onChangeHandler(e)}
                       onKeyPress={(e) => onKeyPressHandler(e)}
                       helperText={error}
-                      style={{color: '#FFFFFF'}}/>
+                      style={{color: 'whitesmoke'}}/>
 
     // <input className={className}
     //               value={value}

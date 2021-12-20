@@ -123,9 +123,11 @@ function App() {
         <Container fixed>
             <Grid container style={{
                 padding: '10px',
-                backgroundColor: 'rgba(97, 133, 165, 0.5)',
+                backgroundColor: 'rgba(97, 133, 165, 0.7)',
                 margin: '10px',
-                borderRadius: '10px'
+                borderRadius: '10px',
+                display:'flex',
+                justifyContent:'flex-end'
             }}>
                 <AddForm addItem={addTodolist}/>
             </Grid>

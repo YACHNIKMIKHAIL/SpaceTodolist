@@ -58,7 +58,7 @@ export function Todolist({
         {/*<Paper style={{padding: '10px'}}>*/}
             <OpacityCase >
                 <h3 style={{display: 'flex', flexDirection: 'row',justifyContent:'space-between'}}>
-                    <EditableSpan title={props.title} onChange={onChangeTodolistTitle}/>
+                    <EditableSpan title={props.title} onChange={onChangeTodolistTitle} />
                     <Button name={'x'} callback={removeTodolistX}/>
                 </h3>
 
@@ -85,7 +85,7 @@ export function Todolist({
 }
 
 const OpacityCase = styled.div`
-  background: rgba(97, 133, 165, 0.5);
+  background: rgba(97, 133, 165, 0.6);
   padding: 15px;
   border-radius: 10px;
 `
