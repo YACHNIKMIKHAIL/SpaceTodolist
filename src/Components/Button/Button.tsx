@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonRender from "../ButtonRender";
 
 type ButtonPropsType = {
     name: string
@@ -6,8 +7,12 @@ type ButtonPropsType = {
     className?: string
 }
 export const Button = ({name, callback, className}: ButtonPropsType) => {
-    const onClickHandler = () => callback()
+    // const onClickHandler = () => callback()
 
-    return <button className={className}
-                   onClick={(e) => onClickHandler()}>{name}</button>
+    return (<div>
+        {ButtonRender(name, callback, className)}
+    </div>)
+
+    // <button className={className}
+    //                onClick={(e) => onClickHandler()}>{name}</button>
 }

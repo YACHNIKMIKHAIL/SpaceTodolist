@@ -10,7 +10,7 @@ export const AddForm = (props: AddFormPropsType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string>('')
 
-    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeInput = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setError('')
         setTitle(e.currentTarget.value)
     }
@@ -22,13 +22,13 @@ export const AddForm = (props: AddFormPropsType) => {
             setError('Title is undefined !')
         }
     }
-    const onKeyPressAdd = (e: React.KeyboardEvent<HTMLInputElement>) => (e.key === 'Enter') ? addTaskButton() : ''
+    const onKeyPressAdd = (e: React.KeyboardEvent<HTMLDivElement>) => (e.key === 'Enter') ? addTaskButton() : ''
     return <div>
         <Input value={title}
                onChange={onChangeInput}
                onKeyPress={onKeyPressAdd}
-               className={error ? 'error' : ''}/>
+               error={error}/>
         <Button name={'+'} callback={addTaskButton}/>
-        {error ? <div className={'error-message'}>{error}</div> : ''}
+        {/*{error ? <div className={'error-message'}>{error}</div> : ''}*/}
     </div>
 }

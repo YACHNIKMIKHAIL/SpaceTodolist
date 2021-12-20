@@ -1,18 +1,27 @@
 import React, {ChangeEvent} from 'react';
+import {TextField} from "@mui/material";
 
 type InputPropsType = {
-    className?: string
+    error: string
     value: string
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void
-    onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    onChange: (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+    onKeyPress: (e:  React.KeyboardEvent<HTMLDivElement>) => void
 }
 
-export const Input = ({className, value, onChange, onKeyPress}: InputPropsType) => {
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => onChange(e)
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => onKeyPress(e)
+export const Input = ({error, value, onChange, onKeyPress}: InputPropsType) => {
+    const onChangeHandler = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange(e)
+    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => onKeyPress(e)
 
-    return <input className={className}
-                  value={value}
-                  onChange={(e) => onChangeHandler(e)}
-                  onKeyPress={(e) => onKeyPressHandler(e)}/>
+    return <TextField id="outlined-basic"
+                      label="Outlined"
+                      variant="outlined"
+                      value={value}
+                      onChange={(e) => onChangeHandler(e)}
+                      onKeyPress={(e) => onKeyPressHandler(e)}
+                      helperText={error}/>
+
+    // <input className={className}
+    //               value={value}
+    //               onChange={(e) => onChangeHandler(e)}
+    //               onKeyPress={(e) => onKeyPressHandler(e)}/>
 }
