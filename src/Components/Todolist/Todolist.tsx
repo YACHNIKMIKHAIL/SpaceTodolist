@@ -4,6 +4,7 @@ import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Grid, Paper} from "@mui/material";
+import styled from "styled-components";
 
 
 export type TaskType = {
@@ -54,28 +55,38 @@ export function Todolist({
     const onChangeTodolistTitle = (title: string) => props.onChangeTodolistTitle(todolistID, title)
 
     return <Grid item>
-        <Paper elevation={3} style={{padding:'10px'}}>
-        <h3>
-            <EditableSpan title={props.title} onChange={onChangeTodolistTitle}/>
-            <Button name={'x'} callback={removeTodolistX}/>
-        </h3>
-        <AddForm addItem={addTaskX}/>
+        {/*<Paper style={{padding: '10px'}}>*/}
+            <OpacityCase >
+                <h3 style={{display: 'flex', flexDirection: 'row',justifyContent:'space-between'}}>
+                    <EditableSpan title={props.title} onChange={onChangeTodolistTitle}/>
+                    <Button name={'x'} callback={removeTodolistX}/>
+                </h3>
 
-        <TasksMap tasks={props.tasks}
-                  changeCheckbox={changeCheckbox}
-                  removeTaskX={removeTaskX}
-                  id={todolistID}
-                  changeTaskTitle={props.changeTaskTitle}
-                  todolistID={todolistID}/>
+                <AddForm addItem={addTaskX}/>
 
-        <div>
-            <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
-                    className={makeActive('all')}/>
-            <Button name={'Active'} callback={() => changeTasksFiler('active', todolistID)}
-                    className={makeActive('active')}/>
-            <Button name={'Complited'} callback={() => changeTasksFiler('complited', todolistID)}
-                    className={makeActive('complited')}/>
-        </div>
-            </Paper>
+                <TasksMap tasks={props.tasks}
+                          changeCheckbox={changeCheckbox}
+                          removeTaskX={removeTaskX}
+                          id={todolistID}
+                          changeTaskTitle={props.changeTaskTitle}
+                          todolistID={todolistID}/>
+
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
+                            className={makeActive('all')}/>
+                    <Button name={'Active'} callback={() => changeTasksFiler('active', todolistID)}
+                            className={makeActive('active')}/>
+                    <Button name={'Complited'} callback={() => changeTasksFiler('complited', todolistID)}
+                            className={makeActive('complited')}/>
+                </div>
+            </OpacityCase>
+        {/*</Paper>*/}
     </Grid>
 }
+
+const OpacityCase = styled.div`
+  background: rgba(97, 133, 165, 0.5);
+  padding: 15px;
+  border-radius: 10px;
+ 
+`

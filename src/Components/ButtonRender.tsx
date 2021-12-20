@@ -6,7 +6,7 @@ import {Delete, ShutterSpeed} from "@mui/icons-material";
 
 export const ButtonRender = (name: string, callback: () => void, className?: string) => {
     if(name==='+'){
-        return <IconButton  color="success" onClick={()=>callback()}>
+        return <IconButton  style={{color:'#EDC085'}} onClick={()=>callback()}>
             <ShutterSpeed/>
         </IconButton>
 

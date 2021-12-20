@@ -7,7 +7,6 @@ type CheckboxPropsType={
 }
 export const CheckboxX = (props:CheckboxPropsType) => {
     const callback = (e: ChangeEvent<HTMLInputElement>) => {
-        debugger
       props.callback(e)
     }
   return <Checkbox  color="secondary"

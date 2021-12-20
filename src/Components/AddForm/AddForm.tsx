@@ -23,7 +23,7 @@ export const AddForm = (props: AddFormPropsType) => {
         }
     }
     const onKeyPressAdd = (e: React.KeyboardEvent<HTMLDivElement>) => (e.key === 'Enter') ? addTaskButton() : ''
-    return <div>
+    return <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
         <Input value={title}
                onChange={onChangeInput}
                onKeyPress={onKeyPressAdd}

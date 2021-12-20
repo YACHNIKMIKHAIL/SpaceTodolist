@@ -6,6 +6,8 @@ import {TodolistsMap} from "./Components/Map/TodolistsMap";
 import {AddForm} from "./Components/AddForm/AddForm";
 import {AppBar, Button, Container, Grid, IconButton, Toolbar, Typography} from "@mui/material";
 import {Home} from '@mui/icons-material';
+import styled from "styled-components";
+import img from './Components/Images/wallpaperflare.com_wallpaper.jpg'
 
 
 function App() {
@@ -100,7 +102,7 @@ function App() {
         setTodolists(todolists.map(m => m.id === todolistID ? {...m, title} : m))
     }
 
-    return <div className={'main'}>
+    return <AppCase>
         <AppBar position="static">
             <Toolbar>
                 <IconButton
@@ -119,10 +121,15 @@ function App() {
             </Toolbar>
         </AppBar>
         <Container fixed>
-            <Grid container>
+            <Grid container style={{
+                padding: '10px',
+                backgroundColor: 'rgba(97, 133, 165, 0.5)',
+                margin: '10px',
+                borderRadius: '10px'
+            }}>
                 <AddForm addItem={addTodolist}/>
             </Grid>
-            <Grid container>
+            <Grid container spacing={3}>
                 <TodolistsMap todolists={todolists}
                               tasks={tasks}
                               removeTask={removeTask}
@@ -134,7 +141,11 @@ function App() {
                               onChangeTodolistTitle={onChangeTodolistTitle}/>
             </Grid>
         </Container>
-    </div>
+    </AppCase>
 }
 
 export default App;
+
+const AppCase = styled.div`
+  background: url(${img}) no-repeat center/cover;
+`

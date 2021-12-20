@@ -17,17 +17,22 @@ export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMa
     const changeCheckboxX = (id: string, e: ChangeEvent<HTMLInputElement>) => changeCheckbox(id, e, props.todolistID)
 
     return (
-        <ul>{
+        <div>{
             tasks.map(m => {
-                    return <li key={m.id} className={m.isDone ? 'is-done' : ''}>
+                    return <div key={m.id} style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: "space-between",
+                        alignItems: 'center',
+                    }}>
                         <CheckboxX isDone={m.isDone}
                                    callback={(e) => changeCheckboxX(m.id, e)}/>
                         <EditableSpan title={m.title} onChange={changeTaskTitle}/>
                         <Button name={'x'} callback={() => removeTaskX(m.id)}/>
-                    </li>
+                    </div>
                 }
             )
         }
-        </ul>
+        </div>
     )
 }
