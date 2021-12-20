@@ -13,7 +13,7 @@ export const Input = ({error, value, onChange, onKeyPress}: InputPropsType) => {
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => onKeyPress(e)
 
     return <TextField id="outlined-basic"
-                      label="New task"
+                      label="New challenge"
                       variant="outlined"
                       value={value}
                       onChange={(e) => onChangeHandler(e)}

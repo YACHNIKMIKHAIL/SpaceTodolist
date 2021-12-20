@@ -13,7 +13,7 @@ type TodolistsMapType = {
     changeTaskTitle:(id:string, title:string,todolistId:string)=>void
     onChangeTodolistTitle:(title:string,todolistId:string)=>void
 }
-export const TodolistsMap = ({
+export const TodolistsMapMemo = ({
                                  todolists,
                                  tasks,
                                  removeTask,
@@ -46,3 +46,4 @@ export const TodolistsMap = ({
             })}
         </>
 }
+export const TodolistsMap=React.memo(TodolistsMapMemo)

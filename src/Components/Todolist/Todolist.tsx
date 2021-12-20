@@ -35,7 +35,7 @@ type PropsType = {
     onChangeTodolistTitle: (title: string, todolistId: string) => void
 }
 
-export function Todolist({
+export function TodolistMemo({
                              removeTask,
                              changeFilter,
                              addTask,
@@ -83,6 +83,7 @@ export function Todolist({
         {/*</Paper>*/}
     </Grid>
 }
+export const Todolist=React.memo(TodolistMemo)
 
 const OpacityCase = styled.div`
   background: rgba(97, 133, 165, 0.6);

@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {TaskType} from "../Todolist/Todolist";
+import {TaskType, TodolistMemo} from "../Todolist/Todolist";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Button} from "../Button/Button";
 import {CheckboxX} from "../Checkbox/Checkbox";
@@ -13,7 +13,7 @@ type TasksMapType = {
     changeTaskTitle: (id: string, title: string, todolistId: string) => void
     todolistID: string
 }
-export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMapType) => {
+export const TasksMapMemo = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMapType) => {
     const changeTaskTitle = (title: string) => props.changeTaskTitle(props.id, title, props.todolistID)
     const changeCheckboxX = (id: string, e: ChangeEvent<HTMLInputElement>) => changeCheckbox(id, e, props.todolistID)
 
@@ -39,7 +39,7 @@ export const TasksMap = ({tasks, changeCheckbox, removeTaskX, ...props}: TasksMa
         </div>
     )
 }
-
+export const TasksMap=React.memo(TasksMapMemo)
 const TaskCase = styled.div<{ opacity: string, color: string }>`
   opacity: ${props => props.opacity};
   color: ${props => props.color};
