@@ -4,6 +4,9 @@ import {FilterValueType, TaskStateType, TodolitsType} from './Components/Todolis
 import {v1} from "uuid";
 import {TodolistsMap} from "./Components/Map/TodolistsMap";
 import {AddForm} from "./Components/AddForm/AddForm";
+import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
+import { Home } from '@mui/icons-material';
+
 
 function App() {
     const todolist1 = v1()
@@ -98,6 +101,24 @@ function App() {
     }
 
     return <div className={'main'}>
+        <AppBar position="static">
+            <Toolbar>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2 }}
+                >
+                    <Home fontSize="large" />
+                </IconButton>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    Space Todolist
+                </Typography>
+                <Button color="inherit">Login</Button>
+            </Toolbar>
+        </AppBar>
+
         <div className={'head'}>
             <span className={'headText'}> What do you want to do/ change/ fix:</span>
             <AddForm addItem={addTodolist}/>
