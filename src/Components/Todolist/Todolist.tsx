@@ -88,5 +88,4 @@ const OpacityCase = styled.div`
   background: rgba(97, 133, 165, 0.5);
   padding: 15px;
   border-radius: 10px;
- 
 `

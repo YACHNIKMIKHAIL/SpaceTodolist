@@ -103,7 +103,7 @@ function App() {
     }
 
     return <AppCase>
-        <AppBar position="static">
+        <AppBar position="static" style={{opacity:'0.7'}}>
             <Toolbar>
                 <IconButton
                     size="large"
@@ -119,7 +119,7 @@ function App() {
                 </Typography>
                 <Button color="inherit">Login</Button>
             </Toolbar>
-        </AppBar>
+        </AppBar >
         <Container fixed>
             <Grid container style={{
                 padding: '10px',
@@ -148,4 +148,6 @@ export default App;
 
 const AppCase = styled.div`
   background: url(${img}) no-repeat center/cover;
+  height: 100vh;
+  overflow: auto;
 `
