@@ -1,18 +1,32 @@
-import {TaskStateType, TaskType} from "../Todolist/Todolist";
+import {FilterValueType, TaskStateType, TaskType} from "../Todolist/Todolist";
 
-type ActionsType=RemoveTaskActionType
+type ActionsType=RemoveTaskActionType|ChangeFilterActionType
 type RemoveTaskActionType={
     type:'REMOVE_TASK'
     taskId:string
     todolistId:string
 }
+type ChangeFilterActionType={
+    type:'CHANGE_TASK_FILTER'
+    taskId:string
+    todolistId:string
+    isDone:boolean
+}
 export const tasksReducer = (state:TaskStateType,action:ActionsType):TaskStateType => {
   switch (action.type){
       case 'REMOVE_TASK':{
          return {...state,[action.todolistId]:state[action.todolistId].filter(f=>f.id!==action.taskId)}
-          // return state.map(m=>m.id===action.todolistId? {...state,[action.todolistId]:[m[action.todolistId]].filter(f=>f.id!==action.taskId)}:m)
+      }
+      case 'CHANGE_TASK_FILTER':{
+          return {...state,[action.todolistId]:state[action.todolistId].map(m=>m.id===action.taskId?{...m,isDone:action.isDone}:m)}
       }
       default:
           return state
   }
+}
+export const RemoveTaskAC = (taskId:string,todolistId:string):RemoveTaskActionType => {
+    return {type: 'REMOVE_TASK',taskId:taskId,todolistId:todolistId}
+}
+export const ChangeFilterAC = (taskId:string,todolistId:string,isDone:boolean):ChangeFilterActionType => {
+    return {type: 'CHANGE_TASK_FILTER',taskId:taskId,todolistId:todolistId,isDone:isDone}
 }

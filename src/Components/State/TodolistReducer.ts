@@ -45,14 +45,14 @@ export const todolistReducer = (state: Array<TodolitsType>, action: ActionsType)
     }
 ;
 export const removeTodolistAC = (todolistId:string):RemoveTodoActionType => {
-  return {type: 'REMOVE_TODO',id:todolistId}
+  return {type: 'REMOVE_TODO',id:todolistId}as const
 }
 export const AddTodoAC = (newTitle:string):AddTodoActionType => {
-    return {type: 'ADD_TODO',title:newTitle}
+    return {type: 'ADD_TODO',title:newTitle}as const
 }
 export const ChangeTodoTitleAC = (todolistId:string,newTitle:string):ChangeTodoTitleActionType => {
-    return {type: 'CHANGE_TODO_TITLE',id:todolistId,newTitle:newTitle}
+    return {type: 'CHANGE_TODO_TITLE',id:todolistId,newTitle:newTitle}as const
 }
 export const ChangeTodoFilterAC = (todolistId:string,filter:FilterValueType):ChangeTodoFilterActionType => {
-    return {type: 'CHANGE_TODO_FILTER',id:todolistId,filter:filter}
+    return {type: 'CHANGE_TODO_FILTER',id:todolistId,filter:filter}as const
 }
