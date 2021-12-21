@@ -18,6 +18,12 @@ export const todolistReducer = (state: Array<TodolitsType>, action: ActionType):
                     filter: 'all'
                 }]
             }
+            case 'CHANGE_TODO_TITLE': {
+                return state.map(m=>m.id===action.id?{...m,title:action.newTitle}:m)
+            }
+            case 'CHANGE_TODO_FILTER': {
+                return state.map(m=>m.id===action.id?{...m,filter:action.filter}:m)
+            }
             default:
                 return state
         }
