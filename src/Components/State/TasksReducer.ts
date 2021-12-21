@@ -7,7 +7,7 @@ type RemoveTaskActionType={
     todolistId:string
 }
 type ChangeFilterActionType={
-    type:'CHANGE_TASK_FILTER'
+    type:'CHANGE_TASK_STATUS'
     taskId:string
     todolistId:string
     isDone:boolean
@@ -17,7 +17,7 @@ export const tasksReducer = (state:TaskStateType,action:ActionsType):TaskStateTy
       case 'REMOVE_TASK':{
          return {...state,[action.todolistId]:state[action.todolistId].filter(f=>f.id!==action.taskId)}
       }
-      case 'CHANGE_TASK_FILTER':{
+      case 'CHANGE_TASK_STATUS':{
           return {...state,[action.todolistId]:state[action.todolistId].map(m=>m.id===action.taskId?{...m,isDone:action.isDone}:m)}
       }
       default:
@@ -25,8 +25,8 @@ export const tasksReducer = (state:TaskStateType,action:ActionsType):TaskStateTy
   }
 }
 export const RemoveTaskAC = (taskId:string,todolistId:string):RemoveTaskActionType => {
-    return {type: 'REMOVE_TASK',taskId:taskId,todolistId:todolistId}
+    return {type: 'REMOVE_TASK',taskId:taskId,todolistId:todolistId}as const
 }
-export const ChangeFilterAC = (taskId:string,todolistId:string,isDone:boolean):ChangeFilterActionType => {
-    return {type: 'CHANGE_TASK_FILTER',taskId:taskId,todolistId:todolistId,isDone:isDone}
+export const ChangeStatusAC = (taskId:string, todolistId:string, isDone:boolean):ChangeFilterActionType => {
+    return {type: 'CHANGE_TASK_STATUS',taskId:taskId,todolistId:todolistId,isDone:isDone}as const
 }

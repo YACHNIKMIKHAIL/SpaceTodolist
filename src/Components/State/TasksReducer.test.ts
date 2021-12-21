@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {TaskStateType} from "../Todolist/Todolist";
-import {ChangeFilterAC, RemoveTaskAC, tasksReducer} from "./TasksReducer";
+import {ChangeStatusAC, RemoveTaskAC, tasksReducer} from "./TasksReducer";
 
 test('correct task remove', () => {
     let todolist1 = v1()
@@ -46,9 +46,9 @@ test('correct change task filter', () => {
             {id: task6, title: "Bread", isDone: false}]
     }
 
-    const endTasksState = tasksReducer(startTasksState, ChangeFilterAC(task3,todolist1,true))
+    const endTasksState = tasksReducer(startTasksState, ChangeStatusAC(task3,todolist1,true))
 
     expect(endTasksState[todolist1].length).toBe(3)
-    expect(endTasksState[todolist1]).toBe(true)
-    expect(endTasksState[todolist1].find(f=>f.id===task2)).toBe(true)
+    expect(endTasksState[todolist1][1].isDone).toBe(true)
+    expect(endTasksState[todolist1][2].isDone).toBe(true)
 })
