@@ -21,7 +21,7 @@ export const TasksMapMemo = ({tasks, changeCheckbox, removeTaskX, ...props}: Tas
         <div>{
             tasks.map(m => {
                     return <TaskCase opacity={m.isDone ? '0.4' : '1'}
-                                     color={m.isDone ? 'black' : 'white'}
+                                     color={m.isDone ? 'rgba(109,4,234,0.77)' : 'rgba(28,16,0,0.8)'}
                                      key={m.id} style={{
                         display: 'flex',
                         flexDirection: 'row',

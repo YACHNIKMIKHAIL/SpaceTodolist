@@ -22,6 +22,8 @@ export const EditableSpanMemo = ({onChange, ...props}: EditableSpanPropsType) =>
         ?<TextField id="standard-basic" label="Changes:" variant="standard" value={title} autoFocus onChange={onChangeHandler} onBlur={activateViewM}
         style={{color:'white'}}/>
         // <input value={title} autoFocus onChange={onChangeHandler} onBlur={activateViewM}/>
-        : <span onDoubleClick={activateEditM} style={{color:'#EDC085'}}>{title}</span>
+        : <span onDoubleClick={activateEditM}
+                // style={{color:'rgba(28,16,0,0.8)'}}
+        >{title}</span>
 }
 export const EditableSpan=React.memo(EditableSpanMemo)

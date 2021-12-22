@@ -86,7 +86,7 @@ export function TodolistMemo({
 export const Todolist=React.memo(TodolistMemo)
 
 const OpacityCase = styled.div`
-  background: rgba(97, 133, 165, 0.6);
+  background: rgba(203, 209, 213,0.7);
   padding: 15px;
   border-radius: 10px;
 `

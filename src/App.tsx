@@ -153,7 +153,7 @@ function App() {
         <Container fixed>
             <Grid container style={{
                 padding: '10px',
-                backgroundColor: 'rgba(97, 133, 165, 0.7)',
+                backgroundColor: 'rgba(203, 209, 213,0.7)',
                 margin: '10px',
                 borderRadius: '10px',
                 display:'flex',
