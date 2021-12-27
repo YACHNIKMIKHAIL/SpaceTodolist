@@ -6,7 +6,6 @@ import {rootReducerType} from "../State/store";
 
 type TodolistsMapType = {
     todolists: Array<TodolitsType>
-    // tasks: TaskStateType
     removeTask: (id: string, todolistID: string) => void
     changeFilter: (filter: FilterValueType, todolistID: string) => void
     addTask: (title: string, todolistID: string) => void
@@ -17,7 +16,6 @@ type TodolistsMapType = {
 }
 export const TodolistsMapMemo = ({
                                      todolists,
-                                     // tasks,
                                      removeTask,
                                      changeFilter,
                                      addTask,
@@ -26,6 +24,7 @@ export const TodolistsMapMemo = ({
                                      ...props
                                  }: TodolistsMapType) => {
     const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)
+
     return <> {todolists.map(todo => {
         let tasksForRender = tasks[todo.id]
         if (todo.filter === 'active') {

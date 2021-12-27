@@ -3,7 +3,7 @@ import {TasksMap} from "../Map/TasksMap";
 import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
-import {Grid, Paper} from "@mui/material";
+import {Grid} from "@mui/material";
 import styled from "styled-components";
 
 
@@ -36,15 +36,15 @@ type PropsType = {
 }
 
 export function TodolistMemo({
-                             removeTask,
-                             changeFilter,
-                             addTask,
-                             changeTaskStatus,
-                             removeTodolist,
-                             todolistID,
-                             filter,
-                             ...props
-                         }: PropsType) {
+                                 removeTask,
+                                 changeFilter,
+                                 addTask,
+                                 changeTaskStatus,
+                                 removeTodolist,
+                                 todolistID,
+                                 filter,
+                                 ...props
+                             }: PropsType) {
 
     const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
     const removeTaskX = (id: string) => removeTask(id, todolistID)
@@ -55,38 +55,37 @@ export function TodolistMemo({
     const onChangeTodolistTitle = (title: string) => props.onChangeTodolistTitle(todolistID, title)
 
     return <Grid item>
-        {/*<Paper style={{padding: '10px'}}>*/}
-            <OpacityCase >
-                <h3 style={{display: 'flex', flexDirection: 'row',justifyContent:'space-between'}}>
-                    <EditableSpan title={props.title} onChange={onChangeTodolistTitle} />
-                    <Button name={'x'} callback={removeTodolistX}/>
-                </h3>
+        <OpacityCase>
+            <h3 style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <EditableSpan title={props.title} onChange={onChangeTodolistTitle}/>
+                <Button name={'x'} callback={removeTodolistX}/>
+            </h3>
 
-                <AddForm addItem={addTaskX}/>
+            <AddForm addItem={addTaskX}/>
 
-                <TasksMap tasks={props.tasks}
-                          changeCheckbox={changeCheckbox}
-                          removeTaskX={removeTaskX}
-                          id={todolistID}
-                          changeTaskTitle={props.changeTaskTitle}
-                          todolistID={todolistID}/>
+            <TasksMap tasks={props.tasks}
+                      changeCheckbox={changeCheckbox}
+                      removeTaskX={removeTaskX}
+                      id={todolistID}
+                      changeTaskTitle={props.changeTaskTitle}
+                      todolistID={todolistID}/>
 
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
-                            className={makeActive('all')}/>
-                    <Button name={'Active'} callback={() => changeTasksFiler('active', todolistID)}
-                            className={makeActive('active')}/>
-                    <Button name={'Complited'} callback={() => changeTasksFiler('complited', todolistID)}
-                            className={makeActive('complited')}/>
-                </div>
-            </OpacityCase>
-        {/*</Paper>*/}
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+                <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
+                        className={makeActive('all')}/>
+                <Button name={'Active'} callback={() => changeTasksFiler('active', todolistID)}
+                        className={makeActive('active')}/>
+                <Button name={'Complited'} callback={() => changeTasksFiler('complited', todolistID)}
+                        className={makeActive('complited')}/>
+            </div>
+        </OpacityCase>
     </Grid>
 }
-export const Todolist=React.memo(TodolistMemo)
+
+export const Todolist = React.memo(TodolistMemo)
 
 const OpacityCase = styled.div`
-  background: rgba(203, 209, 213,0.7);
+  background: rgba(203, 209, 213, 0.7);
   padding: 15px;
   border-radius: 10px;
 `
