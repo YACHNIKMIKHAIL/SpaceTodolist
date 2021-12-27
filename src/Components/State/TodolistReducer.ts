@@ -1,5 +1,15 @@
 import {FilterValueType, TodolitsType} from "../Todolist/Todolist";
-import {todolist1,todolist2,todolist3,todolist4,todolist5,todolist6,todolist7,todolist8,todolist9} from './../../App'
+import {
+    todolist1,
+    todolist2,
+    todolist3,
+    todolist4,
+    todolist5,
+    todolist6,
+    todolist7,
+    todolist8,
+    todolist9
+} from "./TasksReducer";
 
 
 type ActionsType = RemoveTodoActionType | AddTodoActionType | ChangeTodoTitleActionType | ChangeTodoFilterActionType

@@ -1,7 +1,15 @@
 import {FilterValueType, TaskStateType, TaskType} from "../Todolist/Todolist";
 import {v1} from "uuid";
-import {todolist1,todolist2,todolist3,todolist4,todolist5,todolist6,todolist7,todolist8,todolist9} from './../../App'
 
+export const todolist1 = v1()
+export const todolist2 = v1()
+export const todolist3 = v1()
+export const todolist4 = v1()
+export const todolist5 = v1()
+export const todolist6 = v1()
+export const todolist7 = v1()
+export const todolist8 = v1()
+export const todolist9 = v1()
 
 const initialTasks:TaskStateType= {
     [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: true},
