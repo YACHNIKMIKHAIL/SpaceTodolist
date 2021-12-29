@@ -4,23 +4,27 @@ import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Button} from "../Button/Button";
 import {CheckboxX} from "../Checkbox/Checkbox";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {rootReducerType} from "../State/store";
+import {ChangeTaskStatusAC, changeTaskTitleAC} from "../State/TasksReducer";
 
 type TasksMapType = {
     tasks: Array<TaskType>
-    changeCheckbox: (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => void
+    // changeCheckbox: (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => void
     removeTaskX: (id: string) => void
     id: string
-    changeTaskTitle: (id: string, title: string, todolistId: string) => void
+    // changeTaskTitle: (id: string, title: string, todolistId: string) => void
     todolistID: string
 }
-export const TasksMapMemo = ({ changeCheckbox, removeTaskX, ...props}: TasksMapType) => {
-
+export const TasksMapMemo = ({ removeTaskX, ...props}: TasksMapType) => {
+    const dispatch = useDispatch()
     // const tasks=useSelector<rootReducerType,Array<TaskType>>(state => state.tasks[props.todolistID])
 
-    const changeTaskTitle = (title: string) => props.changeTaskTitle(props.id, title, props.todolistID)
-    const changeCheckboxX = (id: string, e: ChangeEvent<HTMLInputElement>) => changeCheckbox(id, e, props.todolistID)
+    const changeTaskStatus = (id: string, isDone: boolean) => dispatch(ChangeTaskStatusAC(id, isDone, props.todolistID))
+    const changeTaskTitle = (title: string) => dispatch(changeTaskTitleAC(props.id, title, props.todolistID))
+    // const changeTaskTitle = (title: string) => props.changeTaskTitle(props.id, title, props.todolistID)
+    // const changeTaskStatus = (id: string, e: ChangeEvent<HTMLInputElement>) => changeCheckbox(id, e, props.todolistID)
+
 
     return (
         <div>{
@@ -34,7 +38,7 @@ export const TasksMapMemo = ({ changeCheckbox, removeTaskX, ...props}: TasksMapT
                         alignItems: 'center',
                     }}>
                         <CheckboxX isDone={m.isDone}
-                                   callback={(e) => changeCheckboxX(m.id, e)}/>
+                                   callback={(e) => changeTaskStatus(m.id, e.currentTarget.checked)}/>
                         <EditableSpan title={m.title} onChange={changeTaskTitle}/>
                         <Button name={'x'} callback={() => removeTaskX(m.id)}/>
                     </TaskCase>

@@ -76,9 +76,9 @@ function App() {
                               removeTask={removeTask}
                               // changeFilter={changeFilter}
                               addTask={addTask}
-                              changeTaskStatus={changeTaskStatus}
+                              // changeTaskStatus={changeTaskStatus}
                               removeTodolist={removeTodolist}
-                              changeTaskTitle={changeTaskTitle}
+                              // changeTaskTitle={changeTaskTitle}
                               onChangeTodolistTitle={onChangeTodolistTitle}/>
             </Grid>
         </Container>

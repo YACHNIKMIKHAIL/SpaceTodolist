@@ -9,21 +9,21 @@ type TodolistsMapType = {
     removeTask: (id: string, todolistID: string) => void
     // changeFilter: (filter: FilterValueType, todolistID: string) => void
     addTask: (title: string, todolistID: string) => void
-    changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
+    // changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
     removeTodolist: (todolistID: string) => void
-    changeTaskTitle: (id: string, title: string, todolistId: string) => void
+    // changeTaskTitle: (id: string, title: string, todolistId: string) => void
     onChangeTodolistTitle: (title: string, todolistId: string) => void
 }
 export const TodolistsMapMemo = ({
                                      removeTask,
                                      // changeFilter,
                                      addTask,
-                                     changeTaskStatus,
+                                     // changeTaskStatus,
                                      removeTodolist,
                                      ...props
                                  }: TodolistsMapType) => {
     const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)
-    const todolists=useSelector<rootReducerType,Array<TodolitsType>>(state => state.todolists)
+    const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
 
     return <> {todolists.map(todo => {
         let tasksForRender = tasks[todo.id]
@@ -38,12 +38,12 @@ export const TodolistsMapMemo = ({
                          title={todo.title}
                          tasks={tasksForRender}
                          removeTask={removeTask}
-                         // changeFilter={changeFilter}
+            // changeFilter={changeFilter}
                          addTask={addTask}
-                         changeTaskStatus={changeTaskStatus}
+                         // changeTaskStatus={changeTaskStatus}
                          filter={todo.filter}
                          removeTodolist={removeTodolist}
-                         changeTaskTitle={props.changeTaskTitle}
+                         // changeTaskTitle={props.changeTaskTitle}
                          onChangeTodolistTitle={props.onChangeTodolistTitle}/>
     })}
     </>
