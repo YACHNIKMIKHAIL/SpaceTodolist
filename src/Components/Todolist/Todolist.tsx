@@ -5,6 +5,8 @@ import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Grid} from "@mui/material";
 import styled from "styled-components";
+import {ChangeTodoFilterAC} from "../State/TodolistReducer";
+import {useDispatch} from "react-redux";
 
 
 export type TaskType = {
@@ -25,7 +27,7 @@ type PropsType = {
     title: string
     tasks: Array<TaskType>
     removeTask: (id: string, todolistID: string) => void
-    changeFilter: (filter: FilterValueType, todolistID: string) => void
+    // changeFilter: (filter: FilterValueType, todolistID: string) => void
     addTask: (title: string, todolistID: string) => void
     changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
     filter: FilterValueType
@@ -37,7 +39,7 @@ type PropsType = {
 
 export function TodolistMemo({
                                  removeTask,
-                                 changeFilter,
+                                 // changeFilter,
                                  addTask,
                                  changeTaskStatus,
                                  removeTodolist,
@@ -45,8 +47,10 @@ export function TodolistMemo({
                                  filter,
                                  ...props
                              }: PropsType) {
+    const dispatch=useDispatch()
 
-    const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
+    // const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
+    const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
     const removeTaskX = (id: string) => removeTask(id, todolistID)
     const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
     const removeTodolistX = () => removeTodolist(todolistID)
@@ -63,19 +67,20 @@ export function TodolistMemo({
 
             <AddForm addItem={addTaskX}/>
 
-            <TasksMap tasks={props.tasks}
-                      changeCheckbox={changeCheckbox}
-                      removeTaskX={removeTaskX}
-                      id={todolistID}
-                      changeTaskTitle={props.changeTaskTitle}
-                      todolistID={todolistID}/>
+            <TasksMap
+                tasks={props.tasks}
+                changeCheckbox={changeCheckbox}
+                removeTaskX={removeTaskX}
+                id={todolistID}
+                changeTaskTitle={props.changeTaskTitle}
+                todolistID={todolistID}/>
 
             <div style={{display: 'flex', flexDirection: 'row'}}>
-                <Button name={'All'} callback={() => changeTasksFiler('all', todolistID)}
+                <Button name={'All'} callback={() => changeFilter('all', todolistID)}
                         className={makeActive('all')}/>
-                <Button name={'Active'} callback={() => changeTasksFiler('active', todolistID)}
+                <Button name={'Active'} callback={() => changeFilter('active', todolistID)}
                         className={makeActive('active')}/>
-                <Button name={'Complited'} callback={() => changeTasksFiler('complited', todolistID)}
+                <Button name={'Complited'} callback={() => changeFilter('complited', todolistID)}
                         className={makeActive('complited')}/>
             </div>
         </OpacityCase>

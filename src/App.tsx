@@ -26,10 +26,10 @@ import {rootReducerType} from "./Components/State/store";
 
 function App() {
     const dispatch = useDispatch()
-    const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
+    // const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
 
     const removeTask = (id: string, todolistID: string) => dispatch(RemoveTaskAC(id, todolistID))
-    const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
+    // const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
     const addTask = (title: string, todolistID: string) => dispatch(AddTaskAC(title, todolistID))
     const changeTaskStatus = (id: string, isDone: boolean, todolistID: string) => dispatch(ChangeTaskStatusAC(id, isDone, todolistID))
     const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
@@ -71,9 +71,10 @@ function App() {
                 <AddForm addItem={addTodolist}/>
             </Grid>
             <Grid container spacing={3}>
-                <TodolistsMap todolists={todolists}
+                <TodolistsMap
+                    // todolists={todolists}
                               removeTask={removeTask}
-                              changeFilter={changeFilter}
+                              // changeFilter={changeFilter}
                               addTask={addTask}
                               changeTaskStatus={changeTaskStatus}
                               removeTodolist={removeTodolist}
