@@ -6,17 +6,17 @@ import {CheckboxX} from "../Checkbox/Checkbox";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {rootReducerType} from "../State/store";
-import {ChangeTaskStatusAC, changeTaskTitleAC} from "../State/TasksReducer";
+import {ChangeTaskStatusAC, changeTaskTitleAC, RemoveTaskAC} from "../State/TasksReducer";
 
 type TasksMapType = {
     tasks: Array<TaskType>
     // changeCheckbox: (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => void
-    removeTaskX: (id: string) => void
+    // removeTaskX: (id: string) => void
     id: string
     // changeTaskTitle: (id: string, title: string, todolistId: string) => void
     todolistID: string
 }
-export const TasksMapMemo = ({ removeTaskX, ...props}: TasksMapType) => {
+export const TasksMapMemo = (props: TasksMapType) => {
     const dispatch = useDispatch()
     // const tasks=useSelector<rootReducerType,Array<TaskType>>(state => state.tasks[props.todolistID])
 
@@ -24,6 +24,8 @@ export const TasksMapMemo = ({ removeTaskX, ...props}: TasksMapType) => {
     const changeTaskTitle = (title: string) => dispatch(changeTaskTitleAC(props.id, title, props.todolistID))
     // const changeTaskTitle = (title: string) => props.changeTaskTitle(props.id, title, props.todolistID)
     // const changeTaskStatus = (id: string, e: ChangeEvent<HTMLInputElement>) => changeCheckbox(id, e, props.todolistID)
+
+    const removeTask = (id: string) => dispatch(RemoveTaskAC(id, props.todolistID))
 
 
     return (
@@ -40,7 +42,7 @@ export const TasksMapMemo = ({ removeTaskX, ...props}: TasksMapType) => {
                         <CheckboxX isDone={m.isDone}
                                    callback={(e) => changeTaskStatus(m.id, e.currentTarget.checked)}/>
                         <EditableSpan title={m.title} onChange={changeTaskTitle}/>
-                        <Button name={'x'} callback={() => removeTaskX(m.id)}/>
+                        <Button name={'x'} callback={() => removeTask(m.id)}/>
                     </TaskCase>
                 }
             )

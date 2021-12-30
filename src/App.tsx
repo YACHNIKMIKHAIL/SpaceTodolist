@@ -28,17 +28,17 @@ function App() {
     const dispatch = useDispatch()
     // const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
 
-    const removeTask = (id: string, todolistID: string) => dispatch(RemoveTaskAC(id, todolistID))
+    // const removeTask = (id: string, todolistID: string) => dispatch(RemoveTaskAC(id, todolistID))
     // const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
-    const addTask = (title: string, todolistID: string) => dispatch(AddTaskAC(title, todolistID))
-    const changeTaskStatus = (id: string, isDone: boolean, todolistID: string) => dispatch(ChangeTaskStatusAC(id, isDone, todolistID))
-    const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
+    // const addTask = (title: string, todolistID: string) => dispatch(AddTaskAC(title, todolistID))
+    // const changeTaskStatus = (id: string, isDone: boolean, todolistID: string) => dispatch(ChangeTaskStatusAC(id, isDone, todolistID))
+    // const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
     const addTodolist = (title: string) => {
         const newTodolistId = v1()
         dispatch(AddTodoAC(title, newTodolistId))
         dispatch(addNewTodoAC(newTodolistId))
     }
-    const changeTaskTitle = (id: string, title: string, todolistId: string) => dispatch(changeTaskTitleAC(id, title, todolistId))
+    // const changeTaskTitle = (id: string, title: string, todolistId: string) => dispatch(changeTaskTitleAC(id, title, todolistId))
     const onChangeTodolistTitle = (title: string, todolistID: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
 
     return <AppCase>
@@ -73,11 +73,11 @@ function App() {
             <Grid container spacing={3}>
                 <TodolistsMap
                     // todolists={todolists}
-                              removeTask={removeTask}
+                    //           removeTask={removeTask}
                               // changeFilter={changeFilter}
-                              addTask={addTask}
+                              // addTask={addTask}
                               // changeTaskStatus={changeTaskStatus}
-                              removeTodolist={removeTodolist}
+                              // removeTodolist={removeTodolist}
                               // changeTaskTitle={changeTaskTitle}
                               onChangeTodolistTitle={onChangeTodolistTitle}/>
             </Grid>

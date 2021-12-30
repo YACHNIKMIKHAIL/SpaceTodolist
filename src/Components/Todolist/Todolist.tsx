@@ -5,8 +5,9 @@ import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Grid} from "@mui/material";
 import styled from "styled-components";
-import {ChangeTodoFilterAC} from "../State/TodolistReducer";
+import {ChangeTodoFilterAC, removeTodolistAC} from "../State/TodolistReducer";
 import {useDispatch} from "react-redux";
+import {AddTaskAC} from "../State/TasksReducer";
 
 
 export type TaskType = {
@@ -26,51 +27,53 @@ export type TaskStateType = {
 type PropsType = {
     title: string
     tasks: Array<TaskType>
-    removeTask: (id: string, todolistID: string) => void
+    // removeTask: (id: string, todolistID: string) => void
     // changeFilter: (filter: FilterValueType, todolistID: string) => void
-    addTask: (title: string, todolistID: string) => void
+    // addTask: (title: string, todolistID: string) => void
     // changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
     filter: FilterValueType
     todolistID: string
-    removeTodolist: (todolistID: string) => void
+    // removeTodolist: (todolistID: string) => void
     // changeTaskTitle: (id: string, title: string, todolistId: string) => void
     onChangeTodolistTitle: (title: string, todolistId: string) => void
 }
 
 export function TodolistMemo({
-                                 removeTask,
+                                 // removeTask,
                                  // changeFilter,
-                                 addTask,
+                                 // addTask,
                                  // changeTaskStatus,
-                                 removeTodolist,
+                                 // removeTodolist,
                                  todolistID,
                                  filter,
                                  ...props
                              }: PropsType) {
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
 
     // const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
     const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
-    const removeTaskX = (id: string) => removeTask(id, todolistID)
+    // const removeTaskX = (id: string) => removeTask(id, todolistID)
     // const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
-    const removeTodolistX = () => removeTodolist(todolistID)
+    // const removeTodolistX = () => removeTodolist(todolistID)
+    const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
     const makeActive = (value: string) => filter === value ? 'active-filter' : ''
-    const addTaskX = (title: string) => addTask(title, todolistID)
+    // const addTaskX = (title: string) => addTask(title, todolistID)
+    const addTask = (title: string) => dispatch(AddTaskAC(title, todolistID))
     const onChangeTodolistTitle = (title: string) => props.onChangeTodolistTitle(todolistID, title)
 
     return <Grid item>
         <OpacityCase>
             <h3 style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <EditableSpan title={props.title} onChange={onChangeTodolistTitle}/>
-                <Button name={'x'} callback={removeTodolistX}/>
+                <Button name={'x'} callback={() => removeTodolist(todolistID)}/>
             </h3>
 
-            <AddForm addItem={addTaskX}/>
+            <AddForm addItem={addTask}/>
 
             <TasksMap
                 tasks={props.tasks}
                 // changeCheckbox={changeCheckbox}
-                removeTaskX={removeTaskX}
+                // removeTaskX={removeTaskX}
                 id={todolistID}
                 // changeTaskTitle={props.changeTaskTitle}
                 todolistID={todolistID}/>

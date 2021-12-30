@@ -6,20 +6,20 @@ import {rootReducerType} from "../State/store";
 
 type TodolistsMapType = {
     // todolists: Array<TodolitsType>
-    removeTask: (id: string, todolistID: string) => void
+    // removeTask: (id: string, todolistID: string) => void
     // changeFilter: (filter: FilterValueType, todolistID: string) => void
-    addTask: (title: string, todolistID: string) => void
+    // addTask: (title: string, todolistID: string) => void
     // changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
-    removeTodolist: (todolistID: string) => void
+    // removeTodolist: (todolistID: string) => void
     // changeTaskTitle: (id: string, title: string, todolistId: string) => void
     onChangeTodolistTitle: (title: string, todolistId: string) => void
 }
 export const TodolistsMapMemo = ({
-                                     removeTask,
+                                     // removeTask,
                                      // changeFilter,
-                                     addTask,
+                                     // addTask,
                                      // changeTaskStatus,
-                                     removeTodolist,
+                                     // removeTodolist,
                                      ...props
                                  }: TodolistsMapType) => {
     const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)
@@ -37,12 +37,12 @@ export const TodolistsMapMemo = ({
                          todolistID={todo.id}
                          title={todo.title}
                          tasks={tasksForRender}
-                         removeTask={removeTask}
+                         // removeTask={removeTask}
             // changeFilter={changeFilter}
-                         addTask={addTask}
+            //              addTask={addTask}
                          // changeTaskStatus={changeTaskStatus}
                          filter={todo.filter}
-                         removeTodolist={removeTodolist}
+                         // removeTodolist={removeTodolist}
                          // changeTaskTitle={props.changeTaskTitle}
                          onChangeTodolistTitle={props.onChangeTodolistTitle}/>
     })}
