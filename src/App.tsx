@@ -39,7 +39,7 @@ function App() {
         dispatch(addNewTodoAC(newTodolistId))
     }
     // const changeTaskTitle = (id: string, title: string, todolistId: string) => dispatch(changeTaskTitleAC(id, title, todolistId))
-    const onChangeTodolistTitle = (title: string, todolistID: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
+    // const onChangeTodolistTitle = (title: string, todolistID: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
 
     return <AppCase>
         <AppBar position="static" style={{opacity: '0.7'}}>
@@ -79,7 +79,8 @@ function App() {
                               // changeTaskStatus={changeTaskStatus}
                               // removeTodolist={removeTodolist}
                               // changeTaskTitle={changeTaskTitle}
-                              onChangeTodolistTitle={onChangeTodolistTitle}/>
+                              // onChangeTodolistTitle={onChangeTodolistTitle}
+                />
             </Grid>
         </Container>
     </AppCase>

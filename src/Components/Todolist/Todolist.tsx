@@ -5,7 +5,7 @@ import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Grid} from "@mui/material";
 import styled from "styled-components";
-import {ChangeTodoFilterAC, removeTodolistAC} from "../State/TodolistReducer";
+import {ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "../State/TodolistReducer";
 import {useDispatch} from "react-redux";
 import {AddTaskAC} from "../State/TasksReducer";
 
@@ -35,7 +35,7 @@ type PropsType = {
     todolistID: string
     // removeTodolist: (todolistID: string) => void
     // changeTaskTitle: (id: string, title: string, todolistId: string) => void
-    onChangeTodolistTitle: (title: string, todolistId: string) => void
+    // onChangeTodolistTitle: (title: string, todolistId: string) => void
 }
 
 export function TodolistMemo({
@@ -59,7 +59,8 @@ export function TodolistMemo({
     const makeActive = (value: string) => filter === value ? 'active-filter' : ''
     // const addTaskX = (title: string) => addTask(title, todolistID)
     const addTask = (title: string) => dispatch(AddTaskAC(title, todolistID))
-    const onChangeTodolistTitle = (title: string) => props.onChangeTodolistTitle(todolistID, title)
+    // const onChangeTodolistTitle = (title: string) => props.onChangeTodolistTitle(todolistID, title)
+    const onChangeTodolistTitle = (title: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
 
     return <Grid item>
         <OpacityCase>
