@@ -9,37 +9,21 @@ import {Home} from '@mui/icons-material';
 import styled from "styled-components";
 import img from './Components/Images/wallpaperflare.com_wallpaper.jpg'
 import {
-    addNewTodoAC,
-    AddTaskAC,
-    ChangeTaskStatusAC,
-    changeTaskTitleAC,
-    RemoveTaskAC
+    addNewTodoAC
 } from "./Components/State/TasksReducer";
 import {
-    AddTodoAC,
-    ChangeTodoFilterAC,
-    ChangeTodoTitleAC,
-    removeTodolistAC
+    AddTodoAC
 } from "./Components/State/TodolistReducer";
-import {useDispatch, useSelector} from "react-redux";
-import {rootReducerType} from "./Components/State/store";
+import {useDispatch} from "react-redux";
 
 function App() {
     const dispatch = useDispatch()
-    // const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
 
-    // const removeTask = (id: string, todolistID: string) => dispatch(RemoveTaskAC(id, todolistID))
-    // const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
-    // const addTask = (title: string, todolistID: string) => dispatch(AddTaskAC(title, todolistID))
-    // const changeTaskStatus = (id: string, isDone: boolean, todolistID: string) => dispatch(ChangeTaskStatusAC(id, isDone, todolistID))
-    // const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
     const addTodolist = (title: string) => {
         const newTodolistId = v1()
         dispatch(AddTodoAC(title, newTodolistId))
         dispatch(addNewTodoAC(newTodolistId))
     }
-    // const changeTaskTitle = (id: string, title: string, todolistId: string) => dispatch(changeTaskTitleAC(id, title, todolistId))
-    // const onChangeTodolistTitle = (title: string, todolistID: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
 
     return <AppCase>
         <AppBar position="static" style={{opacity: '0.7'}}>
@@ -71,16 +55,7 @@ function App() {
                 <AddForm addItem={addTodolist}/>
             </Grid>
             <Grid container spacing={3}>
-                <TodolistsMap
-                    // todolists={todolists}
-                    //           removeTask={removeTask}
-                              // changeFilter={changeFilter}
-                              // addTask={addTask}
-                              // changeTaskStatus={changeTaskStatus}
-                              // removeTodolist={removeTodolist}
-                              // changeTaskTitle={changeTaskTitle}
-                              // onChangeTodolistTitle={onChangeTodolistTitle}
-                />
+                <TodolistsMap/>
             </Grid>
         </Container>
     </AppCase>

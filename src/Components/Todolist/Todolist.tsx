@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {TasksMap} from "../Map/TasksMap";
 import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
@@ -27,40 +27,24 @@ export type TaskStateType = {
 type PropsType = {
     title: string
     tasks: Array<TaskType>
-    // removeTask: (id: string, todolistID: string) => void
-    // changeFilter: (filter: FilterValueType, todolistID: string) => void
-    // addTask: (title: string, todolistID: string) => void
-    // changeTaskStatus: (id: string, isDone: boolean, todolistID: string) => void
     filter: FilterValueType
     todolistID: string
-    // removeTodolist: (todolistID: string) => void
-    // changeTaskTitle: (id: string, title: string, todolistId: string) => void
-    // onChangeTodolistTitle: (title: string, todolistId: string) => void
 }
 
 export function TodolistMemo({
-                                 // removeTask,
-                                 // changeFilter,
-                                 // addTask,
-                                 // changeTaskStatus,
-                                 // removeTodolist,
+
                                  todolistID,
                                  filter,
                                  ...props
                              }: PropsType) {
     const dispatch = useDispatch()
 
-    // const changeTasksFiler = (value: FilterValueType, todolistID: string) => changeFilter(value, todolistID)
     const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
-    // const removeTaskX = (id: string) => removeTask(id, todolistID)
-    // const changeCheckbox = (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => changeTaskStatus(id, e.currentTarget.checked, todolistID)
-    // const removeTodolistX = () => removeTodolist(todolistID)
     const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
     const makeActive = (value: string) => filter === value ? 'active-filter' : ''
-    // const addTaskX = (title: string) => addTask(title, todolistID)
     const addTask = (title: string) => dispatch(AddTaskAC(title, todolistID))
-    // const onChangeTodolistTitle = (title: string) => props.onChangeTodolistTitle(todolistID, title)
     const onChangeTodolistTitle = (title: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
+
 
     return <Grid item>
         <OpacityCase>
@@ -73,10 +57,7 @@ export function TodolistMemo({
 
             <TasksMap
                 tasks={props.tasks}
-                // changeCheckbox={changeCheckbox}
-                // removeTaskX={removeTaskX}
                 id={todolistID}
-                // changeTaskTitle={props.changeTaskTitle}
                 todolistID={todolistID}/>
 
             <div style={{display: 'flex', flexDirection: 'row'}}>

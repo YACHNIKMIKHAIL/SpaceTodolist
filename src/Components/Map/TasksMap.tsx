@@ -1,30 +1,23 @@
-import React, {ChangeEvent} from "react";
-import {TaskStateType, TaskType, TodolistMemo} from "../Todolist/Todolist";
+import React from "react";
+import {TaskStateType, TaskType} from "../Todolist/Todolist";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Button} from "../Button/Button";
 import {CheckboxX} from "../Checkbox/Checkbox";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {rootReducerType} from "../State/store";
 import {ChangeTaskStatusAC, changeTaskTitleAC, RemoveTaskAC} from "../State/TasksReducer";
+import {rootReducerType} from "../State/store";
 
 type TasksMapType = {
     tasks: Array<TaskType>
-    // changeCheckbox: (id: string, e: ChangeEvent<HTMLInputElement>, todolistID: string) => void
-    // removeTaskX: (id: string) => void
     id: string
-    // changeTaskTitle: (id: string, title: string, todolistId: string) => void
     todolistID: string
 }
 export const TasksMapMemo = (props: TasksMapType) => {
     const dispatch = useDispatch()
-    // const tasks=useSelector<rootReducerType,Array<TaskType>>(state => state.tasks[props.todolistID])
 
     const changeTaskStatus = (id: string, isDone: boolean) => dispatch(ChangeTaskStatusAC(id, isDone, props.todolistID))
     const changeTaskTitle = (title: string) => dispatch(changeTaskTitleAC(props.id, title, props.todolistID))
-    // const changeTaskTitle = (title: string) => props.changeTaskTitle(props.id, title, props.todolistID)
-    // const changeTaskStatus = (id: string, e: ChangeEvent<HTMLInputElement>) => changeCheckbox(id, e, props.todolistID)
-
     const removeTask = (id: string) => dispatch(RemoveTaskAC(id, props.todolistID))
 
 
