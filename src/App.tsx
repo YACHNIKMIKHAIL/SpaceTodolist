@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
-import {FilterValueType, TodolitsType} from './Components/Todolist/Todolist';
 import {v1} from "uuid";
 import {TodolistsMap} from "./Components/Map/TodolistsMap";
 import {AddForm} from "./Components/AddForm/AddForm";
@@ -14,16 +13,25 @@ import {
 import {
     AddTodoAC
 } from "./Components/State/TodolistReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {rootReducerType} from "./Components/State/store";
+import {TodolitsType} from "./Components/Todolist/Todolist";
 
 function App() {
+    console.log('App render')
     const dispatch = useDispatch()
+    const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
 
-    const addTodolist = (title: string) => {
+    // const addTodolist = (title: string) => {
+    //     const newTodolistId = v1()
+    //     dispatch(AddTodoAC(title, newTodolistId))
+    //     dispatch(addNewTodoAC(newTodolistId))
+    // }
+    const addTodolist = useCallback((title: string) => {
         const newTodolistId = v1()
         dispatch(AddTodoAC(title, newTodolistId))
         dispatch(addNewTodoAC(newTodolistId))
-    }
+    }, [todolists])
 
     return <AppCase>
         <AppBar position="static" style={{opacity: '0.7'}}>
@@ -62,6 +70,7 @@ function App() {
 }
 
 export default App;
+
 
 const AppCase = styled.div`
   background: url(${img}) no-repeat center/cover;

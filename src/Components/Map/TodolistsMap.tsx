@@ -3,7 +3,6 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {rootReducerType} from "../State/store";
 
-
 export const TodolistsMapMemo = () => {
 
     const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)

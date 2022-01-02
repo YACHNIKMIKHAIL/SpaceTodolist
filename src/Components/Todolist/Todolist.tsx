@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {TasksMap} from "../Map/TasksMap";
 import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
@@ -6,8 +6,9 @@ import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Grid} from "@mui/material";
 import styled from "styled-components";
 import {ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "../State/TodolistReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AddTaskAC} from "../State/TasksReducer";
+import {rootReducerType} from "../State/store";
 
 
 export type TaskType = {
@@ -38,12 +39,28 @@ export function TodolistMemo({
                                  ...props
                              }: PropsType) {
     const dispatch = useDispatch()
+    const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
+    const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)
 
-    const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
-    const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
+    // const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
+    // const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
+    // const onChangeTodolistTitle = (title: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
+    const changeFilter = useCallback((filter: FilterValueType, todolistID: string) => {
+        dispatch(ChangeTodoFilterAC(filter, todolistID))
+    }, [todolists])
+    const removeTodolist = useCallback((todolistID: string) => {
+        dispatch(removeTodolistAC(todolistID))
+    }, [todolists])
+    const onChangeTodolistTitle = useCallback((title: string) => {
+        dispatch(ChangeTodoTitleAC(title, todolistID))
+    }, [todolists])
+
     const makeActive = (value: string) => filter === value ? 'active-filter' : ''
-    const addTask = (title: string) => dispatch(AddTaskAC(title, todolistID))
-    const onChangeTodolistTitle = (title: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
+    // const addTask = (title: string) => dispatch(AddTaskAC(title, todolistID))
+
+    const addTask = useCallback((title: string) => {
+        dispatch(AddTaskAC(title, todolistID))
+    }, [tasks])
 
 
     return <Grid item>
