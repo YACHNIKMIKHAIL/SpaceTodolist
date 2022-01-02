@@ -6,7 +6,7 @@ type AddFormPropsType = {
     addItem: (title: string) => void
 }
 
-export const AddForm = (props: AddFormPropsType) => {
+export const AddFormMemo = (props: AddFormPropsType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string>('')
 
@@ -32,3 +32,5 @@ export const AddForm = (props: AddFormPropsType) => {
         {/*{error ? <div className={'error-message'}>{error}</div> : ''}*/}
     </div>
 }
+
+export const AddForm = React.memo(AddFormMemo)
