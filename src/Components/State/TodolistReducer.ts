@@ -21,7 +21,7 @@ type RemoveTodoActionType = {
 type AddTodoActionType = {
     type: 'ADD_TODO'
     title: string
-    newTodolistId:string
+    newTodolistId: string
 }
 type ChangeTodoTitleActionType = {
     type: 'CHANGE_TODO_TITLE'
@@ -34,7 +34,7 @@ type ChangeTodoFilterActionType = {
     filter: FilterValueType
 }
 
-const initialState:Array<TodolitsType>=[
+const initialState: Array<TodolitsType> = [
     {id: todolist1, title: 'What to learn?', filter: 'all'},
     {id: todolist2, title: 'What to buy?', filter: 'all'},
     {id: todolist3, title: 'What to fixie?', filter: 'all'},
@@ -45,17 +45,17 @@ const initialState:Array<TodolitsType>=[
     {id: todolist8, title: 'Что позырить?', filter: 'all'},
     {id: todolist9, title: 'Что подарить?', filter: 'all'}
 ]
-export const todolistReducer = (state=initialState, action: ActionsType): Array<TodolitsType> => {
+export const todolistReducer = (state = initialState, action: ActionsType): Array<TodolitsType> => {
         switch (action.type) {
             case 'REMOVE_TODO': {
                 return state.filter(f => f.id !== action.id)
             }
             case 'ADD_TODO': {
-                return [...state, {
+                return [{
                     id: action.newTodolistId,
                     title: action.title,
                     filter: 'all'
-                }]
+                }, ...state]
             }
             case 'CHANGE_TODO_TITLE': {
                 return state.map(m => m.id === action.id ? {...m, title: action.newTitle} : m)
@@ -78,7 +78,7 @@ export const AddTodoAC = (newTitle: string, newTodolistId: string): AddTodoActio
 export const ChangeTodoTitleAC = (newTitle: string, todolistId: string): ChangeTodoTitleActionType => {
     return {type: 'CHANGE_TODO_TITLE', id: todolistId, newTitle: newTitle} as const
 }
-export const ChangeTodoFilterAC = ( filter: FilterValueType,todolistId: string,): ChangeTodoFilterActionType => {
+export const ChangeTodoFilterAC = (filter: FilterValueType, todolistId: string,): ChangeTodoFilterActionType => {
     debugger
-    return {type: 'CHANGE_TODO_FILTER' ,id: todolistId, filter: filter} as const
+    return {type: 'CHANGE_TODO_FILTER', id: todolistId, filter: filter} as const
 }

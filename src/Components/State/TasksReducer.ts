@@ -1,4 +1,4 @@
-import {FilterValueType, TaskStateType, TaskType} from "../Todolist/Todolist";
+import {TaskStateType} from "../Todolist/Todolist";
 import {v1} from "uuid";
 
 export const todolist1 = v1()
@@ -11,7 +11,7 @@ export const todolist7 = v1()
 export const todolist8 = v1()
 export const todolist9 = v1()
 
-const initialTasks:TaskStateType= {
+const initialTasks: TaskStateType = {
     [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: true},
         {id: v1(), title: "JS", isDone: true},
         {id: v1(), title: "ReactJS", isDone: false}],
@@ -41,7 +41,7 @@ const initialTasks:TaskStateType= {
         {id: v1(), title: "Цветы)", isDone: true}]
 }
 
-export const tasksReducer = (state=initialTasks, action: ActionsType): TaskStateType => {
+export const tasksReducer = (state = initialTasks, action: ActionsType): TaskStateType => {
     switch (action.type) {
         case 'REMOVE_TASK': {
             return {...state, [action.todolistId]: state[action.todolistId].filter(f => f.id !== action.taskId)}

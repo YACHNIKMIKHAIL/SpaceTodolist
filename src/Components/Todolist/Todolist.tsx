@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {TasksMap} from "../Map/TasksMap";
 import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
@@ -8,8 +8,6 @@ import styled from "styled-components";
 import {ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "../State/TodolistReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AddTaskAC} from "../State/TasksReducer";
-import {rootReducerType} from "../State/store";
-
 
 export type TaskType = {
     id: string
@@ -33,34 +31,28 @@ type PropsType = {
 }
 
 export function TodolistMemo({
-
                                  todolistID,
                                  filter,
                                  ...props
                              }: PropsType) {
     const dispatch = useDispatch()
-    const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
-    const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)
 
-    // const changeFilter = (filter: FilterValueType, todolistID: string) => dispatch(ChangeTodoFilterAC(filter, todolistID))
-    // const removeTodolist = (todolistID: string) => dispatch(removeTodolistAC(todolistID))
-    // const onChangeTodolistTitle = (title: string) => dispatch(ChangeTodoTitleAC(title, todolistID))
     const changeFilter = useCallback((filter: FilterValueType, todolistID: string) => {
         dispatch(ChangeTodoFilterAC(filter, todolistID))
-    }, [todolists])
+    }, [dispatch,filter,todolistID])
     const removeTodolist = useCallback((todolistID: string) => {
         dispatch(removeTodolistAC(todolistID))
-    }, [todolists])
+    }, [dispatch,todolistID])
     const onChangeTodolistTitle = useCallback((title: string) => {
         dispatch(ChangeTodoTitleAC(title, todolistID))
-    }, [todolists])
+    }, [dispatch,todolistID])
 
     const makeActive = (value: string) => filter === value ? 'active-filter' : ''
-    // const addTask = (title: string) => dispatch(AddTaskAC(title, todolistID))
 
     const addTask = useCallback((title: string) => {
+        console.log('addTask WORK')
         dispatch(AddTaskAC(title, todolistID))
-    }, [tasks])
+    }, [dispatch,todolistID])
 
 
     return <Grid item>
@@ -88,6 +80,7 @@ export function TodolistMemo({
         </OpacityCase>
     </Grid>
 }
+
 
 export const Todolist = React.memo(TodolistMemo)
 
