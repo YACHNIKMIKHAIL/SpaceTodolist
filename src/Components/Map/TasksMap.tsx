@@ -18,13 +18,13 @@ export const TasksMapMemo = (props: TasksMapType) => {
 
     const changeTaskStatus = useCallback((id: string, isDone: boolean) => {
         dispatch(ChangeTaskStatusAC(id, isDone, props.todolistID))
-    }, [dispatch, props.id])
+    }, [dispatch, props.todolistID])
     const changeTaskTitle = useCallback((title: string) => {
         dispatch(changeTaskTitleAC(props.id, title, props.todolistID))
-    }, [dispatch, props.id])
+    }, [dispatch, props.todolistID,props.id])
     const removeTask = useCallback((id: string) => {
         dispatch(RemoveTaskAC(id, props.todolistID))
-    }, [dispatch, props.id])
+    }, [dispatch,props.todolistID])
 
 
     return (

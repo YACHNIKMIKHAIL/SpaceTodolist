@@ -27,7 +27,7 @@ export const AddFormMemo = (props: AddFormPropsType) => {
     const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setError('')
         setTitle(e.currentTarget.value)
-    }, [title])
+    }, [])
     const addTaskButton = useCallback(() => {
         if (title.trim() !== '') {
             props.addItem(title.trim())
@@ -35,7 +35,7 @@ export const AddFormMemo = (props: AddFormPropsType) => {
         } else {
             setError('Title is undefined !')
         }
-    }, [title])
+    }, [props,title])
 
     return <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <Input value={title}
