@@ -35,16 +35,17 @@ export const AddFormMemo = (props: AddFormPropsType) => {
         } else {
             setError('Title is undefined !')
         }
-    }, [props,title])
+    }, [props, title])
 
-    return <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-        <Input value={title}
-               onChange={onChangeInput}
-               onKeyPress={onKeyPressAdd}
-               error={error}/>
+    return <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
+    < Input value={title}
+        onChange={onChangeInput}
+        onKeyPress={onKeyPressAdd}
+        error={error}/>
         <Button name={'+'} callback={addTaskButton}/>
-        {/*{error ? <div className={'error-message'}>{error}</div> : ''}*/}
-    </div>
-}
+    {/*{error ? <div className={'error-message'}>{error}</div> : ''}*/}
+        </div>
+    }
 
-export const AddForm = React.memo(AddFormMemo)
+                export const AddForm=React.memo(AddFormMemo
+)

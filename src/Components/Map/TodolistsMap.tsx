@@ -43,6 +43,8 @@ export const TodolistsMapMemo = () => {
     const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
 
     return <> {todolists.map(todo => {
+        debugger;
+
         let tasksForRender = tasks[todo.id]
         if (todo.filter === 'active') {
             tasksForRender = tasks[todo.id].filter(f => !f.isDone)

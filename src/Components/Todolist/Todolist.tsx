@@ -56,7 +56,7 @@ export function TodolistMemo({
         dispatch(AddTaskAC(title, todolistID))
     }, [dispatch, todolistID])
 
-    const thingToRender = useMemo(() => {
+    const TodolistRender = useMemo(() => {
         const makeActive = (value: string) => filter === value ? 'active-filter' : ''
 
         return <Grid item>
@@ -84,9 +84,8 @@ export function TodolistMemo({
             </OpacityCase>
         </Grid>
     }, [todolistID, addTask, changeFilter, onChangeTodolistTitle, props.tasks, props.title, removeTodolist, filter]);
-    return <> {thingToRender}</>
 
-
+    return <> {TodolistRender}</>
 }
 
 export const Todolist = React.memo(TodolistMemo)

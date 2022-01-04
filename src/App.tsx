@@ -43,7 +43,7 @@ function App() {
                 <Button color="inherit">Login</Button>
             </Toolbar>
         </AppBar>
-        <Container fixed>
+        <Container fixed style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <Grid container style={{
                 padding: '10px',
                 backgroundColor: 'rgba(203, 209, 213,0.7)',
@@ -54,7 +54,7 @@ function App() {
             }}>
                 <AddForm addItem={addTodolist}/>
             </Grid>
-            <Grid container spacing={3}>
+            <Grid container spacing={1} style={{display: 'flex', justifyContent: 'center'}}>
                 <TodolistsMap/>
             </Grid>
         </Container>
@@ -68,4 +68,6 @@ const AppCase = styled.div`
   background: url(${img}) no-repeat center/cover;
   height: 100vh;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 `
