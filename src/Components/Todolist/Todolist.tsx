@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback} from 'react';
 import {TasksMap} from "../Map/TasksMap";
 import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
@@ -35,12 +35,13 @@ export function TodolistMemo({
                                  filter,
                                  ...props
                              }: PropsType) {
-    console.log(`render ${todolistID}`)
+
 
     const dispatch = useDispatch()
 
     const changeFilter = useCallback((filter: FilterValueType, todolistID: string) => {
         dispatch(ChangeTodoFilterAC(filter, todolistID))
+        // dispatch(changeTasksFilterAC(todolistID,filter))
     }, [dispatch])
     const removeTodolist = useCallback((todolistID: string) => {
         dispatch(removeTodolistAC(todolistID))
@@ -56,7 +57,9 @@ export function TodolistMemo({
         dispatch(AddTaskAC(title, todolistID))
     }, [dispatch, todolistID])
 
-    const TodolistRender = useMemo(() => {
+    // const TodolistRender = useMemo(() => {
+
+        console.log(`render ${todolistID}`)
         const makeActive = (value: string) => filter === value ? 'active-filter' : ''
 
         return <Grid item>
@@ -83,9 +86,9 @@ export function TodolistMemo({
                 </div>
             </OpacityCase>
         </Grid>
-    }, [todolistID, addTask, changeFilter, onChangeTodolistTitle, props.tasks, props.title, removeTodolist, filter]);
+    // }, [todolistID, addTask, changeFilter, onChangeTodolistTitle, props.tasks, props.title, removeTodolist, filter]);
 
-    return <> {TodolistRender}</>
+    // return <> {TodolistRender}</>
 }
 
 export const Todolist = React.memo(TodolistMemo)
