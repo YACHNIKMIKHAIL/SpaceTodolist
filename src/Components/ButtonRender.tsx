@@ -1,13 +1,14 @@
 import React from 'react';
 import {Button, IconButton} from "@mui/material";
 import {Delete, ShutterSpeed} from "@mui/icons-material";
+import DeblurIcon from '@mui/icons-material/Deblur';
 
 
 
 export const ButtonRender = (name: string, callback: () => void, className?: string) => {
     if(name==='+'){
-        return <IconButton  style={{color:'#ffe1b2'}} onClick={()=>callback()}>
-            <ShutterSpeed/>
+        return <IconButton  style={{color:'#006bff'}} onClick={()=>callback()} size={'large'}>
+            <DeblurIcon/>
         </IconButton>
 
     }

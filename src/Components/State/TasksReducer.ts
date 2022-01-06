@@ -21,24 +21,24 @@ const initialTasks: TaskStateType = {
     [todolist3]: [{id: v1(), title: "Helmet", isDone: true},
         {id: v1(), title: "Wheels", isDone: false},
         {id: v1(), title: "Crank", isDone: false}],
-    // [todolist4]: [{id: v1(), title: "Тудулист", isDone: true},
-    //     {id: v1(), title: "Нативочка", isDone: false},
-    //     {id: v1(), title: "Чилл)))", isDone: false}],
-    // [todolist5]: [{id: v1(), title: "Домой вернуться", isDone: true},
-    //     {id: v1(), title: "Игровая комната", isDone: true},
-    //     {id: v1(), title: "В гости к маме)", isDone: false}],
-    // [todolist6]: [{id: v1(), title: "Чай", isDone: true},
-    //     {id: v1(), title: "Чай", isDone: true},
-    //     {id: v1(), title: "Чай", isDone: false}],
-    // [todolist7]: [{id: v1(), title: "по обс-вам(", isDone: false},
-    //     {id: v1(), title: "Выжить любой ценой", isDone: false},
-    //     {id: v1(), title: "Попытаться кайфануть)", isDone: true}],
-    // [todolist8]: [{id: v1(), title: "Мульты", isDone: true},
-    //     {id: v1(), title: "Сны", isDone: true},
-    //     {id: v1(), title: "Ничё", isDone: false}],
-    // [todolist9]: [{id: v1(), title: "Цветы", isDone: false},
-    //     {id: v1(), title: "Цветы", isDone: false},
-    //     {id: v1(), title: "Цветы)", isDone: true}]
+    [todolist4]: [{id: v1(), title: "Тудулист", isDone: true},
+        {id: v1(), title: "Нативочка", isDone: false},
+        {id: v1(), title: "Чилл)))", isDone: false}],
+    [todolist5]: [{id: v1(), title: "Домой вернуться", isDone: true},
+        {id: v1(), title: "Игровая комната", isDone: true},
+        {id: v1(), title: "В гости к маме)", isDone: false}],
+    [todolist6]: [{id: v1(), title: "Чай", isDone: true},
+        {id: v1(), title: "Чай", isDone: true},
+        {id: v1(), title: "Чай", isDone: false}],
+    [todolist7]: [{id: v1(), title: "по обс-вам(", isDone: false},
+        {id: v1(), title: "Выжить любой ценой", isDone: false},
+        {id: v1(), title: "Попытаться кайфануть)", isDone: true}],
+    [todolist8]: [{id: v1(), title: "Мульты", isDone: true},
+        {id: v1(), title: "Сны", isDone: true},
+        {id: v1(), title: "Ничё", isDone: false}],
+    [todolist9]: [{id: v1(), title: "Цветы", isDone: false},
+        {id: v1(), title: "Цветы", isDone: false},
+        {id: v1(), title: "Цветы)", isDone: true}]
 }
 
 export const tasksReducer = (state = initialTasks, action: ActionsType): TaskStateType => {
@@ -73,24 +73,30 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
         case 'ADD_NEW_TODO': {
             return {...state, [action.newTodolistId]: []}
         }
-        // case 'CHANGE_TASK_FILTER': {
-        //     if(action.filter==='active') {
-        //         console.log(action.filter)
-        //         return {...state, [action.todolistId]: state[action.todolistId].filter(m => !m.isDone)}
-        //     }
-        //     if(action.filter==='complited') {
-        //         console.log(action.filter)
-        //         return {...state, [action.todolistId]: state[action.todolistId].filter(m => m.isDone)}
-        //     }
-        //     console.log(action.filter)
-        //     return {...state}
-        // }
+        case 'CHANGE_TASK_FILTER': {
+            if (action.filter === 'active') {
+                console.log(action.filter)
+                return {...state, [action.todolistId]: state[action.todolistId].filter(m => !m.isDone)}
+            }
+            if (action.filter === 'complited') {
+                console.log(action.filter)
+                return {...state, [action.todolistId]: state[action.todolistId].filter(m => m.isDone)}
+            }
+            console.log(action.filter)
+            return {...state}
+        }
         default:
             return state
     }
 }
 
-type ActionsType = RemoveTaskActionType | changeTaskStatusAC | AddTaskActionType | changeTaskTitleType | addNewTodoType
+type ActionsType =
+    RemoveTaskActionType
+    | changeTaskStatusAC
+    | AddTaskActionType
+    | changeTaskTitleType
+    | addNewTodoType
+    | changeTasksFilterType
 
 type RemoveTaskActionType = ReturnType<typeof RemoveTaskAC>
 export const RemoveTaskAC = (taskId: string, todolistId: string) => {
@@ -117,7 +123,7 @@ export const addNewTodoAC = (newTodolistId: string) => {
     return {type: 'ADD_NEW_TODO', newTodolistId: newTodolistId} as const
 }
 
-// type changeTasksFilterType = ReturnType<typeof changeTasksFilterAC>
-// export const changeTasksFilterAC = (todolistId: string,filter:FilterValueType) => {
-//     return {type: 'CHANGE_TASK_FILTER', todolistId,filter} as const
-// }
+type changeTasksFilterType = ReturnType<typeof changeTasksFilterAC>
+export const changeTasksFilterAC = (todolistId: string, filter: FilterValueType) => {
+    return {type: 'CHANGE_TASK_FILTER', todolistId, filter} as const
+}
