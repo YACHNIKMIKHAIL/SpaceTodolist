@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/SpaceTodolist/static/css/main.8c3d3b0c.chunk.css",
-    "main.js": "/SpaceTodolist/static/js/main.5cf97ec8.chunk.js",
-    "main.js.map": "/SpaceTodolist/static/js/main.5cf97ec8.chunk.js.map",
+    "main.js": "/SpaceTodolist/static/js/main.9be0dab1.chunk.js",
+    "main.js.map": "/SpaceTodolist/static/js/main.9be0dab1.chunk.js.map",
     "runtime-main.js": "/SpaceTodolist/static/js/runtime-main.55b9e915.js",
     "runtime-main.js.map": "/SpaceTodolist/static/js/runtime-main.55b9e915.js.map",
-    "static/js/2.cd35525a.chunk.js": "/SpaceTodolist/static/js/2.cd35525a.chunk.js",
-    "static/js/2.cd35525a.chunk.js.map": "/SpaceTodolist/static/js/2.cd35525a.chunk.js.map",
+    "static/js/2.9591f939.chunk.js": "/SpaceTodolist/static/js/2.9591f939.chunk.js",
+    "static/js/2.9591f939.chunk.js.map": "/SpaceTodolist/static/js/2.9591f939.chunk.js.map",
     "index.html": "/SpaceTodolist/index.html",
-    "precache-manifest.3e726ba762b656504e9f841e49b52b2f.js": "/SpaceTodolist/precache-manifest.3e726ba762b656504e9f841e49b52b2f.js",
+    "precache-manifest.69a6fb0b1a67707f3b8f9b6b5eeca12c.js": "/SpaceTodolist/precache-manifest.69a6fb0b1a67707f3b8f9b6b5eeca12c.js",
     "service-worker.js": "/SpaceTodolist/service-worker.js",
     "static/css/main.8c3d3b0c.chunk.css.map": "/SpaceTodolist/static/css/main.8c3d3b0c.chunk.css.map",
-    "static/js/2.cd35525a.chunk.js.LICENSE.txt": "/SpaceTodolist/static/js/2.cd35525a.chunk.js.LICENSE.txt",
+    "static/js/2.9591f939.chunk.js.LICENSE.txt": "/SpaceTodolist/static/js/2.9591f939.chunk.js.LICENSE.txt",
     "static/media/wallpaperflare.com_wallpaper.jpg": "/SpaceTodolist/static/media/wallpaperflare.com_wallpaper.5940d32b.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.55b9e915.js",
-    "static/js/2.cd35525a.chunk.js",
+    "static/js/2.9591f939.chunk.js",
     "static/css/main.8c3d3b0c.chunk.css",
-    "static/js/main.5cf97ec8.chunk.js"
+    "static/js/main.9be0dab1.chunk.js"
   ]
 }
