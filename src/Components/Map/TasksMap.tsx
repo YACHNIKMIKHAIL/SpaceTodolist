@@ -5,7 +5,7 @@ import {Button} from "../Button/Button";
 import {CheckboxX} from "../Checkbox/Checkbox";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {ChangeTaskStatusAC, changeTaskTitleAC, RemoveTaskAC} from "../State/TasksReducer";
+import {ChangeTaskStatusAC, changeTaskTitleAC, RemoveTaskAC} from "../State/TasksActions";
 
 
 type TasksMapType = {

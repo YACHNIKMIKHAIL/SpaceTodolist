@@ -7,13 +7,9 @@ import {AppBar, Button, Container, Grid, IconButton, Toolbar, Typography} from "
 import {Home} from '@mui/icons-material';
 import styled from "styled-components";
 import img from './Components/Images/wallpaperflare.com_wallpaper.jpg'
-import {
-    addNewTodoAC
-} from "./Components/State/TasksReducer";
-import {
-    AddTodoAC
-} from "./Components/State/TodolistReducer";
 import {useDispatch} from "react-redux";
+import {AddTodoAC} from "./Components/State/TodolistsActions";
+import {addNewTodoAC} from "./Components/State/TasksActions";
 
 function App() {
     console.log('App render')

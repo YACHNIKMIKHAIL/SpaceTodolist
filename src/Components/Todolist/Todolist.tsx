@@ -5,10 +5,11 @@ import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Grid} from "@mui/material";
 import styled from "styled-components";
-import {ChangeTodoFilterAC, ChangeTodoTitleAC, FilterValueType, removeTodolistAC} from "../State/TodolistReducer";
+import { FilterValueType} from "../State/TodolistReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AddTaskAC} from "../State/TasksReducer";
 import {rootReducerType} from "../State/store";
+import {ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "../State/TodolistsActions";
+import {AddTaskAC} from "../State/TasksActions";
 
 export type TaskType = {
     id: string
