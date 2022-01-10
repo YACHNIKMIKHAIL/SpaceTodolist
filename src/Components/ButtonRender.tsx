@@ -1,8 +1,7 @@
 import React from 'react';
 import {Button, IconButton} from "@mui/material";
-import {Delete, ShutterSpeed} from "@mui/icons-material";
+import {Delete} from "@mui/icons-material";
 import DeblurIcon from '@mui/icons-material/Deblur';
-
 
 
 export const ButtonRender = (name: string, callback: () => void, className?: string) => {

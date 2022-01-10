@@ -6,13 +6,9 @@ type ButtonPropsType = {
     callback: () => void
     className?: string
 }
-export const Button = ({name, callback, className}: ButtonPropsType) => {
-    // const onClickHandler = () => callback()
-
+export const Button = React.memo(({name, callback, className}: ButtonPropsType) => {
+    console.log('button rendered')
     return (<div>
         {ButtonRender(name, callback, className)}
     </div>)
-
-    // <button className={className}
-    //                onClick={(e) => onClickHandler()}>{name}</button>
-}
+})

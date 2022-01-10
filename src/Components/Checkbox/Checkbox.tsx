@@ -5,11 +5,12 @@ type CheckboxPropsType = {
     isDone: boolean
     callback: (e: ChangeEvent<HTMLInputElement>) => void
 }
-export const CheckboxX = (props: CheckboxPropsType) => {
+export const CheckboxX = React.memo((props: CheckboxPropsType) => {
+    console.log('checkBOX')
     const callback = (e: ChangeEvent<HTMLInputElement>) => {
         props.callback(e)
     }
     return <Checkbox color="secondary"
                      defaultChecked={props.isDone}
                      onChange={(e: ChangeEvent<HTMLInputElement>) => callback(e)}/>
-}
+})

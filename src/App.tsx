@@ -11,7 +11,7 @@ import {useDispatch} from "react-redux";
 import {AddTodoAC} from "./Components/State/TodolistsActions";
 import {addNewTodoAC} from "./Components/State/TasksActions";
 
-function App() {
+export const App = React.memo(() => {
     console.log('App render')
     const dispatch = useDispatch()
 
@@ -55,10 +55,7 @@ function App() {
             </Grid>
         </Container>
     </AppCase>
-}
-
-export default App;
-
+})
 
 const AppCase = styled.div`
   background: url(${img}) no-repeat center/cover;

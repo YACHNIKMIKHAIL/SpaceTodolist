@@ -11,18 +11,7 @@ export const AddFormMemo = (props: AddFormPropsType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string>('')
 
-    // const onChangeInput = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    //     setError('')
-    //     setTitle(e.currentTarget.value)
-    // }
-    // const addTaskButton = () => {
-    //     if (title.trim() !== '') {
-    //         props.addItem(title.trim())
-    //         setTitle('')
-    //     } else {
-    //         setError('Title is undefined !')
-    //     }
-    // }
+    console.log('add item form')
     const onKeyPressAdd = (e: React.KeyboardEvent<HTMLDivElement>) => (e.key === 'Enter') ? addTaskButton() : ''
 
     const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,15 +27,13 @@ export const AddFormMemo = (props: AddFormPropsType) => {
         }
     }, [props, title])
 
-    return <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-    < Input value={title}
-        onChange={onChangeInput}
-        onKeyPress={onKeyPressAdd}
-        error={error}/>
+    return <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        < Input value={title}
+                onChange={onChangeInput}
+                onKeyPress={onKeyPressAdd}
+                error={error}/>
         <Button name={'+'} callback={addTaskButton}/>
-    {/*{error ? <div className={'error-message'}>{error}</div> : ''}*/}
-        </div>
-    }
+    </div>
+}
 
-                export const AddForm=React.memo(AddFormMemo
-)
+export const AddForm = React.memo(AddFormMemo)
