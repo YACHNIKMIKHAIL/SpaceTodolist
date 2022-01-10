@@ -1,5 +1,6 @@
-import {FilterValueType, TaskStateType} from "../Todolist/Todolist";
+import { TaskType} from "../Todolist/Todolist";
 import {v1} from "uuid";
+import {FilterValueType} from "./TodolistReducer";
 
 export const todolist1 = v1()
 export const todolist2 = v1()
@@ -11,6 +12,9 @@ export const todolist7 = v1()
 export const todolist8 = v1()
 export const todolist9 = v1()
 
+export type TaskStateType = {
+    [key: string]: Array<TaskType>
+}
 const initialTasks: TaskStateType = {
     [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: true},
         {id: v1(), title: "JS", isDone: true},
@@ -72,18 +76,6 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
         }
         case 'ADD_NEW_TODO': {
             return {...state, [action.newTodolistId]: []}
-        }
-        case 'CHANGE_TASK_FILTER': {
-            if (action.filter === 'active') {
-                console.log(action.filter)
-                return {...state, [action.todolistId]: state[action.todolistId].filter(m => !m.isDone)}
-            }
-            if (action.filter === 'complited') {
-                console.log(action.filter)
-                return {...state, [action.todolistId]: state[action.todolistId].filter(m => m.isDone)}
-            }
-            console.log(action.filter)
-            return {...state}
         }
         default:
             return state

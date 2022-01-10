@@ -1,4 +1,3 @@
-import {FilterValueType, TodolitsType} from "../Todolist/Todolist";
 import {
     todolist1,
     todolist2,
@@ -11,6 +10,12 @@ import {
     todolist9
 } from "./TasksReducer";
 
+export type FilterValueType = 'all' | 'active' | 'complited'
+export type TodolitsType = {
+    id: string
+    title: string
+    filter: FilterValueType
+}
 
 type ActionsType = RemoveTodoActionType | AddTodoActionType | ChangeTodoTitleActionType | ChangeTodoFilterActionType
 
@@ -61,12 +66,8 @@ export const todolistReducer = (state = initialState, action: ActionsType): Arra
                 return state.map(m => m.id === action.id ? {...m, title: action.newTitle} : m)
             }
             case 'CHANGE_TODO_FILTER': {
-
                 return state.map(m => {
-
-
-
-                    return  m.id === action.id ? {...m, filter: action.filter} : m
+                    return m.id === action.id ? {...m, filter: action.filter} : m
                 })
             }
             default:
