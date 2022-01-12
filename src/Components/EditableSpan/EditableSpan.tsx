@@ -8,6 +8,8 @@ type EditableSpanPropsType = {
 export const EditableSpanMemo = ({onChange, ...props}: EditableSpanPropsType) => {
     const [title, setTitle] = useState<string>(props.title)
     const [editM, setEditM] = useState<boolean>(false)
+
+    console.log('span render')
     const activateEditM = () => {
         setEditM(true)
         setTitle(props.title)

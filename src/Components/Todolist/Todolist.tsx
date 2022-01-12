@@ -47,7 +47,11 @@ export function TodolistMemo({
     }, [dispatch, todolistID])
 
     console.log(`render ${todolistID}`)
-    const makeActive = (value: string) => filter === value ? 'active-filter' : ''
+    const makeActive = useCallback((value: string) => {
+       if (filter === value) {
+          return 'active-filter'
+       }
+    },[filter])
 
     let tasksForRender = tasksX
     if (filter === 'active') {

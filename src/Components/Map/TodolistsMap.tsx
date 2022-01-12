@@ -8,6 +8,7 @@ export const TodolistsMapMemo = () => {
     const todolists = useSelector<rootReducerType, Array<TodolitsType>>(state => state.todolists)
 
     return <> {todolists.map(todo => {
+
         return <Todolist key={todo.id}
                          todolistID={todo.id}
                          title={todo.title}

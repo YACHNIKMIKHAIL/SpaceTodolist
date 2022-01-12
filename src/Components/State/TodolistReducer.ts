@@ -1,15 +1,4 @@
 import {
-    todolist1,
-    todolist2,
-    todolist3,
-    todolist4,
-    todolist5,
-    todolist6,
-    todolist7,
-    todolist8,
-    todolist9
-} from "./TasksReducer";
-import {
     AddTodoActionType,
     ChangeTodoFilterActionType,
     ChangeTodoTitleActionType,
@@ -26,15 +15,15 @@ export type TodolitsType = {
 type ActionsType = RemoveTodoActionType | AddTodoActionType | ChangeTodoTitleActionType | ChangeTodoFilterActionType
 
 const initialState: Array<TodolitsType> = [
-    {id: todolist1, title: 'What to learn?', filter: 'all'},
-    {id: todolist2, title: 'What to buy?', filter: 'all'},
-    {id: todolist3, title: 'What to fixie?', filter: 'all'},
-    {id: todolist4, title: 'C чего начать?', filter: 'all'},
-    {id: todolist5, title: 'Куда сходить?', filter: 'all'},
-    {id: todolist6, title: 'Что пить?', filter: 'all'},
-    {id: todolist7, title: 'Как жить теперь?', filter: 'all'},
-    {id: todolist8, title: 'Что позырить?', filter: 'all'},
-    {id: todolist9, title: 'Что подарить?', filter: 'all'}
+    // {id: todolist1, title: 'What to learn?', filter: 'all'},
+    // {id: todolist2, title: 'What to buy?', filter: 'all'},
+    // {id: todolist3, title: 'What to fixie?', filter: 'all'},
+    // {id: todolist4, title: 'C чего начать?', filter: 'all'},
+    // {id: todolist5, title: 'Куда сходить?', filter: 'all'},
+    // {id: todolist6, title: 'Что пить?', filter: 'all'},
+    // {id: todolist7, title: 'Как жить теперь?', filter: 'all'},
+    // {id: todolist8, title: 'Что позырить?', filter: 'all'},
+    // {id: todolist9, title: 'Что подарить?', filter: 'all'}
 ]
 export const todolistReducer = (state = initialState, action: ActionsType): Array<TodolitsType> => {
         switch (action.type) {
