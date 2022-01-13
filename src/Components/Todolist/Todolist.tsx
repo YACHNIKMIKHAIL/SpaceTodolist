@@ -17,19 +17,14 @@ export type TaskType = {
     isDone: boolean
 }
 type PropsType = {
-    // title: string
-    // filter: FilterValueType
     todolistID: string
 }
 
 export function TodolistMemo({
                                  todolistID,
-                                 // filter,
-                                 ...props
                              }: PropsType) {
 
     const dispatch = useDispatch()
-    const tasksX = useSelector<rootReducerType, Array<TaskType>>(state => state.tasks[todolistID])
     const todolist=useSelector<rootReducerType,TodolitsType>(state=>state.todolists.filter(f=>f.id===todolistID)[0])
 
     const changeFilter = useCallback((filter: FilterValueType, todolistID: string) => {
@@ -54,13 +49,7 @@ export function TodolistMemo({
        }
     },[todolist.filter])
 
-    let tasksForRender = tasksX
-    if (todolist.filter === 'active') {
-        tasksForRender = tasksX.filter(f => !f.isDone)
-    }
-    if (todolist.filter === 'complited') {
-        tasksForRender = tasksX.filter(f => f.isDone)
-    }
+
     return <Grid item>
         <OpacityCase>
             <h3 style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -71,7 +60,6 @@ export function TodolistMemo({
             <AddForm addItem={addTask}/>
 
             <TasksMap
-                tasks={tasksForRender}
                 id={todolistID}
                 todolistID={todolistID}/>
 

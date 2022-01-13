@@ -11,8 +11,6 @@ export const TodolistsMapMemo = () => {
 
         return <Todolist key={todo.id}
                          todolistID={todo.id}
-                         // title={todo.title}
-                         // filter={todo.filter}
         />
     })}
     </>
