@@ -5,7 +5,7 @@ import {AddForm} from "../AddForm/AddForm";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {Grid} from "@mui/material";
 import styled from "styled-components";
-import { FilterValueType} from "../State/TodolistReducer";
+import {FilterValueType, TodolitsType} from "../State/TodolistReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {rootReducerType} from "../State/store";
 import {ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "../State/TodolistsActions";
@@ -17,19 +17,20 @@ export type TaskType = {
     isDone: boolean
 }
 type PropsType = {
-    title: string
-    filter: FilterValueType
+    // title: string
+    // filter: FilterValueType
     todolistID: string
 }
 
 export function TodolistMemo({
                                  todolistID,
-                                 filter,
+                                 // filter,
                                  ...props
                              }: PropsType) {
 
     const dispatch = useDispatch()
     const tasksX = useSelector<rootReducerType, Array<TaskType>>(state => state.tasks[todolistID])
+    const todolist=useSelector<rootReducerType,TodolitsType>(state=>state.todolists.filter(f=>f.id===todolistID)[0])
 
     const changeFilter = useCallback((filter: FilterValueType, todolistID: string) => {
         dispatch(ChangeTodoFilterAC(filter, todolistID))
@@ -48,22 +49,22 @@ export function TodolistMemo({
 
     console.log(`render ${todolistID}`)
     const makeActive = useCallback((value: string) => {
-       if (filter === value) {
+       if (todolist.filter === value) {
           return 'active-filter'
        }
-    },[filter])
+    },[todolist.filter])
 
     let tasksForRender = tasksX
-    if (filter === 'active') {
+    if (todolist.filter === 'active') {
         tasksForRender = tasksX.filter(f => !f.isDone)
     }
-    if (filter === 'complited') {
+    if (todolist.filter === 'complited') {
         tasksForRender = tasksX.filter(f => f.isDone)
     }
     return <Grid item>
         <OpacityCase>
             <h3 style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                <EditableSpan title={props.title} onChange={onChangeTodolistTitle}/>
+                <EditableSpan title={todolist.title} onChange={onChangeTodolistTitle}/>
                 <Button name={'x'} callback={() => removeTodolist(todolistID)}/>
             </h3>
 
