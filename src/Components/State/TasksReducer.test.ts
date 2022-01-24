@@ -1,13 +1,7 @@
 import {v1} from "uuid";
-import {TaskStateType} from "../Todolist/Todolist";
-import {
-    addNewTodoAC,
-    AddTaskAC,
-    ChangeTaskStatusAC,
-    changeTaskTitleAC,
-    RemoveTaskAC,
-    tasksReducer
-} from "./TasksReducer";
+import {tasksReducer, TaskStateType} from "./TasksReducer";
+import {addNewTodoAC, AddTaskAC, ChangeTaskStatusAC, changeTaskTitleAC, RemoveTaskAC} from "./TasksActions";
+
 
 test('correct task remove', () => {
     let todolist1 = v1()

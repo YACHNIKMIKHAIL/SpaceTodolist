@@ -1,6 +1,8 @@
 import {v1} from "uuid";
-import {TodolitsType} from "../Todolist/Todolist";
-import {AddTodoAC, ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC, todolistReducer} from "./TodolistReducer";
+import {todolistReducer, TodolitsType} from "./TodolistReducer";
+import {AddTodoAC, ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "./TodolistsActions";
+
+
 
 test('correct todolist remove', () => {
     let todolist1 = v1()
