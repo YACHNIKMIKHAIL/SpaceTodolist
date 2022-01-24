@@ -10,5 +10,5 @@ const changeTitleCallback = action('Title was changed :')
 
 
 export const EditableSpanBaseExample = () => {
-    return <EditableSpan title={"Change me on double click if you want)"} onChange={changeTitleCallback}/>
+    return <EditableSpan title={"Change me on double click)"} onChange={changeTitleCallback}/>
 }
