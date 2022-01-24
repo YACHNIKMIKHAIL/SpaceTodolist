@@ -1,11 +1,13 @@
 import {AddForm} from "./AddForm";
+import {action} from "@storybook/addon-actions";
 
 export default {
     title: 'AddForm Component',
     component: AddForm
 }
 
-export const AddFormBaseExample = (props: any) => {
-    return <AddForm addItem={() => {
-    }}/>
+const callback=action('New added task is: ')
+
+export const AddFormBaseExample = () => {
+    return <AddForm addItem={callback}/>
 }
