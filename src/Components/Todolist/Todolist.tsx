@@ -8,7 +8,13 @@ import styled from "styled-components";
 import {FilterValueType, TodolitsType} from "../State/TodolistReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {rootReducerType} from "../State/store";
-import {ChangeTodoFilterAC, ChangeTodoTitleAC, deleteTodolistsTC, removeTodolistAC} from "../State/TodolistsActions";
+import {
+    ChangeTodoFilterAC,
+    ChangeTodoTitleAC,
+    deleteTodolistsTC,
+    removeTodolistAC,
+    updateTodolistsTC
+} from "../State/TodolistsActions";
 import {AddTaskAC} from "../State/TasksActions";
 
 export type TaskType = {
@@ -25,7 +31,7 @@ export function TodolistMemo({
                              }: PropsType) {
 
     const dispatch = useDispatch()
-    const todolist=useSelector<rootReducerType,TodolitsType>(state=>state.todolists.filter(f=>f.id===todolistID)[0])
+    const todolist = useSelector<rootReducerType, TodolitsType>(state => state.todolists.filter(f => f.id === todolistID)[0])
 
     const changeFilter = useCallback((filter: FilterValueType, todolistID: string) => {
         dispatch(ChangeTodoFilterAC(filter, todolistID))
@@ -34,7 +40,7 @@ export function TodolistMemo({
         dispatch(deleteTodolistsTC(todolistID))
     }, [dispatch])
     const onChangeTodolistTitle = useCallback((title: string) => {
-        dispatch(ChangeTodoTitleAC(title, todolistID))
+        dispatch(updateTodolistsTC(todolistID, title))
     }, [dispatch, todolistID])
 
     const addTask = useCallback((title: string) => {
@@ -44,10 +50,10 @@ export function TodolistMemo({
 
     console.log(`render ${todolistID}`)
     const makeActive = useCallback((value: string) => {
-       if (todolist.filter === value) {
-          return 'active-filter'
-       }
-    },[todolist.filter])
+        if (todolist.filter === value) {
+            return 'active-filter'
+        }
+    }, [todolist.filter])
 
 
     return <Grid item>

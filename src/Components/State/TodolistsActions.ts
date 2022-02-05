@@ -39,7 +39,7 @@ export const removeTodolistAC = (todolistId: string): RemoveTodoActionType => {
 export const AddTodoAC = (newTodolist: SpaceTodolistType): AddTodoActionType => {
     return {type: TodolistsActionsType.AddTodo, newTodolist} as const
 }
-export const ChangeTodoTitleAC = (newTitle: string, todolistId: string): ChangeTodoTitleActionType => {
+export const ChangeTodoTitleAC = ( todolistId: string,newTitle: string): ChangeTodoTitleActionType => {
     return {type: TodolistsActionsType.ChangeTodoTitle, id: todolistId, newTitle: newTitle} as const
 }
 export const ChangeTodoFilterAC = (filter: FilterValueType, todolistId: string,): ChangeTodoFilterActionType => {
@@ -69,6 +69,14 @@ export const deleteTodolistsTC = (todolistId:string) => async (dispatch: Dispatc
     try {
         await todolistsSpaceApi.deleteTodolist(todolistId)
         dispatch(removeTodolistAC(todolistId))
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const updateTodolistsTC = (todolistId:string,title:string) => async (dispatch: Dispatch) => {
+    try {
+        await todolistsSpaceApi.updateTodolist(todolistId,title)
+        dispatch(ChangeTodoTitleAC(todolistId,title))
     } catch (e) {
         console.log(e)
     }
