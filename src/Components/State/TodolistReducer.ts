@@ -1,18 +1,22 @@
 import {
     AddTodoActionType,
     ChangeTodoFilterActionType,
-    ChangeTodoTitleActionType,
+    ChangeTodoTitleActionType, GetTodolistsActionType,
     RemoveTodoActionType, TodolistsActionsType
 } from "./TodolistsActions";
+import {SpaceTodolistType} from "../../API/SpaceAPI";
 
 export type FilterValueType = 'all' | 'active' | 'complited'
-export type TodolitsType = {
-    id: string
-    title: string
+export type TodolitsType = SpaceTodolistType & {
     filter: FilterValueType
 }
 
-type ActionsType = RemoveTodoActionType | AddTodoActionType | ChangeTodoTitleActionType | ChangeTodoFilterActionType
+type ActionsType =
+    RemoveTodoActionType
+    | AddTodoActionType
+    | ChangeTodoTitleActionType
+    | ChangeTodoFilterActionType
+    | GetTodolistsActionType
 
 const initialState: Array<TodolitsType> = [
     // {id: todolist1, title: 'What to learn?', filter: 'all'},
@@ -25,17 +29,18 @@ const initialState: Array<TodolitsType> = [
     // {id: todolist8, title: 'Что позырить?', filter: 'all'},
     // {id: todolist9, title: 'Что подарить?', filter: 'all'}
 ]
-export const todolistReducer = (state = initialState, action: ActionsType): Array<TodolitsType> => {
+export const todolistReducer = (state = initialState, action: ActionsType): SpaceTodolistType[] => {
         switch (action.type) {
             case TodolistsActionsType.RemoveTodo: {
                 return state.filter(f => f.id !== action.id)
             }
             case TodolistsActionsType.AddTodo: {
-                return [{
-                    id: action.newTodolistId,
-                    title: action.title,
-                    filter: 'all'
-                }, ...state]
+                return []
+                // [{
+                //     id: action.newTodolistId,
+                //     title: action.title,
+                //     filter: 'all'
+                // }, ...state]
             }
             case TodolistsActionsType.ChangeTodoTitle: {
                 return state.map(m => m.id === action.id ? {...m, title: action.newTitle} : m)
@@ -44,6 +49,9 @@ export const todolistReducer = (state = initialState, action: ActionsType): Arra
                 return state.map(m => {
                     return m.id === action.id ? {...m, filter: action.filter} : m
                 })
+            }
+            case TodolistsActionsType.GetTodolists: {
+                return [...action.items]
             }
             default:
                 return state

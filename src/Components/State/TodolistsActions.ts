@@ -1,11 +1,15 @@
-import {FilterValueType} from "./TodolistReducer";
+import {FilterValueType, TodolitsType} from "./TodolistReducer";
+import {SpaceTodolistType, todolistsSpaceApi} from "../../API/SpaceAPI";
+import {Dispatch} from "redux";
 
-export enum TodolistsActionsType{
-    RemoveTodo='REMOVE_TODO',
-    AddTodo='ADD_TODO',
-    ChangeTodoTitle='CHANGE_TODO_TITLE',
-    ChangeTodoFilter='CHANGE_TODO_FILTER'
+export enum TodolistsActionsType {
+    RemoveTodo = 'REMOVE_TODO',
+    AddTodo = 'ADD_TODO',
+    ChangeTodoTitle = 'CHANGE_TODO_TITLE',
+    ChangeTodoFilter = 'CHANGE_TODO_FILTER',
+    GetTodolists = 'GetTodolists'
 }
+
 export type RemoveTodoActionType = {
     type: TodolistsActionsType.RemoveTodo
     id: string
@@ -25,6 +29,10 @@ export type ChangeTodoFilterActionType = {
     id: string
     filter: FilterValueType
 }
+export type GetTodolistsActionType = {
+    type: TodolistsActionsType.GetTodolists
+    items: Array<SpaceTodolistType>
+}
 
 export const removeTodolistAC = (todolistId: string): RemoveTodoActionType => {
     return {type: TodolistsActionsType.RemoveTodo, id: todolistId} as const
@@ -37,4 +45,16 @@ export const ChangeTodoTitleAC = (newTitle: string, todolistId: string): ChangeT
 }
 export const ChangeTodoFilterAC = (filter: FilterValueType, todolistId: string,): ChangeTodoFilterActionType => {
     return {type: TodolistsActionsType.ChangeTodoFilter, id: todolistId, filter: filter} as const
+}
+export const GetTodolistsAC = (items: Array<SpaceTodolistType>): GetTodolistsActionType => {
+    return {type: TodolistsActionsType.GetTodolists, items} as const
+}
+
+export const getTodolistsTC = () => async (dispatch: Dispatch) => {
+    try {
+        let space = await todolistsSpaceApi.getTodolists()
+        dispatch(GetTodolistsAC(space.data))
+    } catch (e) {
+        console.log(e)
+    }
 }

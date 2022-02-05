@@ -17,7 +17,8 @@ type TasksMapType = {
 }
 export const TasksMapMemo = (props: TasksMapType) => {
     const dispatch = useDispatch()
-    const todolist = useSelector<rootReducerType, TodolitsType>(state => state.todolists.filter(f => f.id === props.todolistID)[0])
+    const todolist=useSelector<rootReducerType, TodolitsType>(state=>state.todolists)
+    // const todolist = useSelector<rootReducerType, TodolitsType>(state => state.todolists.filter(f => f.id === props.todolistID)[0])
     const tasksX = useSelector<rootReducerType, Array<TaskType>>(state => state.tasks[props.todolistID])
 
     const changeTaskStatus = useCallback((id: string, isDone: boolean) => {

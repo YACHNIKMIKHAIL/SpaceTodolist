@@ -1,4 +1,4 @@
-import { TaskType} from "../Todolist/Todolist";
+import {TaskType} from "../Todolist/Todolist";
 import {v1} from "uuid";
 import {
     addNewTodoType,
@@ -8,6 +8,7 @@ import {
     changeTaskTitleType,
     RemoveTaskActionType, TasksActionsType
 } from "./TasksActions";
+import {GetTodolistsActionType, TodolistsActionsType} from "./TodolistsActions";
 
 export const todolist1 = v1()
 export const todolist2 = v1()
@@ -84,6 +85,11 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
         case TasksActionsType.addNewTodo: {
             return {...state, [action.newTodolistId]: []}
         }
+        case TodolistsActionsType.GetTodolists: {
+            const space = {...state}
+            action.items.forEach(sp => space[sp.id] = [])
+            return space
+        }
         default:
             return state
     }
@@ -96,3 +102,4 @@ type ActionsType =
     | changeTaskTitleType
     | addNewTodoType
     | changeTasksFilterType
+    | GetTodolistsActionType

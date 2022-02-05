@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {v1} from "uuid";
 import {TodolistsMap} from "./Components/Map/TodolistsMap";
@@ -8,8 +8,9 @@ import {Home} from '@mui/icons-material';
 import styled from "styled-components";
 import img from './Components/Images/wallpaperflare.com_wallpaper.jpg'
 import {useDispatch} from "react-redux";
-import {AddTodoAC} from "./Components/State/TodolistsActions";
+import {AddTodoAC, getTodolistsTC} from "./Components/State/TodolistsActions";
 import {addNewTodoAC} from "./Components/State/TasksActions";
+import {todolistsSpaceApi} from "./API/SpaceAPI";
 
 export const App = React.memo(() => {
     console.log('App render')
@@ -20,6 +21,10 @@ export const App = React.memo(() => {
         dispatch(AddTodoAC(title, newTodolistId))
         dispatch(addNewTodoAC(newTodolistId))
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getTodolistsTC())
+    }, [])
 
     return <AppCase>
         <AppBar position="static" style={{opacity: '0.7'}}>
