@@ -6,7 +6,6 @@ const spaceInstance=axios.create({
     headers:
         {"API-KEY": "3054dc60-1df1-480c-a08f-6e543a8dcaf0"}
 })
-
 export type SpaceTodolistType={
     id: string,
     title: string,
@@ -19,7 +18,6 @@ type RespType<D={}> ={
     fieldsErrors: string[],
     resultCode: number
 }
-
 export const todolistsSpaceApi={
     async getTodolists(){
         return await spaceInstance.get<SpaceTodolistType[]>(`/todo-lists`)
