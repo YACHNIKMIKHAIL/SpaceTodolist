@@ -13,31 +13,26 @@ export type SpaceTodolistType={
     addedDate: string,
     order: number
 }
-type postSpaceType={
-    data: {
-        item: SpaceTodolistType
-    },
+type RespType<D={}> ={
+    data: D,
     messages: string[],
     fieldsErrors: string[],
     resultCode: number
 }
-type DelUpdType ={
-    data: {},
-    messages: string[],
-    fieldsErrors: string[],
-    resultCode: number
-}
+
 export const todolistsSpaceApi={
     async getTodolists(){
         return await spaceInstance.get<SpaceTodolistType[]>(`/todo-lists`)
     },
     async createTodolist(title:string){
-        return await spaceInstance.post<postSpaceType>(`/todo-lists`,{title})
+        return await spaceInstance.post<RespType<{
+            item: SpaceTodolistType
+        }>>(`/todo-lists`,{title})
     },
     async deleteTodolist(todolistId:string){
-        return await  spaceInstance.delete<DelUpdType>(`/todo-lists/${todolistId}`)
+        return await  spaceInstance.delete<RespType>(`/todo-lists/${todolistId}`)
     },
     async updateTodolist(todolistId:string,title:string){
-        return await spaceInstance.put<DelUpdType>(`/todo-lists/${todolistId}`,{title})
+        return await spaceInstance.put<RespType>(`/todo-lists/${todolistId}`,{title})
     }
 }
