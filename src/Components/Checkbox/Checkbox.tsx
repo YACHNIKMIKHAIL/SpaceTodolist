@@ -11,6 +11,6 @@ export const CheckboxX = React.memo((props: CheckboxPropsType) => {
         props.callback(e)
     }, [props])
     return <Checkbox color="secondary"
-                     defaultChecked={props.isDone}
+                     value={props.isDone}
                      onChange={(e: ChangeEvent<HTMLInputElement>) => callback(e)}/>
 })

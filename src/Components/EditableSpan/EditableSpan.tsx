@@ -13,7 +13,7 @@ export const EditableSpanMemo = ({onChange,title}: EditableSpanPropsType) => {
     const activateEditM = useCallback(() => {
         setEditM(true)
         setStateTitle(title)
-    }, [])
+    }, [title])
     const activateViewM = useCallback(() => {
         setEditM(false)
         onChange(stateTitle)

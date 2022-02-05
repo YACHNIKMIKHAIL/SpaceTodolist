@@ -12,10 +12,10 @@ type TaskPropsType = {
     changeTaskTitle: (title: string) => void
     removeTask: (id: string) => void
 }
-const Task = ({
-                  isDone, id, title, changeTaskStatus,
-                  changeTaskTitle, removeTask
-              }: TaskPropsType) => {
+const Task = React.memo(({
+                             isDone, id, title, changeTaskStatus,
+                             changeTaskTitle, removeTask
+                         }: TaskPropsType) => {
     return (
         <TaskCase opacity={isDone ? '0.4' : '1'}
                   color={isDone ? 'rgba(109,4,234,0.77)' : 'rgba(28,16,0,0.8)'}
@@ -31,7 +31,7 @@ const Task = ({
             <Button name={'x'} callback={() => removeTask(id)}/>
         </TaskCase>
     );
-};
+})
 
 export default Task;
 const TaskCase = styled.div<{ opacity: string, color: string }>`
