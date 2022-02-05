@@ -65,3 +65,11 @@ export const createTodolistsTC = (title:string) => async (dispatch: Dispatch) =>
         console.log(e)
     }
 }
+export const deleteTodolistsTC = (todolistId:string) => async (dispatch: Dispatch) => {
+    try {
+        await todolistsSpaceApi.deleteTodolist(todolistId)
+        dispatch(removeTodolistAC(todolistId))
+    } catch (e) {
+        console.log(e)
+    }
+}

@@ -8,7 +8,7 @@ import styled from "styled-components";
 import {FilterValueType, TodolitsType} from "../State/TodolistReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {rootReducerType} from "../State/store";
-import {ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "../State/TodolistsActions";
+import {ChangeTodoFilterAC, ChangeTodoTitleAC, deleteTodolistsTC, removeTodolistAC} from "../State/TodolistsActions";
 import {AddTaskAC} from "../State/TasksActions";
 
 export type TaskType = {
@@ -31,7 +31,7 @@ export function TodolistMemo({
         dispatch(ChangeTodoFilterAC(filter, todolistID))
     }, [dispatch])
     const removeTodolist = useCallback((todolistID: string) => {
-        dispatch(removeTodolistAC(todolistID))
+        dispatch(deleteTodolistsTC(todolistID))
     }, [dispatch])
     const onChangeTodolistTitle = useCallback((title: string) => {
         dispatch(ChangeTodoTitleAC(title, todolistID))

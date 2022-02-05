@@ -1,14 +1,19 @@
 import {TaskType} from "../Todolist/Todolist";
 import {v1} from "uuid";
 import {
-    addNewTodoType,
     AddTaskActionType,
     changeTasksFilterType,
     changeTaskStatusAC,
     changeTaskTitleType,
-    RemoveTaskActionType, TasksActionsType
+    RemoveTaskActionType,
+    TasksActionsType
 } from "./TasksActions";
-import {AddTodoActionType, GetTodolistsActionType, TodolistsActionsType} from "./TodolistsActions";
+import {
+    AddTodoActionType,
+    GetTodolistsActionType,
+    RemoveTodoActionType,
+    TodolistsActionsType
+} from "./TodolistsActions";
 
 export const todolist1 = v1()
 export const todolist2 = v1()
@@ -90,6 +95,11 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
             action.items.forEach(sp => space[sp.id] = [])
             return space
         }
+        case TodolistsActionsType.RemoveTodo:{
+            let spaceCopy={...state}
+            delete spaceCopy[action.id]
+            return spaceCopy
+        }
         default:
             return state
     }
@@ -103,3 +113,4 @@ type ActionsType =
     | AddTodoActionType
     | changeTasksFilterType
     | GetTodolistsActionType
+    | RemoveTodoActionType
