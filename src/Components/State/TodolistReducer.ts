@@ -7,9 +7,8 @@ import {
 import {SpaceTodolistType} from "../../API/SpaceAPI";
 
 export type FilterValueType = 'all' | 'active' | 'complited'
-export type TodolitsType = SpaceTodolistType & {
-    filter: FilterValueType
-}
+
+export type TodolitsType = SpaceTodolistType & { filter: FilterValueType }
 
 type ActionsType =
     RemoveTodoActionType
@@ -29,18 +28,13 @@ const initialState: Array<TodolitsType> = [
     // {id: todolist8, title: 'Что позырить?', filter: 'all'},
     // {id: todolist9, title: 'Что подарить?', filter: 'all'}
 ]
-export const todolistReducer = (state = initialState, action: ActionsType): SpaceTodolistType[] => {
+export const todolistReducer = (state = initialState, action: ActionsType): TodolitsType[] => {
         switch (action.type) {
             case TodolistsActionsType.RemoveTodo: {
                 return state.filter(f => f.id !== action.id)
             }
             case TodolistsActionsType.AddTodo: {
-                return []
-                // [{
-                //     id: action.newTodolistId,
-                //     title: action.title,
-                //     filter: 'all'
-                // }, ...state]
+                return [{...action.newTodolist, filter: 'all'}, ...state]
             }
             case TodolistsActionsType.ChangeTodoTitle: {
                 return state.map(m => m.id === action.id ? {...m, title: action.newTitle} : m)
@@ -51,7 +45,7 @@ export const todolistReducer = (state = initialState, action: ActionsType): Spac
                 })
             }
             case TodolistsActionsType.GetTodolists: {
-                return [...action.items]
+                return action.items.map(m => ({...m, filter: 'all'}))
             }
             default:
                 return state

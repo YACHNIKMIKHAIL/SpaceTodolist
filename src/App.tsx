@@ -8,7 +8,7 @@ import {Home} from '@mui/icons-material';
 import styled from "styled-components";
 import img from './Components/Images/wallpaperflare.com_wallpaper.jpg'
 import {useDispatch} from "react-redux";
-import {AddTodoAC, getTodolistsTC} from "./Components/State/TodolistsActions";
+import {AddTodoAC, createTodolistsTC, getTodolistsTC} from "./Components/State/TodolistsActions";
 import {addNewTodoAC} from "./Components/State/TasksActions";
 import {todolistsSpaceApi} from "./API/SpaceAPI";
 
@@ -17,9 +17,7 @@ export const App = React.memo(() => {
     const dispatch = useDispatch()
 
     const addTodolist = useCallback((title: string) => {
-        const newTodolistId = v1()
-        dispatch(AddTodoAC(title, newTodolistId))
-        dispatch(addNewTodoAC(newTodolistId))
+        dispatch(createTodolistsTC(title))
     }, [dispatch])
 
     useEffect(() => {

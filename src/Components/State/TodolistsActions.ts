@@ -16,8 +16,7 @@ export type RemoveTodoActionType = {
 }
 export type AddTodoActionType = {
     type: TodolistsActionsType.AddTodo
-    title: string
-    newTodolistId: string
+    newTodolist: SpaceTodolistType
 }
 export type ChangeTodoTitleActionType = {
     type: TodolistsActionsType.ChangeTodoTitle
@@ -37,8 +36,8 @@ export type GetTodolistsActionType = {
 export const removeTodolistAC = (todolistId: string): RemoveTodoActionType => {
     return {type: TodolistsActionsType.RemoveTodo, id: todolistId} as const
 }
-export const AddTodoAC = (newTitle: string, newTodolistId: string): AddTodoActionType => {
-    return {type: TodolistsActionsType.AddTodo, title: newTitle, newTodolistId: newTodolistId} as const
+export const AddTodoAC = (newTodolist: SpaceTodolistType): AddTodoActionType => {
+    return {type: TodolistsActionsType.AddTodo, newTodolist} as const
 }
 export const ChangeTodoTitleAC = (newTitle: string, todolistId: string): ChangeTodoTitleActionType => {
     return {type: TodolistsActionsType.ChangeTodoTitle, id: todolistId, newTitle: newTitle} as const
@@ -54,6 +53,14 @@ export const getTodolistsTC = () => async (dispatch: Dispatch) => {
     try {
         let space = await todolistsSpaceApi.getTodolists()
         dispatch(GetTodolistsAC(space.data))
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const createTodolistsTC = (title:string) => async (dispatch: Dispatch) => {
+    try {
+        let space = await todolistsSpaceApi.createTodolist(title)
+        dispatch(AddTodoAC(space.data.data.item))
     } catch (e) {
         console.log(e)
     }
