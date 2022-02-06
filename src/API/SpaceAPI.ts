@@ -64,11 +64,20 @@ type CreateSpaceResponceType = {
     fieldsErrors: string[],
     resultCode: number
 }
+type deleteSpaceTaskType={
+    data: {},
+    messages: string[],
+    fieldsErrors: string[],
+    resultCode: number
+}
 export const tasksSpaceApi = {
     async getTasks(todolistId: string) {
         return await spaceInstance.get<GetSpaceTasksType>(`/todo-lists/${todolistId}/tasks`)
     },
     async createTask(todolistId: string, title: string) {
         return await spaceInstance.post<CreateSpaceResponceType>(`/todo-lists/${todolistId}/tasks`, {title})
+    },
+    async deleteTask(todolistId: string, taskId: string){
+        return await spaceInstance.delete<deleteSpaceTaskType>(`/todo-lists/${todolistId}/tasks/${taskId}`)
     }
 }

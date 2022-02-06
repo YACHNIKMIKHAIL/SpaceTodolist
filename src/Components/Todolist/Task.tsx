@@ -5,7 +5,7 @@ import {Button} from "../Button/Button";
 import styled from "styled-components";
 
 type TaskPropsType = {
-    isDone: boolean
+    status: number
     id: string
     title: string
     changeTaskStatus: (id: string, e: boolean) => void
@@ -13,19 +13,19 @@ type TaskPropsType = {
     removeTask: (id: string) => void
 }
 const Task = React.memo(({
-                             isDone, id, title, changeTaskStatus,
+                             status, id, title, changeTaskStatus,
                              changeTaskTitle, removeTask
                          }: TaskPropsType) => {
     return (
-        <TaskCase opacity={isDone ? '0.4' : '1'}
-                  color={isDone ? 'rgba(109,4,234,0.77)' : 'rgba(28,16,0,0.8)'}
+        <TaskCase opacity={status===2 ? '0.4' : '1'}
+                  color={status===2 ? 'rgba(109,4,234,0.77)' : 'rgba(28,16,0,0.8)'}
                   key={id} style={{
             display: 'flex',
             flexDirection: 'row',
             justifyContent: "space-between",
             alignItems: 'center',
         }}>
-            <CheckboxX isDone={isDone}
+            <CheckboxX isDone={status===2}
                        callback={(e) => changeTaskStatus(id, e.currentTarget.checked)}/>
             <EditableSpan title={title} onChange={changeTaskTitle}/>
             <Button name={'x'} callback={() => removeTask(id)}/>

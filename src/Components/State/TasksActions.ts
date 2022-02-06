@@ -13,7 +13,7 @@ export enum TasksActionsType {
 }
 
 export type RemoveTaskActionType = ReturnType<typeof RemoveTaskAC>
-export const RemoveTaskAC = (taskId: string, todolistId: string) => {
+export const RemoveTaskAC = (todolistId: string, taskId: string) => {
     return {type: TasksActionsType.RemoveTask, taskId: taskId, todolistId: todolistId} as const
 }
 
@@ -57,6 +57,14 @@ export const createTaskTC = (todolistId: string, title: string) => async (dispat
     try {
         let res = await tasksSpaceApi.createTask(todolistId, title)
         dispatch(AddTaskAC(todolistId, res.data.data.item))
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const deleteTaskTC = (todolistId: string, taskId: string) => async (dispatch: Dispatch) => {
+    try {
+        await tasksSpaceApi.deleteTask(todolistId, taskId)
+        dispatch(RemoveTaskAC(todolistId, taskId))
     } catch (e) {
         console.log(e)
     }
