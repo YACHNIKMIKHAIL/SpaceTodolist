@@ -8,20 +8,9 @@ import styled from "styled-components";
 import {FilterValueType, TodolitsType} from "../State/TodolistReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {rootReducerType} from "../State/store";
-import {
-    ChangeTodoFilterAC,
-    ChangeTodoTitleAC,
-    deleteTodolistsTC,
-    removeTodolistAC,
-    updateTodolistsTC
-} from "../State/TodolistsActions";
-import {AddTaskAC, createTaskTC, getTaskTC} from "../State/TasksActions";
+import {ChangeTodoFilterAC, deleteTodolistsTC, updateTodolistsTC} from "../State/TodolistsActions";
+import {createTaskTC, getTaskTC} from "../State/TasksActions";
 
-// export type TaskType = {
-//     id: string
-//     title: string
-//     isDone: boolean
-// }
 type PropsType = {
     todolistID: string
 }
@@ -48,11 +37,9 @@ export function TodolistMemo({
     }, [dispatch, todolistID])
 
     const addTask = useCallback((title: string) => {
-        console.log('addTask WORK')
         dispatch(createTaskTC(todolistID, title))
     }, [dispatch, todolistID])
 
-    console.log(`render ${todolistID}`)
     const makeActive = useCallback((value: string) => {
         if (todolist.filter === value) {
             return 'active-filter'
@@ -70,7 +57,6 @@ export function TodolistMemo({
             <AddForm addItem={addTask}/>
 
             <TasksMap
-                id={todolistID}
                 todolistID={todolistID}/>
 
             <div style={{display: 'flex', flexDirection: 'row'}}>

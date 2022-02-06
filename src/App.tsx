@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
 import './App.css';
-import {v1} from "uuid";
 import {TodolistsMap} from "./Components/Map/TodolistsMap";
 import {AddForm} from "./Components/AddForm/AddForm";
 import {AppBar, Button, Container, Grid, IconButton, Toolbar, Typography} from "@mui/material";
@@ -8,12 +7,9 @@ import {Home} from '@mui/icons-material';
 import styled from "styled-components";
 import img from './Components/Images/wallpaperflare.com_wallpaper.jpg'
 import {useDispatch} from "react-redux";
-import {AddTodoAC, createTodolistsTC, getTodolistsTC} from "./Components/State/TodolistsActions";
-import {addNewTodoAC} from "./Components/State/TasksActions";
-import {todolistsSpaceApi} from "./API/SpaceAPI";
+import {createTodolistsTC, getTodolistsTC} from "./Components/State/TodolistsActions";
 
 export const App = React.memo(() => {
-    console.log('App render')
     const dispatch = useDispatch()
 
     const addTodolist = useCallback((title: string) => {

@@ -27,11 +27,6 @@ export const AddTaskAC = (todolistId: string, newTask: SpaceTaskType) => {
     return {type: TasksActionsType.AddTask, todolistId, newTask} as const
 }
 
-export type changeTaskTitleType = ReturnType<typeof changeTaskTitleAC>
-export const changeTaskTitleAC = (taskId: string, title: string, todolistId: string) => {
-    return {type: TasksActionsType.changeTaskTitle, title: title, taskId: taskId, todolistId: todolistId} as const
-}
-
 export type addNewTodoType = ReturnType<typeof addNewTodoAC>
 export const addNewTodoAC = (newTodolistId: string) => {
     return {type: TasksActionsType.addNewTodo, newTodolistId: newTodolistId} as const

@@ -1,4 +1,4 @@
-import {FilterValueType, TodolitsType} from "./TodolistReducer";
+import {FilterValueType} from "./TodolistReducer";
 import {SpaceTodolistType, todolistsSpaceApi} from "../../API/SpaceAPI";
 import {Dispatch} from "redux";
 

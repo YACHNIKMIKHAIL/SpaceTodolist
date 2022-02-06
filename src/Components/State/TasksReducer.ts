@@ -3,7 +3,6 @@ import {
     AddTaskActionType,
     changeTasksFilterType,
     changeTaskStatusAC,
-    changeTaskTitleType,
     getTasksType,
     RemoveTaskActionType,
     TasksActionsType
@@ -79,15 +78,6 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
                 [action.todolistId]: [{...action.newTask}, ...state[action.todolistId]]
             }
         }
-        case TasksActionsType.changeTaskTitle: {
-            return {
-                ...state,
-                [action.todolistId]: state[action.todolistId].map(m => m.id === action.taskId ? {
-                    ...m,
-                    title: action.title
-                } : m)
-            }
-        }
         case TodolistsActionsType.AddTodo: {
             return {...state, [action.newTodolist.id]: []}
         }
@@ -113,7 +103,6 @@ type ActionsType =
     RemoveTaskActionType
     | changeTaskStatusAC
     | AddTaskActionType
-    | changeTaskTitleType
     | AddTodoActionType
     | changeTasksFilterType
     | GetTodolistsActionType

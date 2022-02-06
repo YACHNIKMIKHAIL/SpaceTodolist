@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useState} from "react";
 import {TextField} from "@mui/material";
 
 type EditableSpanPropsType = {
@@ -8,14 +8,11 @@ type EditableSpanPropsType = {
 export const EditableSpanMemo = ({onChange,title}: EditableSpanPropsType) => {
     const [stateTitle, setStateTitle] = useState<string>('')
     const [editM, setEditM] = useState<boolean>(false)
-
-    console.log(stateTitle)
     const activateEditM = () => {
         setEditM(true)
         setStateTitle(title)
     }
     const activateViewM = () => {
-        debugger
         setEditM(false)
         onChange(stateTitle)
     }

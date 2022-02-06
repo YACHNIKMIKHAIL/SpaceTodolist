@@ -56,39 +56,29 @@ type GetSpaceTasksType = {
     totalCount: number,
     error: string | null
 }
-type CreateSpaceResponceType = {
-    data: {
-        item: SpaceTaskType
-    },
+type ResponseSpaceTasksType<S = {}> = {
+    data: S,
     messages: string[],
     fieldsErrors: string[],
     resultCode: number
-}
-type deleteSpaceTaskType={
-    data: {},
-    messages: string[],
-    fieldsErrors: string[],
-    resultCode: number
-}
-type UpdateSpaceTaskType={
-    "data": {
-        "item": SpaceTaskType
-    },
-    "messages":string [],
-    "fieldsErrors":string [],
-    "resultCode": number
 }
 export const tasksSpaceApi = {
     async getTasks(todolistId: string) {
         return await spaceInstance.get<GetSpaceTasksType>(`/todo-lists/${todolistId}/tasks`)
     },
     async createTask(todolistId: string, title: string) {
-        return await spaceInstance.post<CreateSpaceResponceType>(`/todo-lists/${todolistId}/tasks`, {title})
+        return await spaceInstance.post<RespType<{ item: SpaceTaskType }>,
+            AxiosResponse<RespType<{
+                item: SpaceTaskType
+            }>>, { title: string }>(`/todo-lists/${todolistId}/tasks`, {title})
     },
-    async deleteTask(todolistId: string, taskId: string){
-        return await spaceInstance.delete<deleteSpaceTaskType>(`/todo-lists/${todolistId}/tasks/${taskId}`)
+    async deleteTask(todolistId: string, taskId: string) {
+        return await spaceInstance.delete<ResponseSpaceTasksType>(`/todo-lists/${todolistId}/tasks/${taskId}`)
     },
-    async updateTask(todolistId: string, taskId: string,title:string,status?:number){
-        return await spaceInstance.put<UpdateSpaceTaskType>(`/todo-lists/${todolistId}/tasks/${taskId}`,{title,status})
+    async updateTask(todolistId: string, taskId: string, title: string, status?: number) {
+        return await spaceInstance.put<RespType<{ item: SpaceTaskType }>,
+            AxiosResponse<RespType<{
+                item: SpaceTaskType
+            }>>, { title: string, status?: number }>(`/todo-lists/${todolistId}/tasks/${taskId}`, {title, status})
     }
 }
