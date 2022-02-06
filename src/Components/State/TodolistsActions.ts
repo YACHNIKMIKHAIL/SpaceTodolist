@@ -1,6 +1,6 @@
 import {FilterValueType} from "./TodolistReducer";
 import {SpaceTodolistType, todolistsSpaceApi} from "../../API/SpaceAPI";
-import {Dispatch} from "redux";
+import {SpaceThunksType} from "./store";
 
 export enum TodolistsActionsType {
     RemoveTodo = 'REMOVE_TODO',
@@ -49,7 +49,7 @@ export const GetTodolistsAC = (items: Array<SpaceTodolistType>): GetTodolistsAct
     return {type: TodolistsActionsType.GetTodolists, items} as const
 }
 
-export const getTodolistsTC = () => async (dispatch: Dispatch) => {
+export const getTodolistsTC = ():SpaceThunksType => async (dispatch) => {
     try {
         let space = await todolistsSpaceApi.getTodolists()
         dispatch(GetTodolistsAC(space.data))
@@ -57,7 +57,7 @@ export const getTodolistsTC = () => async (dispatch: Dispatch) => {
         console.log(e)
     }
 }
-export const createTodolistsTC = (title:string) => async (dispatch: Dispatch) => {
+export const createTodolistsTC = (title:string):SpaceThunksType => async (dispatch) => {
     try {
         let space = await todolistsSpaceApi.createTodolist(title)
         dispatch(AddTodoAC(space.data.data.item))
@@ -65,7 +65,7 @@ export const createTodolistsTC = (title:string) => async (dispatch: Dispatch) =>
         console.log(e)
     }
 }
-export const deleteTodolistsTC = (todolistId:string) => async (dispatch: Dispatch) => {
+export const deleteTodolistsTC = (todolistId:string):SpaceThunksType => async (dispatch) => {
     try {
         await todolistsSpaceApi.deleteTodolist(todolistId)
         dispatch(removeTodolistAC(todolistId))
@@ -73,7 +73,7 @@ export const deleteTodolistsTC = (todolistId:string) => async (dispatch: Dispatc
         console.log(e)
     }
 }
-export const updateTodolistsTC = (todolistId:string,title:string) => async (dispatch: Dispatch) => {
+export const updateTodolistsTC = (todolistId:string,title:string):SpaceThunksType => async (dispatch) => {
     try {
         await todolistsSpaceApi.updateTodolist(todolistId,title)
         dispatch(ChangeTodoTitleAC(todolistId,title))

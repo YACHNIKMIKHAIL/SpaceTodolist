@@ -1,6 +1,6 @@
 import {FilterValueType} from "./TodolistReducer";
-import {Dispatch} from "redux";
 import {SpaceTaskType, tasksSpaceApi} from "../../API/SpaceAPI";
+import {SpaceThunksType} from "./store";
 
 export enum TasksActionsType {
     RemoveTask = 'REMOVE_TASK',
@@ -40,7 +40,7 @@ export type getTasksType = ReturnType<typeof getTasksAC>
 export const getTasksAC = (todolistId: string, items: SpaceTaskType[]) => {
     return {type: TasksActionsType.getSpaceTasks, todolistId, items} as const
 }
-export const getTaskTC = (todolistId: string) => async (dispatch: Dispatch) => {
+export const getTaskTC = (todolistId: string): SpaceThunksType => async (dispatch) => {
     try {
         let res = await tasksSpaceApi.getTasks(todolistId)
         dispatch(getTasksAC(todolistId, res.data.items))
@@ -48,7 +48,7 @@ export const getTaskTC = (todolistId: string) => async (dispatch: Dispatch) => {
         console.log(e)
     }
 }
-export const createTaskTC = (todolistId: string, title: string) => async (dispatch: Dispatch) => {
+export const createTaskTC = (todolistId: string, title: string): SpaceThunksType => async (dispatch) => {
     try {
         let res = await tasksSpaceApi.createTask(todolistId, title)
         dispatch(AddTaskAC(todolistId, res.data.data.item))
@@ -56,7 +56,7 @@ export const createTaskTC = (todolistId: string, title: string) => async (dispat
         console.log(e)
     }
 }
-export const deleteTaskTC = (todolistId: string, taskId: string) => async (dispatch: Dispatch) => {
+export const deleteTaskTC = (todolistId: string, taskId: string): SpaceThunksType => async (dispatch) => {
     try {
         await tasksSpaceApi.deleteTask(todolistId, taskId)
         dispatch(RemoveTaskAC(todolistId, taskId))
@@ -64,7 +64,7 @@ export const deleteTaskTC = (todolistId: string, taskId: string) => async (dispa
         console.log(e)
     }
 }
-export const updateTaskTC = (todolistId: string, taskId: string, title: string, status?: number) => async (dispatch: Dispatch) => {
+export const updateTaskTC = (todolistId: string, taskId: string, title: string, status?: number): SpaceThunksType => async (dispatch) => {
     try {
         debugger
         let res = await tasksSpaceApi.updateTask(todolistId, taskId, title, status)

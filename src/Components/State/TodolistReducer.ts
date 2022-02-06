@@ -10,7 +10,7 @@ export type FilterValueType = 'all' | 'active' | 'complited'
 
 export type TodolitsType = SpaceTodolistType & { filter: FilterValueType }
 
-type ActionsType =
+export type SpaceTodolistsActionsType =
     RemoveTodoActionType
     | AddTodoActionType
     | ChangeTodoTitleActionType
@@ -28,7 +28,7 @@ const initialState: Array<TodolitsType> = [
     // {id: todolist8, title: 'Что позырить?', filter: 'all'},
     // {id: todolist9, title: 'Что подарить?', filter: 'all'}
 ]
-export const todolistReducer = (state = initialState, action: ActionsType): TodolitsType[] => {
+export const todolistReducer = (state = initialState, action: SpaceTodolistsActionsType): TodolitsType[] => {
         switch (action.type) {
             case TodolistsActionsType.RemoveTodo: {
                 return state.filter(f => f.id !== action.id)

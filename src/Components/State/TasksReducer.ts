@@ -58,7 +58,7 @@ const initialTasks: TaskStateType = {
     //     {id: v1(), title: "Цветы)", isDone: true}]
 }
 
-export const tasksReducer = (state = initialTasks, action: ActionsType): TaskStateType => {
+export const tasksReducer = (state = initialTasks, action: SpaceTasksActionsType): TaskStateType => {
     switch (action.type) {
         case TasksActionsType.RemoveTask: {
             return {...state, [action.todolistId]: state[action.todolistId].filter(f => f.id !== action.taskId)}
@@ -99,7 +99,7 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
     }
 }
 
-type ActionsType =
+export type SpaceTasksActionsType =
     RemoveTaskActionType
     | changeTaskStatusAC
     | AddTaskActionType
