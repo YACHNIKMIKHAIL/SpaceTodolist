@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {TasksMap} from "../Map/TasksMap";
 import {Button} from "../Button/Button";
 import {AddForm} from "../AddForm/AddForm";
@@ -15,13 +15,13 @@ import {
     removeTodolistAC,
     updateTodolistsTC
 } from "../State/TodolistsActions";
-import {AddTaskAC} from "../State/TasksActions";
+import {AddTaskAC, createTaskTC, getTaskTC} from "../State/TasksActions";
 
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
+// export type TaskType = {
+//     id: string
+//     title: string
+//     isDone: boolean
+// }
 type PropsType = {
     todolistID: string
 }
@@ -32,6 +32,10 @@ export function TodolistMemo({
 
     const dispatch = useDispatch()
     const todolist = useSelector<rootReducerType, TodolitsType>(state => state.todolists.filter(f => f.id === todolistID)[0])
+
+    useEffect(() => {
+        dispatch(getTaskTC(todolistID))
+    }, [])
 
     const changeFilter = useCallback((filter: FilterValueType, todolistID: string) => {
         dispatch(ChangeTodoFilterAC(filter, todolistID))
@@ -45,7 +49,7 @@ export function TodolistMemo({
 
     const addTask = useCallback((title: string) => {
         console.log('addTask WORK')
-        dispatch(AddTaskAC(title, todolistID))
+        dispatch(createTaskTC(todolistID, title))
     }, [dispatch, todolistID])
 
     console.log(`render ${todolistID}`)

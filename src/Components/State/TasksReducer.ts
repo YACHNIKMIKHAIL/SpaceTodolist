@@ -1,10 +1,10 @@
-import {TaskType} from "../Todolist/Todolist";
 import {v1} from "uuid";
 import {
     AddTaskActionType,
     changeTasksFilterType,
     changeTaskStatusAC,
     changeTaskTitleType,
+    getTasksType,
     RemoveTaskActionType,
     TasksActionsType
 } from "./TasksActions";
@@ -14,6 +14,7 @@ import {
     RemoveTodoActionType,
     TodolistsActionsType
 } from "./TodolistsActions";
+import {SpaceTaskType} from "../../API/SpaceAPI";
 
 export const todolist1 = v1()
 export const todolist2 = v1()
@@ -26,7 +27,7 @@ export const todolist8 = v1()
 export const todolist9 = v1()
 
 export type TaskStateType = {
-    [key: string]: Array<TaskType>
+    [key: string]: Array<SpaceTaskType>
 }
 const initialTasks: TaskStateType = {
     // [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: true},
@@ -75,7 +76,7 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
         case TasksActionsType.AddTask: {
             return {
                 ...state,
-                [action.todolistId]: [{id: v1(), title: action.title, isDone: false}, ...state[action.todolistId]]
+                [action.todolistId]: [{...action.newTask}, ...state[action.todolistId]]
             }
         }
         case TasksActionsType.changeTaskTitle: {
@@ -95,10 +96,13 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
             action.items.forEach(sp => space[sp.id] = [])
             return space
         }
-        case TodolistsActionsType.RemoveTodo:{
-            let spaceCopy={...state}
+        case TodolistsActionsType.RemoveTodo: {
+            let spaceCopy = {...state}
             delete spaceCopy[action.id]
             return spaceCopy
+        }
+        case TasksActionsType.getSpaceTasks: {
+            return {...state, [action.todolistId]: [...action.items]}
         }
         default:
             return state
@@ -114,3 +118,4 @@ type ActionsType =
     | changeTasksFilterType
     | GetTodolistsActionType
     | RemoveTodoActionType
+    | getTasksType
