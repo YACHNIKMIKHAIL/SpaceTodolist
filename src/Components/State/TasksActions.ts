@@ -9,7 +9,7 @@ export enum TasksActionsType {
     changeTaskTitle = 'CHANGE_TASK_TITLE',
     addNewTodo = 'ADD_NEW_TODO',
     changeTasksFilter = 'CHANGE_TASK_FILTER',
-    getSpaceTasks='getSpaceTasks'
+    getSpaceTasks = 'getSpaceTasks'
 }
 
 export type RemoveTaskActionType = ReturnType<typeof RemoveTaskAC>
@@ -18,8 +18,8 @@ export const RemoveTaskAC = (todolistId: string, taskId: string) => {
 }
 
 export type changeTaskStatusAC = ReturnType<typeof ChangeTaskStatusAC>
-export const ChangeTaskStatusAC = (taskId: string, isDone: boolean, todolistId: string) => {
-    return {type: TasksActionsType.ChangeTaskStatus, taskId: taskId, isDone: isDone, todolistId: todolistId} as const
+export const ChangeTaskStatusAC = (todolistId: string, taskId: string, item: SpaceTaskType) => {
+    return {type: TasksActionsType.ChangeTaskStatus, taskId: taskId, item, todolistId: todolistId} as const
 }
 
 export type AddTaskActionType = ReturnType<typeof AddTaskAC>
@@ -42,7 +42,7 @@ export const changeTasksFilterAC = (todolistId: string, filter: FilterValueType)
     return {type: TasksActionsType.changeTasksFilter, todolistId, filter} as const
 }
 export type getTasksType = ReturnType<typeof getTasksAC>
-export const getTasksAC = (todolistId: string, items:SpaceTaskType[]) => {
+export const getTasksAC = (todolistId: string, items: SpaceTaskType[]) => {
     return {type: TasksActionsType.getSpaceTasks, todolistId, items} as const
 }
 export const getTaskTC = (todolistId: string) => async (dispatch: Dispatch) => {
@@ -65,6 +65,15 @@ export const deleteTaskTC = (todolistId: string, taskId: string) => async (dispa
     try {
         await tasksSpaceApi.deleteTask(todolistId, taskId)
         dispatch(RemoveTaskAC(todolistId, taskId))
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const updateTaskTC = (todolistId: string, taskId: string, title: string, status?: number) => async (dispatch: Dispatch) => {
+    try {
+        debugger
+        let res = await tasksSpaceApi.updateTask(todolistId, taskId, title, status)
+        dispatch(ChangeTaskStatusAC(todolistId, taskId, res.data.data.item))
     } catch (e) {
         console.log(e)
     }

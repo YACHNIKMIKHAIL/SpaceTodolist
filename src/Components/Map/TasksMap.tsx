@@ -1,6 +1,6 @@
 import React, {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {ChangeTaskStatusAC, changeTaskTitleAC, deleteTaskTC} from "../State/TasksActions";
+import {ChangeTaskStatusAC, changeTaskTitleAC, deleteTaskTC, updateTaskTC} from "../State/TasksActions";
 import {rootReducerType} from "../State/store";
 import {TodolitsType} from "../State/TodolistReducer";
 import Task from "../Todolist/Task";
@@ -15,12 +15,13 @@ export const TasksMapMemo = (props: TasksMapType) => {
     const dispatch = useDispatch()
     const todolist = useSelector<rootReducerType, TodolitsType>(state => state.todolists.filter(f => f.id === props.todolistID)[0])
     const tasksX = useSelector<rootReducerType, Array<SpaceTaskType>>(state => state.tasks[props.todolistID])
-
-    const changeTaskStatus = useCallback((id: string, isDone: boolean) => {
-        dispatch(ChangeTaskStatusAC(id, isDone, props.todolistID))
+    console.log(tasksX)
+    const changeTaskStatus = useCallback((id: string, taskTitle: string, e: boolean) => {
+        dispatch(updateTaskTC(props.todolistID, id, taskTitle, e ? 2 : 0))
     }, [dispatch, props.todolistID])
-    const changeTaskTitle = useCallback((title: string) => {
-        dispatch(changeTaskTitleAC(props.id, title, props.todolistID))
+    const changeTaskTitle = useCallback((id: string,title: string) => {
+        debugger
+        dispatch(updateTaskTC(props.todolistID, id, title))
     }, [dispatch, props.todolistID, props.id])
     const removeTask = useCallback((id: string) => {
         dispatch(deleteTaskTC(props.todolistID, id))
@@ -29,10 +30,10 @@ export const TasksMapMemo = (props: TasksMapType) => {
 
     let tasksForRender = tasksX
     if (todolist.filter === 'active') {
-        tasksForRender = tasksX.filter(f => f.status===0)
+        tasksForRender = tasksX.filter(f => f.status === 0)
     }
     if (todolist.filter === 'complited') {
-        tasksForRender = tasksX.filter(f => f.status===2)
+        tasksForRender = tasksX.filter(f => f.status === 2)
     }
     return (
         <div>{

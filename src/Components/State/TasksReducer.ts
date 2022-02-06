@@ -65,11 +65,11 @@ export const tasksReducer = (state = initialTasks, action: ActionsType): TaskSta
             return {...state, [action.todolistId]: state[action.todolistId].filter(f => f.id !== action.taskId)}
         }
         case TasksActionsType.ChangeTaskStatus: {
+            debugger
             return {
                 ...state,
                 [action.todolistId]: state[action.todolistId].map(m => m.id === action.taskId ? {
-                    ...m,
-                    isDone: action.isDone
+                    ...m,...action.item
                 } : m)
             }
         }

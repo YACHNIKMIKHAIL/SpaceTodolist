@@ -15,6 +15,7 @@ export const EditableSpanMemo = ({onChange,title}: EditableSpanPropsType) => {
         setStateTitle(title)
     }
     const activateViewM = () => {
+        debugger
         setEditM(false)
         onChange(stateTitle)
     }

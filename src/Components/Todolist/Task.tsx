@@ -8,14 +8,17 @@ type TaskPropsType = {
     status: number
     id: string
     title: string
-    changeTaskStatus: (id: string, e: boolean) => void
-    changeTaskTitle: (title: string) => void
+    changeTaskStatus: (id: string,taskTitle:string, e: boolean) => void
+    changeTaskTitle: (id: string,title: string) => void
     removeTask: (id: string) => void
 }
 const Task = React.memo(({
                              status, id, title, changeTaskStatus,
                              changeTaskTitle, removeTask
                          }: TaskPropsType) => {
+    const onChangeHandler=(title:string)=>{
+        changeTaskTitle(id,title)
+    }
     return (
         <TaskCase opacity={status===2 ? '0.4' : '1'}
                   color={status===2 ? 'rgba(109,4,234,0.77)' : 'rgba(28,16,0,0.8)'}
@@ -26,8 +29,8 @@ const Task = React.memo(({
             alignItems: 'center',
         }}>
             <CheckboxX isDone={status===2}
-                       callback={(e) => changeTaskStatus(id, e.currentTarget.checked)}/>
-            <EditableSpan title={title} onChange={changeTaskTitle}/>
+                       callback={(e) => changeTaskStatus(id,title, e.currentTarget.checked)}/>
+            <EditableSpan title={title} onChange={onChangeHandler}/>
             <Button name={'x'} callback={() => removeTask(id)}/>
         </TaskCase>
     );

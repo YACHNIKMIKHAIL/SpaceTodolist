@@ -70,6 +70,14 @@ type deleteSpaceTaskType={
     fieldsErrors: string[],
     resultCode: number
 }
+type UpdateSpaceTaskType={
+    "data": {
+        "item": SpaceTaskType
+    },
+    "messages":string [],
+    "fieldsErrors":string [],
+    "resultCode": number
+}
 export const tasksSpaceApi = {
     async getTasks(todolistId: string) {
         return await spaceInstance.get<GetSpaceTasksType>(`/todo-lists/${todolistId}/tasks`)
@@ -79,5 +87,8 @@ export const tasksSpaceApi = {
     },
     async deleteTask(todolistId: string, taskId: string){
         return await spaceInstance.delete<deleteSpaceTaskType>(`/todo-lists/${todolistId}/tasks/${taskId}`)
+    },
+    async updateTask(todolistId: string, taskId: string,title:string,status?:number){
+        return await spaceInstance.put<UpdateSpaceTaskType>(`/todo-lists/${todolistId}/tasks/${taskId}`,{title,status})
     }
 }
