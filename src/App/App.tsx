@@ -2,12 +2,13 @@ import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {TodolistsMap} from "../Features/Todolists/TodolistsMap";
 import {AddForm} from "../Components/AddForm/AddForm";
-import {AppBar, Button, Container, Grid, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Button, Container, Grid, IconButton, LinearProgress, Toolbar, Typography} from "@mui/material";
 import {Home} from '@mui/icons-material';
 import styled from "styled-components";
 import img from '../Components/Images/wallpaperflare.com_wallpaper.jpg'
 import {useDispatch} from "react-redux";
 import {createTodolistsTC, getTodolistsTC} from "../Features/Todolists/Todolist/Actions/TodolistsActions";
+import {ErrorSnackbar} from '../Components/ErrorSnackbar/ErrorSnackbar';
 
 export const App = React.memo(() => {
     const dispatch = useDispatch()
@@ -37,6 +38,9 @@ export const App = React.memo(() => {
                 </Typography>
                 <Button color="inherit">Login</Button>
             </Toolbar>
+
+            <LinearProgress color="secondary" />
+
         </AppBar>
         <Container fixed style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <Grid container style={{
@@ -53,6 +57,7 @@ export const App = React.memo(() => {
                 <TodolistsMap/>
             </Grid>
         </Container>
+        <ErrorSnackbar/>
     </AppCase>
 })
 

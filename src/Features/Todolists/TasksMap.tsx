@@ -28,10 +28,10 @@ export const TasksMapMemo = (props: TasksMapType) => {
 
     let tasksForRender = tasksX
     if (todolist.filter === 'active') {
-        tasksForRender = tasksX.filter(f => f.status === 0)
+        tasksForRender = tasksX.filter(f => f.status === TaskStatuses.New)
     }
     if (todolist.filter === 'complited') {
-        tasksForRender = tasksX.filter(f => f.status === 2)
+        tasksForRender = tasksX.filter(f => f.status === TaskStatuses.Complited)
     }
     return (
         <div>{
