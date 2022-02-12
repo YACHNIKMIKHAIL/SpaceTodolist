@@ -1,6 +1,6 @@
-import {FilterValueType} from "./TodolistReducer";
-import {SpaceTaskType, TaskPriorities, tasksSpaceApi, TaskStatuses} from "../../API/SpaceAPI";
-import {rootReducerType, SpaceThunksType} from "./store";
+import {FilterValueType} from "../Reducers/TodolistReducer";
+import {SpaceTaskType, TaskPriorities, tasksSpaceApi, TaskStatuses} from "../../../../API/SpaceAPI";
+import {rootReducerType, SpaceThunksType} from "../../../../App/store";
 
 export enum TasksActionsType {
     RemoveTask = 'REMOVE_TASK',

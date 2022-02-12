@@ -1,7 +1,7 @@
 import React from 'react';
-import {CheckboxX} from "../Checkbox/Checkbox";
-import {EditableSpan} from "../EditableSpan/EditableSpan";
-import {Button} from "../Button/Button";
+import {CheckboxX} from "../../../../Components/Checkbox/Checkbox";
+import {EditableSpan} from "../../../../Components/EditableSpan/EditableSpan";
+import {Button} from "../../../../Components/Button/Button";
 import styled from "styled-components";
 
 type TaskPropsType = {

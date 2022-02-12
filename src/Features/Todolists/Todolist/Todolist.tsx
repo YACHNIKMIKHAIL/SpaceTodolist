@@ -1,15 +1,15 @@
 import React, {useCallback, useEffect} from 'react';
-import {TasksMap} from "../Map/TasksMap";
-import {Button} from "../Button/Button";
-import {AddForm} from "../AddForm/AddForm";
-import {EditableSpan} from "../EditableSpan/EditableSpan";
+import {TasksMap} from "../TasksMap";
+import {Button} from "../../../Components/Button/Button";
+import {AddForm} from "../../../Components/AddForm/AddForm";
+import {EditableSpan} from "../../../Components/EditableSpan/EditableSpan";
 import {Grid} from "@mui/material";
 import styled from "styled-components";
-import {FilterValueType, TodolitsType} from "../State/TodolistReducer";
+import {FilterValueType, TodolitsType} from "./Reducers/TodolistReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {rootReducerType} from "../State/store";
-import {ChangeTodoFilterAC, deleteTodolistsTC, updateTodolistsTC} from "../State/TodolistsActions";
-import {createTaskTC, getTaskTC} from "../State/TasksActions";
+import {rootReducerType} from "../../../App/store";
+import {ChangeTodoFilterAC, deleteTodolistsTC, updateTodolistsTC} from "./Actions/TodolistsActions";
+import {createTaskTC, getTaskTC} from "./Actions/TasksActions";
 
 type PropsType = {
     todolistID: string

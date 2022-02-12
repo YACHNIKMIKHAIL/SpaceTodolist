@@ -3,8 +3,8 @@ import {
     ChangeTodoFilterActionType,
     ChangeTodoTitleActionType, GetTodolistsActionType,
     RemoveTodoActionType, TodolistsActionsType
-} from "./TodolistsActions";
-import {SpaceTodolistType} from "../../API/SpaceAPI";
+} from "../Actions/TodolistsActions";
+import {SpaceTodolistType} from "../../../../API/SpaceAPI";
 
 export type FilterValueType = 'all' | 'active' | 'complited'
 

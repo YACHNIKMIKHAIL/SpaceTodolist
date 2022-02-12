@@ -1,9 +1,9 @@
 import React, {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deleteTaskTC, updateTaskTC} from "../State/TasksActions";
-import {rootReducerType} from "../State/store";
-import {TodolitsType} from "../State/TodolistReducer";
-import Task from "../Todolist/Task";
+import {deleteTaskTC, updateTaskTC} from "./Todolist/Actions/TasksActions";
+import {rootReducerType} from "../../App/store";
+import {TodolitsType} from "./Todolist/Reducers/TodolistReducer";
+import Task from "./Todolist/Task/Task";
 import {SpaceTaskType, TaskStatuses} from "../../API/SpaceAPI";
 
 

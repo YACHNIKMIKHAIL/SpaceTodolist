@@ -6,14 +6,14 @@ import {
     getTasksType,
     RemoveTaskActionType,
     TasksActionsType
-} from "./TasksActions";
+} from "../Actions/TasksActions";
 import {
     AddTodoActionType,
     GetTodolistsActionType,
     RemoveTodoActionType,
     TodolistsActionsType
-} from "./TodolistsActions";
-import {SpaceTaskType} from "../../API/SpaceAPI";
+} from "../Actions/TodolistsActions";
+import {SpaceTaskType} from "../../../../API/SpaceAPI";
 
 export const todolist1 = v1()
 export const todolist2 = v1()

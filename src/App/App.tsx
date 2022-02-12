@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect} from 'react';
 import './App.css';
-import {TodolistsMap} from "./Components/Map/TodolistsMap";
-import {AddForm} from "./Components/AddForm/AddForm";
+import {TodolistsMap} from "../Features/Todolists/TodolistsMap";
+import {AddForm} from "../Components/AddForm/AddForm";
 import {AppBar, Button, Container, Grid, IconButton, Toolbar, Typography} from "@mui/material";
 import {Home} from '@mui/icons-material';
 import styled from "styled-components";
-import img from './Components/Images/wallpaperflare.com_wallpaper.jpg'
+import img from '../Components/Images/wallpaperflare.com_wallpaper.jpg'
 import {useDispatch} from "react-redux";
-import {createTodolistsTC, getTodolistsTC} from "./Components/State/TodolistsActions";
+import {createTodolistsTC, getTodolistsTC} from "../Features/Todolists/Todolist/Actions/TodolistsActions";
 
 export const App = React.memo(() => {
     const dispatch = useDispatch()

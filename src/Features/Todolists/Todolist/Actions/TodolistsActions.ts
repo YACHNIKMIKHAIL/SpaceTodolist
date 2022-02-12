@@ -1,6 +1,6 @@
-import {FilterValueType} from "./TodolistReducer";
-import {SpaceTodolistType, todolistsSpaceApi} from "../../API/SpaceAPI";
-import {SpaceThunksType} from "./store";
+import {FilterValueType} from "../Reducers/TodolistReducer";
+import {SpaceTodolistType, todolistsSpaceApi} from "../../../../API/SpaceAPI";
+import {SpaceThunksType} from "../../../../App/store";
 
 export enum TodolistsActionsType {
     RemoveTodo = 'REMOVE_TODO',

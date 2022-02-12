@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {tasksReducer, TaskStateType} from "./TasksReducer";
-import {AddTaskAC, ChangeTaskStatusAC, RemoveTaskAC} from "./TasksActions";
-import {TaskPriorities, TaskStatuses} from "../../API/SpaceAPI";
+import {AddTaskAC, ChangeTaskStatusAC, RemoveTaskAC} from "../Actions/TasksActions";
+import {TaskPriorities, TaskStatuses} from "../../../../API/SpaceAPI";
 
 
 test('correct task remove', () => {
