@@ -64,11 +64,10 @@ export const tasksReducer = (state = initialTasks, action: SpaceTasksActionsType
             return {...state, [action.todolistId]: state[action.todolistId].filter(f => f.id !== action.taskId)}
         }
         case TasksActionsType.ChangeTaskStatus: {
-            debugger
             return {
                 ...state,
                 [action.todolistId]: state[action.todolistId].map(m => m.id === action.taskId ? {
-                    ...m,...action.item
+                    ...m, ...action.item
                 } : m)
             }
         }
@@ -92,7 +91,7 @@ export const tasksReducer = (state = initialTasks, action: SpaceTasksActionsType
             return spaceCopy
         }
         case TasksActionsType.getSpaceTasks: {
-            return {...state, [action.todolistId]: [...action.items]}
+            return {...state, [action.todolistId]: action.items.map(m => ({...m}))}
         }
         default:
             return state
