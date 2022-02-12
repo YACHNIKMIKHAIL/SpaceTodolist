@@ -1,6 +1,6 @@
 import {FilterValueType} from "./TodolistReducer";
-import {SpaceTaskType, tasksSpaceApi} from "../../API/SpaceAPI";
-import {SpaceThunksType} from "./store";
+import {SpaceTaskType, TaskPriorities, tasksSpaceApi, TaskStatuses} from "../../API/SpaceAPI";
+import {rootReducerType, SpaceThunksType} from "./store";
 
 export enum TasksActionsType {
     RemoveTask = 'REMOVE_TASK',
@@ -64,10 +64,33 @@ export const deleteTaskTC = (todolistId: string, taskId: string): SpaceThunksTyp
         console.log(e)
     }
 }
-export const updateTaskTC = (todolistId: string, taskId: string, title: string, status?: number): SpaceThunksType => async (dispatch) => {
+
+export type UpdateSpaceTaskType = {
+    title?: string
+    description?: string
+    status?: TaskStatuses
+    priority?: TaskPriorities
+    startDate?: string
+    deadline?: string
+}
+export const updateTaskTC = (todolistId: string, taskId: string, spaceModel: UpdateSpaceTaskType): SpaceThunksType => async (dispatch, getState: () => rootReducerType) => {
+    const spaceTask = getState().tasks[todolistId].filter(f => f.id === taskId)[0]
+    const updatedSpaceTask: SpaceTaskType = {
+        title: spaceTask.title,
+        description: spaceTask.description,
+        status: spaceTask.status,
+        priority: spaceTask.priority,
+        startDate: spaceTask.startDate,
+        deadline: spaceTask.deadline,
+        todoListId: spaceTask.todoListId,
+        id: spaceTask.id,
+        order: spaceTask.order,
+        addedDate: spaceTask.addedDate,
+        ...spaceModel
+    }
+
     try {
-        debugger
-        let res = await tasksSpaceApi.updateTask(todolistId, taskId, title, status)
+        let res = await tasksSpaceApi.updateTask(todolistId, taskId, updatedSpaceTask)
         dispatch(ChangeTaskStatusAC(todolistId, taskId, res.data.data.item))
     } catch (e) {
         console.log(e)

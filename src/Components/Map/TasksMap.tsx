@@ -4,7 +4,7 @@ import {deleteTaskTC, updateTaskTC} from "../State/TasksActions";
 import {rootReducerType} from "../State/store";
 import {TodolitsType} from "../State/TodolistReducer";
 import Task from "../Todolist/Task";
-import {SpaceTaskType} from "../../API/SpaceAPI";
+import {SpaceTaskType, TaskStatuses} from "../../API/SpaceAPI";
 
 
 type TasksMapType = {
@@ -15,10 +15,11 @@ export const TasksMapMemo = (props: TasksMapType) => {
     const todolist = useSelector<rootReducerType, TodolitsType>(state => state.todolists.filter(f => f.id === props.todolistID)[0])
     const tasksX = useSelector<rootReducerType, Array<SpaceTaskType>>(state => state.tasks[props.todolistID])
     const changeTaskStatus = useCallback((id: string, taskTitle: string, e: boolean) => {
-        dispatch(updateTaskTC(props.todolistID, id, taskTitle, e ? 2 : 0))
+        const changes = e ? {status: TaskStatuses.Complited} : {status: TaskStatuses.New}
+        dispatch(updateTaskTC(props.todolistID, id, changes))
     }, [dispatch, props.todolistID])
-    const changeTaskTitle = useCallback((id: string,title: string) => {
-        dispatch(updateTaskTC(props.todolistID, id, title))
+    const changeTaskTitle = useCallback((id: string, title: string) => {
+        dispatch(updateTaskTC(props.todolistID, id, {title}))
     }, [dispatch, props.todolistID])
     const removeTask = useCallback((id: string) => {
         dispatch(deleteTaskTC(props.todolistID, id))

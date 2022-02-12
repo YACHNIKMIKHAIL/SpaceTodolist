@@ -88,10 +88,10 @@ export const tasksSpaceApi = {
     async deleteTask(todolistId: string, taskId: string) {
         return await spaceInstance.delete<ResponseSpaceTasksType>(`/todo-lists/${todolistId}/tasks/${taskId}`)
     },
-    async updateTask(todolistId: string, taskId: string, title: string, status?: number) {
+    async updateTask(todolistId: string, taskId: string, model:SpaceTaskType) {
         return await spaceInstance.put<RespType<{ item: SpaceTaskType }>,
             AxiosResponse<RespType<{
                 item: SpaceTaskType
-            }>>, { title: string, status?: number }>(`/todo-lists/${todolistId}/tasks/${taskId}`, {title, status})
+            }>>, { title: string, status?: number }>(`/todo-lists/${todolistId}/tasks/${taskId}`, model)
     }
 }
