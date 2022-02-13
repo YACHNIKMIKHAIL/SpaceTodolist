@@ -5,10 +5,11 @@ import {
     RemoveTodoActionType, TodolistsActionsType
 } from "../Actions/TodolistsActions";
 import {SpaceTodolistType} from "../../../../API/SpaceAPI";
+import {RequestStatusType} from "../../../../App/AppReducer";
 
 export type FilterValueType = 'all' | 'active' | 'complited'
 
-export type TodolitsType = SpaceTodolistType & { filter: FilterValueType }
+export type TodolitsType = SpaceTodolistType & { filter: FilterValueType, entitySpaceStatus: RequestStatusType }
 
 export type SpaceTodolistsActionsType =
     RemoveTodoActionType
@@ -24,7 +25,7 @@ export const todolistReducer = (state = initialState, action: SpaceTodolistsActi
                 return state.filter(f => f.id !== action.id)
             }
             case TodolistsActionsType.AddTodo: {
-                return [{...action.newTodolist, filter: 'all'}, ...state]
+                return [{...action.newTodolist, filter: 'all', entitySpaceStatus: 'idle'}, ...state]
             }
             case TodolistsActionsType.ChangeTodoTitle: {
                 return state.map(m => m.id === action.id ? {...m, title: action.newTitle} : m)
@@ -35,7 +36,7 @@ export const todolistReducer = (state = initialState, action: SpaceTodolistsActi
                 })
             }
             case TodolistsActionsType.GetTodolists: {
-                return action.items.map(m => ({...m, filter: 'all'}))
+                return action.items.map(m => ({...m, filter: 'all', entitySpaceStatus: 'idle'}))
             }
             default:
                 return state

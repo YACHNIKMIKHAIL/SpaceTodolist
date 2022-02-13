@@ -51,10 +51,11 @@ export function TodolistMemo({
         <OpacityCase>
             <h3 style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <EditableSpan title={todolist.title} onChange={onChangeTodolistTitle}/>
-                <Button name={'x'} callback={() => removeTodolist(todolistID)}/>
+                <Button name={'x'} callback={() => removeTodolist(todolistID)}
+                        disabled={todolist.entitySpaceStatus === 'loading'}/>
             </h3>
 
-            <AddForm addItem={addTask}/>
+            <AddForm addItem={addTask} disabled={todolist.entitySpaceStatus === 'loading'}/>
 
             <TasksMap
                 todolistID={todolistID}/>

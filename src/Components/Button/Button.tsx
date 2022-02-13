@@ -5,9 +5,10 @@ type ButtonPropsType = {
     name: string
     callback: () => void
     className?: string
+    disabled?:boolean
 }
-export const Button = React.memo(({name, callback, className}: ButtonPropsType) => {
+export const Button = React.memo(({name, callback, className,disabled}: ButtonPropsType) => {
     return (<div>
-        {ButtonRender(name, callback, className)}
+        {ButtonRender(name, callback, className,disabled)}
     </div>)
 })

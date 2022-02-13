@@ -4,16 +4,16 @@ import {Delete} from "@mui/icons-material";
 import DeblurIcon from '@mui/icons-material/Deblur';
 
 
-export const ButtonRender = (name: string, callback: () => void, className?: string) => {
+export const ButtonRender = (name: string, callback: () => void, className?: string, disabled?: boolean) => {
     if (name === '+') {
         return <IconButton style={{color: '#006bff'}} onClick={() => callback()} size={'large'}>
-            <DeblurIcon/>
+            <DeblurIcon aria-disabled={disabled}/>
         </IconButton>
 
     }
     if (name === 'x') {
         return <IconButton aria-label="delete" size="small" onClick={() => callback()}>
-            <Delete fontSize="small"/>
+            <Delete fontSize="small" aria-disabled={disabled}/>
         </IconButton>
     }
     if (name === 'All') {
@@ -26,8 +26,6 @@ export const ButtonRender = (name: string, callback: () => void, className?: str
         return <Button variant={className ? 'contained' : 'text'} onClick={() => callback()}>Complited</Button>
     }
 }
-
-
 
 
 export default ButtonRender;

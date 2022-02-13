@@ -6,9 +6,12 @@ type InputPropsType = {
     value: string
     onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     onKeyPress: (e: React.KeyboardEvent<HTMLDivElement>) => void
+    disabled: boolean
 }
 
-export const Input = React.memo(({error, value, onChange, onKeyPress}: InputPropsType) => {
+export const Input = React.memo(({
+                                     error, value, onChange, onKeyPress, disabled
+                                 }: InputPropsType) => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange(e)
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => onKeyPress(e)
 
@@ -19,5 +22,6 @@ export const Input = React.memo(({error, value, onChange, onKeyPress}: InputProp
                       onChange={(e) => onChangeHandler(e)}
                       onKeyPress={(e) => onKeyPressHandler(e)}
                       helperText={error}
-                      style={{color: 'whitesmoke'}}/>
+                      style={{color: 'whitesmoke'}}
+                      disabled={disabled}/>
 })

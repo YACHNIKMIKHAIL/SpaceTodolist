@@ -6,12 +6,15 @@ import {AppBar, Button, Container, Grid, IconButton, LinearProgress, Toolbar, Ty
 import {Home} from '@mui/icons-material';
 import styled from "styled-components";
 import img from '../Components/Images/wallpaperflare.com_wallpaper.jpg'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createTodolistsTC, getTodolistsTC} from "../Features/Todolists/Todolist/Actions/TodolistsActions";
 import {ErrorSnackbar} from '../Components/ErrorSnackbar/ErrorSnackbar';
+import {rootReducerType} from "./store";
+import {RequestStatusType} from "./AppReducer";
 
 export const App = React.memo(() => {
     const dispatch = useDispatch()
+    const spaceStatus = useSelector<rootReducerType, RequestStatusType>(state => state.app.status)
 
     const addTodolist = useCallback((title: string) => {
         dispatch(createTodolistsTC(title))
@@ -39,7 +42,7 @@ export const App = React.memo(() => {
                 <Button color="inherit">Login</Button>
             </Toolbar>
 
-            <LinearProgress color="secondary" />
+            {spaceStatus === 'loading' && <LinearProgress color="secondary"/>}
 
         </AppBar>
         <Container fixed style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
