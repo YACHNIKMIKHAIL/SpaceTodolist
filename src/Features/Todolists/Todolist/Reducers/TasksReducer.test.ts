@@ -55,8 +55,8 @@ test('correct task remove', () => {
 
     const endTasksState = tasksReducer(startTasksState, RemoveTaskAC('todolist2', task5))
 
-    expect(endTasksState[todolist2].length).toBe(2)
-    expect(endTasksState[todolist2].find(f => f.title === "Milk")).toBe(undefined)
+    expect(endTasksState['todolist2'].length).toBe(2)
+    expect(endTasksState['todolist2'].find(f => f.title === "Milk")).toBe(undefined)
 })
 
 test('correct change task status', () => {
