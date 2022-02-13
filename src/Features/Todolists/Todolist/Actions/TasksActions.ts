@@ -66,8 +66,10 @@ export const createTaskTC = (todolistId: string, title: string): SpaceThunksType
             }
             dispatch(setAppStatusAC('failed'))
         }
-    } catch (e) {
+    } catch (e: any) {
         console.log(e)
+        dispatch(setAppErrorAC(e.message))
+        dispatch(setAppStatusAC('failed'))
     }
 }
 export const deleteTaskTC = (todolistId: string, taskId: string): SpaceThunksType => async (dispatch) => {
@@ -105,7 +107,16 @@ export const updateTaskTC = (todolistId: string, taskId: string, spaceModel: Upd
 
     try {
         let res = await tasksSpaceApi.updateTask(todolistId, taskId, updatedSpaceTask)
-        dispatch(ChangeTaskStatusAC(todolistId, taskId, res.data.data.item))
+        if(res.data.resultCode===0) {
+            dispatch(ChangeTaskStatusAC(todolistId, taskId, res.data.data.item))
+        }else{
+            if (res.data.messages.length) {
+                dispatch(setAppErrorAC(res.data.messages[0]))
+            } else {
+                dispatch(setAppErrorAC('Some spaceShit was happen !'))
+            }
+            dispatch(setAppStatusAC('failed'))
+        }
     } catch (e) {
         console.log(e)
     }
