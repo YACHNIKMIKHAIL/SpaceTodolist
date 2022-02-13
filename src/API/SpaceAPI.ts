@@ -12,7 +12,7 @@ export type SpaceTodolistType = {
     addedDate: string,
     order: number
 }
-type RespType<D = {}> = {
+export type RespType<D = {}> = {
     data: D,
     messages: string[],
     fieldsErrors: string[],

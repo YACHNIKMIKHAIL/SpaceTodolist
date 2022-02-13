@@ -2,6 +2,7 @@ import {FilterValueType} from "../Reducers/TodolistReducer";
 import {SpaceTaskType, TaskPriorities, tasksSpaceApi, TaskStatuses} from "../../../../API/SpaceAPI";
 import {rootReducerType, SpaceThunksType} from "../../../../App/store";
 import {setAppErrorAC, setAppStatusAC} from "../../../../App/AppReducer";
+import {handleServerAppError} from "../../../../Utils/ErrorUtils";
 
 export enum TasksActionsType {
     RemoveTask = 'REMOVE_TASK',
@@ -59,12 +60,7 @@ export const createTaskTC = (todolistId: string, title: string): SpaceThunksType
             dispatch(AddTaskAC(todolistId, res.data.data.item))
             dispatch(setAppStatusAC('succesed'))
         } else {
-            if (res.data.messages.length) {
-                dispatch(setAppErrorAC(res.data.messages[0]))
-            } else {
-                dispatch(setAppErrorAC('Some spaceShit was happen !'))
-            }
-            dispatch(setAppStatusAC('failed'))
+            handleServerAppError(res.data,dispatch)
         }
     } catch (e: any) {
         console.log(e)
@@ -110,14 +106,10 @@ export const updateTaskTC = (todolistId: string, taskId: string, spaceModel: Upd
         if(res.data.resultCode===0) {
             dispatch(ChangeTaskStatusAC(todolistId, taskId, res.data.data.item))
         }else{
-            if (res.data.messages.length) {
-                dispatch(setAppErrorAC(res.data.messages[0]))
-            } else {
-                dispatch(setAppErrorAC('Some spaceShit was happen !'))
-            }
-            dispatch(setAppStatusAC('failed'))
+            handleServerAppError(res.data,dispatch)
         }
     } catch (e) {
+        handleServerNetworkAppError()
         console.log(e)
     }
 }
