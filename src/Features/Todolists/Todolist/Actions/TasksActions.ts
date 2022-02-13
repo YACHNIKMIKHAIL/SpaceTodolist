@@ -1,8 +1,8 @@
 import {FilterValueType} from "../Reducers/TodolistReducer";
 import {SpaceTaskType, TaskPriorities, tasksSpaceApi, TaskStatuses} from "../../../../API/SpaceAPI";
 import {rootReducerType, SpaceThunksType} from "../../../../App/store";
-import {setAppErrorAC, setAppStatusAC} from "../../../../App/AppReducer";
-import {handleServerAppError} from "../../../../Utils/ErrorUtils";
+import {setAppStatusAC} from "../../../../App/AppReducer";
+import {handleServerAppError, handleServerNetworkAppError} from "../../../../Utils/ErrorUtils";
 
 export enum TasksActionsType {
     RemoveTask = 'REMOVE_TASK',
@@ -49,7 +49,7 @@ export const getTaskTC = (todolistId: string): SpaceThunksType => async (dispatc
         dispatch(getTasksAC(todolistId, res.data.items))
         dispatch(setAppStatusAC('succesed'))
     } catch (e) {
-        console.log(e)
+        handleServerNetworkAppError(e,dispatch)
     }
 }
 export const createTaskTC = (todolistId: string, title: string): SpaceThunksType => async (dispatch) => {
@@ -60,20 +60,20 @@ export const createTaskTC = (todolistId: string, title: string): SpaceThunksType
             dispatch(AddTaskAC(todolistId, res.data.data.item))
             dispatch(setAppStatusAC('succesed'))
         } else {
-            handleServerAppError(res.data,dispatch)
+            handleServerAppError(res.data, dispatch)
         }
     } catch (e: any) {
-        console.log(e)
-        dispatch(setAppErrorAC(e.message))
-        dispatch(setAppStatusAC('failed'))
+        handleServerNetworkAppError(e, dispatch)
     }
 }
 export const deleteTaskTC = (todolistId: string, taskId: string): SpaceThunksType => async (dispatch) => {
+    dispatch(setAppStatusAC('loading'))
     try {
         await tasksSpaceApi.deleteTask(todolistId, taskId)
         dispatch(RemoveTaskAC(todolistId, taskId))
+        dispatch(setAppStatusAC('succesed'))
     } catch (e) {
-        console.log(e)
+        handleServerNetworkAppError(e, dispatch)
     }
 }
 
@@ -103,13 +103,12 @@ export const updateTaskTC = (todolistId: string, taskId: string, spaceModel: Upd
 
     try {
         let res = await tasksSpaceApi.updateTask(todolistId, taskId, updatedSpaceTask)
-        if(res.data.resultCode===0) {
+        if (res.data.resultCode === 0) {
             dispatch(ChangeTaskStatusAC(todolistId, taskId, res.data.data.item))
-        }else{
-            handleServerAppError(res.data,dispatch)
+        } else {
+            handleServerAppError(res.data, dispatch)
         }
     } catch (e) {
-        handleServerNetworkAppError()
-        console.log(e)
+        handleServerNetworkAppError(e, dispatch)
     }
 }

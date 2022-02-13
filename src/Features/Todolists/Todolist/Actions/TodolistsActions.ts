@@ -2,6 +2,7 @@ import {FilterValueType} from "../Reducers/TodolistReducer";
 import {SpaceTodolistType, todolistsSpaceApi} from "../../../../API/SpaceAPI";
 import {SpaceThunksType} from "../../../../App/store";
 import {RequestStatusType, setAppStatusAC} from "../../../../App/AppReducer";
+import {handleServerAppError, handleServerNetworkAppError} from "../../../../Utils/ErrorUtils";
 
 export enum TodolistsActionsType {
     RemoveTodo = 'REMOVE_TODO',
@@ -66,17 +67,21 @@ export const getTodolistsTC = (): SpaceThunksType => async (dispatch) => {
         dispatch(GetTodolistsAC(space.data))
         dispatch(setAppStatusAC('succesed'))
     } catch (e) {
-        console.log(e)
+        handleServerNetworkAppError(e, dispatch)
     }
 }
 export const createTodolistsTC = (title: string): SpaceThunksType => async (dispatch) => {
     dispatch(setAppStatusAC('loading'))
     try {
         let space = await todolistsSpaceApi.createTodolist(title)
-        dispatch(AddTodoAC(space.data.data.item))
-        dispatch(setAppStatusAC('succesed'))
+        if (space.data.resultCode === 0) {
+            dispatch(AddTodoAC(space.data.data.item))
+            dispatch(setAppStatusAC('succesed'))
+        } else {
+            handleServerAppError(space.data, dispatch)
+        }
     } catch (e) {
-        console.log(e)
+        handleServerNetworkAppError(e, dispatch)
     }
 }
 export const deleteTodolistsTC = (todolistId: string): SpaceThunksType => async (dispatch) => {
@@ -87,14 +92,20 @@ export const deleteTodolistsTC = (todolistId: string): SpaceThunksType => async 
         dispatch(removeTodolistAC(todolistId))
         dispatch(setAppStatusAC('succesed'))
     } catch (e) {
-        console.log(e)
+        handleServerNetworkAppError(e, dispatch)
     }
 }
 export const updateTodolistsTC = (todolistId: string, title: string): SpaceThunksType => async (dispatch) => {
+    dispatch(setAppStatusAC('loading'))
     try {
-        await todolistsSpaceApi.updateTodolist(todolistId, title)
-        dispatch(ChangeTodoTitleAC(todolistId, title))
+        let space = await todolistsSpaceApi.updateTodolist(todolistId, title)
+        if (space.data.resultCode === 0) {
+            dispatch(ChangeTodoTitleAC(todolistId, title))
+            dispatch(setAppStatusAC('succesed'))
+        } else {
+            handleServerAppError(space.data, dispatch)
+        }
     } catch (e) {
-        console.log(e)
+        handleServerNetworkAppError(e, dispatch)
     }
 }

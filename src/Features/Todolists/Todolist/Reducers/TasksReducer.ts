@@ -67,7 +67,7 @@ export const tasksReducer = (state = initialTasks, action: SpaceTasksActionsType
             return {
                 ...state,
                 [action.todolistId]: state[action.todolistId].map(m => m.id === action.taskId ? {
-                    ...m, ...action.item
+                    ...action.item
                 } : m)
             }
         }

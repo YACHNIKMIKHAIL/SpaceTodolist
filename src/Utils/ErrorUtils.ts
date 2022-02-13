@@ -1,6 +1,5 @@
 import {AppSpaceAction, setAppErrorAC, setAppStatusAC} from "../App/AppReducer";
 import {RespType} from "../API/SpaceAPI";
-import {SpaceThunksType} from "../App/store";
 import {Dispatch} from "redux";
 
 export const handleServerAppError = <T>(data: RespType<T>, dispatch: Dispatch<AppSpaceAction>) => {
@@ -11,4 +10,7 @@ export const handleServerAppError = <T>(data: RespType<T>, dispatch: Dispatch<Ap
     }
     dispatch(setAppStatusAC('failed'))
 }
-//export const handleServerNetworkAppError = ()
+export const handleServerNetworkAppError = (error:any,dispatch: Dispatch<AppSpaceAction>)=>{
+    dispatch(setAppErrorAC(error.message?error.message:'Some spaceError was happend!'))
+    dispatch(setAppStatusAC('failed'))
+}
