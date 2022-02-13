@@ -1,7 +1,7 @@
 import {FilterValueType} from "../Reducers/TodolistReducer";
 import {SpaceTaskType, TaskPriorities, tasksSpaceApi, TaskStatuses} from "../../../../API/SpaceAPI";
 import {rootReducerType, SpaceThunksType} from "../../../../App/store";
-import {setErrorAC, setStatusAC} from "../../../../App/AppReducer";
+import {setAppErrorAC, setAppStatusAC} from "../../../../App/AppReducer";
 
 export enum TasksActionsType {
     RemoveTask = 'REMOVE_TASK',
@@ -42,29 +42,29 @@ export const getTasksAC = (todolistId: string, items: SpaceTaskType[]) => {
     return {type: TasksActionsType.getSpaceTasks, todolistId, items} as const
 }
 export const getTaskTC = (todolistId: string): SpaceThunksType => async (dispatch) => {
-    dispatch(setStatusAC('loading'))
+    dispatch(setAppStatusAC('loading'))
     try {
         let res = await tasksSpaceApi.getTasks(todolistId)
         dispatch(getTasksAC(todolistId, res.data.items))
-        dispatch(setStatusAC('succesed'))
+        dispatch(setAppStatusAC('succesed'))
     } catch (e) {
         console.log(e)
     }
 }
 export const createTaskTC = (todolistId: string, title: string): SpaceThunksType => async (dispatch) => {
-    dispatch(setStatusAC('loading'))
+    dispatch(setAppStatusAC('loading'))
     try {
         let res = await tasksSpaceApi.createTask(todolistId, title)
         if (res.data.resultCode === 0) {
             dispatch(AddTaskAC(todolistId, res.data.data.item))
-            dispatch(setStatusAC('succesed'))
+            dispatch(setAppStatusAC('succesed'))
         } else {
             if (res.data.messages.length) {
-                dispatch(setErrorAC(res.data.messages[0]))
+                dispatch(setAppErrorAC(res.data.messages[0]))
             } else {
-                dispatch(setErrorAC('Some spaceShit was happen !'))
+                dispatch(setAppErrorAC('Some spaceShit was happen !'))
             }
-            dispatch(setStatusAC('failed'))
+            dispatch(setAppStatusAC('failed'))
         }
     } catch (e) {
         console.log(e)

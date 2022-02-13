@@ -20,12 +20,12 @@ export type InitialAppSpaceType = {
     error: string | null
 }
 
-export type AppSpaceAction = ReturnType<typeof setErrorAC> | ReturnType<typeof setStatusAC>
+export type AppSpaceAction = ReturnType<typeof setAppErrorAC> | ReturnType<typeof setAppStatusAC>
 const APP_SET_ERROR = 'APP_SET_ERROR'
-export const setErrorAC = (error: string | null) => {
+export const setAppErrorAC = (error: string | null) => {
     return {type: APP_SET_ERROR, error} as const
 }
 const APP_SET_STATUS = 'APP_SET_STATUS'
-export const setStatusAC = (status: RequestStatusType ) => {
+export const setAppStatusAC = (status: RequestStatusType ) => {
     return {type: APP_SET_STATUS, status} as const
 }

@@ -1,6 +1,6 @@
 import {
     AddTodoActionType,
-    ChangeTodoFilterActionType,
+    ChangeTodoFilterActionType, ChangeTodolistsEntityStatusActionType,
     ChangeTodoTitleActionType, GetTodolistsActionType,
     RemoveTodoActionType, TodolistsActionsType
 } from "../Actions/TodolistsActions";
@@ -17,6 +17,8 @@ export type SpaceTodolistsActionsType =
     | ChangeTodoTitleActionType
     | ChangeTodoFilterActionType
     | GetTodolistsActionType
+    | ChangeTodolistsEntityStatusActionType
+
 
 const initialState: Array<TodolitsType> = []
 export const todolistReducer = (state = initialState, action: SpaceTodolistsActionsType): TodolitsType[] => {
@@ -37,6 +39,9 @@ export const todolistReducer = (state = initialState, action: SpaceTodolistsActi
             }
             case TodolistsActionsType.GetTodolists: {
                 return action.items.map(m => ({...m, filter: 'all', entitySpaceStatus: 'idle'}))
+            }
+            case TodolistsActionsType.ChangeTodolistEntityStatus: {
+                return state.map(m => m.id === action.todolistId ? {...m, entitySpaceStatus: action.status} : m)
             }
             default:
                 return state

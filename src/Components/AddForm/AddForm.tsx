@@ -5,10 +5,10 @@ import React, {ChangeEvent, useCallback, useState} from "react";
 
 type AddFormPropsType = {
     addItem: (title: string) => void
-    disabled: boolean
+    disabled?: boolean
 }
 
-export const AddFormMemo = (props: AddFormPropsType) => {
+export const AddFormMemo = ({disabled = false, ...props}: AddFormPropsType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string>('')
 
@@ -32,8 +32,8 @@ export const AddFormMemo = (props: AddFormPropsType) => {
                 onChange={onChangeInput}
                 onKeyPress={onKeyPressAdd}
                 error={error}
-                disabled={props.disabled}/>
-        <Button name={'+'} callback={addTaskButton} disabled={props.disabled}/>
+                disabled={disabled}/>
+        <Button name={'+'} callback={addTaskButton} disabled={disabled}/>
     </div>
 }
 

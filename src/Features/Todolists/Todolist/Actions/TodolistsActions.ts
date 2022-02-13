@@ -1,14 +1,15 @@
 import {FilterValueType} from "../Reducers/TodolistReducer";
 import {SpaceTodolistType, todolistsSpaceApi} from "../../../../API/SpaceAPI";
 import {SpaceThunksType} from "../../../../App/store";
-import {setStatusAC} from "../../../../App/AppReducer";
+import {RequestStatusType, setAppStatusAC} from "../../../../App/AppReducer";
 
 export enum TodolistsActionsType {
     RemoveTodo = 'REMOVE_TODO',
     AddTodo = 'ADD_TODO',
     ChangeTodoTitle = 'CHANGE_TODO_TITLE',
     ChangeTodoFilter = 'CHANGE_TODO_FILTER',
-    GetTodolists = 'GetTodolists'
+    GetTodolists = 'GetTodolists',
+    ChangeTodolistEntityStatus = 'ChangeTodolistEntityStatus'
 }
 
 export type RemoveTodoActionType = {
@@ -33,6 +34,11 @@ export type GetTodolistsActionType = {
     type: TodolistsActionsType.GetTodolists
     items: Array<SpaceTodolistType>
 }
+export type ChangeTodolistsEntityStatusActionType = {
+    type: TodolistsActionsType.ChangeTodolistEntityStatus
+    status: RequestStatusType
+    todolistId: string
+}
 
 export const removeTodolistAC = (todolistId: string): RemoveTodoActionType => {
     return {type: TodolistsActionsType.RemoveTodo, id: todolistId} as const
@@ -49,31 +55,37 @@ export const ChangeTodoFilterAC = (filter: FilterValueType, todolistId: string,)
 export const GetTodolistsAC = (items: Array<SpaceTodolistType>): GetTodolistsActionType => {
     return {type: TodolistsActionsType.GetTodolists, items} as const
 }
+export const changeTodolistsStatusAC = (todolistId: string, status: RequestStatusType): ChangeTodolistsEntityStatusActionType => {
+    return {type: TodolistsActionsType.ChangeTodolistEntityStatus, todolistId, status} as const
+}
 
 export const getTodolistsTC = (): SpaceThunksType => async (dispatch) => {
-    dispatch(setStatusAC('loading'))
+    dispatch(setAppStatusAC('loading'))
     try {
         let space = await todolistsSpaceApi.getTodolists()
         dispatch(GetTodolistsAC(space.data))
-        dispatch(setStatusAC('succesed'))
+        dispatch(setAppStatusAC('succesed'))
     } catch (e) {
         console.log(e)
     }
 }
 export const createTodolistsTC = (title: string): SpaceThunksType => async (dispatch) => {
-    dispatch(setStatusAC('loading'))
+    dispatch(setAppStatusAC('loading'))
     try {
         let space = await todolistsSpaceApi.createTodolist(title)
         dispatch(AddTodoAC(space.data.data.item))
-        dispatch(setStatusAC('succesed'))
+        dispatch(setAppStatusAC('succesed'))
     } catch (e) {
         console.log(e)
     }
 }
 export const deleteTodolistsTC = (todolistId: string): SpaceThunksType => async (dispatch) => {
+    dispatch(setAppStatusAC('loading'))
+    dispatch(changeTodolistsStatusAC(todolistId, 'loading'))
     try {
         await todolistsSpaceApi.deleteTodolist(todolistId)
         dispatch(removeTodolistAC(todolistId))
+        dispatch(setAppStatusAC('succesed'))
     } catch (e) {
         console.log(e)
     }

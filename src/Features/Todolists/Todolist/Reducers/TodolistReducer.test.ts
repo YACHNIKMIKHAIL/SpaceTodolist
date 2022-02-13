@@ -1,6 +1,12 @@
 import {v1} from "uuid";
 import {todolistReducer, TodolitsType} from "./TodolistReducer";
-import {AddTodoAC, ChangeTodoFilterAC, ChangeTodoTitleAC, removeTodolistAC} from "../Actions/TodolistsActions";
+import {
+    AddTodoAC,
+    ChangeTodoFilterAC,
+    changeTodolistsStatusAC,
+    ChangeTodoTitleAC,
+    removeTodolistAC
+} from "../Actions/TodolistsActions";
 
 
 test('correct todolist remove', () => {
@@ -65,5 +71,21 @@ test('correct change todolist filter', () => {
 
     expect(endState.length).toBe(2)
     expect(endState[1].filter).toBe('complited')
+    expect(endState[0].title).toBe('What to learn?')
+})
+test('correct change todolist status', () => {
+    let todolist1 = v1()
+    let todolist2 = v1()
+
+    const startState: Array<TodolitsType> = [
+        {id: todolist1, title: 'What to learn?', filter: 'all', addedDate: '', order: 0,entitySpaceStatus:'idle'},
+        {id: todolist2, title: 'What to buy?', filter: 'all', addedDate: '', order: 0,entitySpaceStatus:'idle'}
+    ]
+
+    const endState = todolistReducer(startState, changeTodolistsStatusAC(todolist2,'loading' )
+    )
+
+    expect(endState.length).toBe(2)
+    expect(endState[1].entitySpaceStatus).toBe('loading')
     expect(endState[0].title).toBe('What to learn?')
 })
