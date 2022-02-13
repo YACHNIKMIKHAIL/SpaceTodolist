@@ -1,6 +1,7 @@
 import {FilterValueType} from "../Reducers/TodolistReducer";
 import {SpaceTaskType, TaskPriorities, tasksSpaceApi, TaskStatuses} from "../../../../API/SpaceAPI";
 import {rootReducerType, SpaceThunksType} from "../../../../App/store";
+import {setErrorAC} from "../../../../App/AppReducer";
 
 export enum TasksActionsType {
     RemoveTask = 'REMOVE_TASK',
@@ -51,7 +52,13 @@ export const getTaskTC = (todolistId: string): SpaceThunksType => async (dispatc
 export const createTaskTC = (todolistId: string, title: string): SpaceThunksType => async (dispatch) => {
     try {
         let res = await tasksSpaceApi.createTask(todolistId, title)
-        dispatch(AddTaskAC(todolistId, res.data.data.item))
+        if(res.data.resultCode===0) {
+            dispatch(AddTaskAC(todolistId, res.data.data.item))
+        }else{
+            if(res.data.messages.length){
+                dispatch(setErrorAC(res.data.messages[0]))
+            }
+        }
     } catch (e) {
         console.log(e)
     }
